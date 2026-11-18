@@ -2,13 +2,13 @@
 
 SovNode ports Odoo modules to new Odoo versions. This repository is our public track record: community modules we have ported, each one installed on a clean database of the target version and proven by its own test suite.
 
-Figures as of 18 November 2026, 2:00 pm (US Central). That afternoon we found that our test machine had been skipping browser tests, and we took 47 modules off this page until they pass with those tests running. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
+Figures as of 18 November 2026, 2:20 pm (US Central). That afternoon we found that our test machine had been skipping browser tests, and we took 36 modules off this page until they pass with those tests running. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
 
 ## What is here
 
 | Folder | What it holds | Table |
 |---|---|---|
-| [`20.0/`](20.0) | 395 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 4,254 test runs in all. | [MODULES.md](MODULES.md) |
+| [`20.0/`](20.0) | 408 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 4,354 test runs in all. | [MODULES.md](MODULES.md) |
 | [`from-older-versions/`](from-older-versions) | 23 ports made from the Odoo 15.0, 16.0 and 17.0 versions of well-known modules, to Odoo 19.0 and 20.0. | [OLDER_VERSIONS.md](OLDER_VERSIONS.md) |
 | [NOTES.md](NOTES.md) | Where a port had to change behaviour because Odoo removed something, and what we found in Odoo 18, 19 and 20 that affects any port. | |
 

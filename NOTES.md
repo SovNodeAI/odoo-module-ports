@@ -11,8 +11,8 @@ Until 1:25 pm on 18 November our test machine lacked one Python package, `websoc
 What we did:
 
 - Installed the package. Changed the counter: a test that skips itself now counts as not run.
-- Started running again every module that carries web code (JavaScript or templates) and every module with a browser test of its own. A module with web code is listed here only after a passing run in which the browser tests really ran.
-- 47 modules that were listed here in the morning are off the page. 23 have web code that is not yet ported to Owl 3 (see "the web client runs on Owl 3" below). 5 failed a browser test for another reason. 3 extend a method Odoo 20 removed. 4 have tests that skip themselves. The other 12 were still waiting for their browser run when this was written. They come back as they pass.
+- Ran again every module that carries web code (JavaScript or templates) and every module with a browser test of its own. A module with web code is listed here only after a passing run in which the browser tests really ran.
+- 36 modules that were listed here in the morning are off the page. 23 have web code that is not yet ported to Owl 3 (see "the web client runs on Owl 3" below). 6 fail a browser test for another reason, mostly a tour whose steps no longer match Odoo 20's screens. 4 have tests that skip themselves. 3 extend a method Odoo 20 removed. They come back as they pass.
 - 15 of the 38 ports from older versions are off the page as well. They are ports of three modules that carry web code or browser tests (`contract`, `helpdesk_mgmt`, `base_tier_validation`), and they are being run again.
 
 The same afternoon we made the dead-method check look at each model separately (a same-named method on another model had hidden some cases) and added three checks. They found, in modules that passed all their tests:

@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-395 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 4254 test runs in all.
+408 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 4354 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -110,6 +110,7 @@
 | [base_technical_user](20.0/base_technical_user) | OCA/server-tools | 19.0 | `71de4de` | AGPL-3 | 6 | 6 | none |
 | [base_territory](20.0/base_territory) | OCA/field-service | 19.0 | `650561d` | AGPL-3 | 19 | 19 | none |
 | [base_tier_validation_formula](20.0/base_tier_validation_formula) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 5 | 5 | none |
+| [base_tier_validation_forward](20.0/base_tier_validation_forward) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 3 | 3 | none |
 | [base_user_role_company](20.0/base_user_role_company) | OCA/server-backend | 19.0 | `d6b0897` | AGPL-3 | 7 | 7 | none |
 | [base_user_role_history](20.0/base_user_role_history) | OCA/server-backend | 19.0 | `d6b0897` | AGPL-3 | 8 | 8 | reviewed |
 | [bi_sql_editor](20.0/bi_sql_editor) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 5 | 5 | none |
@@ -233,6 +234,7 @@
 | [mgmtsystem](20.0/mgmtsystem) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 1 | 1 | none |
 | [mgmtsystem_action](20.0/mgmtsystem_action) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 7 | 7 | none |
 | [mgmtsystem_review](20.0/mgmtsystem_review) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 1 | 1 | reviewed |
+| [mis_template_financial_report](20.0/mis_template_financial_report) | OCA/account-financial-reporting | 18.0 | `ae0fff3` | AGPL-3 | 1 | 1 | none |
 | [module_auto_update](20.0/module_auto_update) | OCA/server-tools | 19.0 | `71de4de` | LGPL-3 | 13 | 13 | reviewed |
 | [module_change_auto_install](20.0/module_change_auto_install) | OCA/server-tools | 19.0 | `71de4de` | AGPL-3 | 7 | 7 | none |
 | [mrp_bom_component_mass_change](20.0/mrp_bom_component_mass_change) | OCA/manufacture | 19.0 | `c01ef60` | AGPL-3 | 14 | 14 | reviewed |
@@ -322,14 +324,17 @@
 | [purchase_stock_analytic](20.0/purchase_stock_analytic) | OCA/account-analytic | 18.0 | `309045a` | AGPL-3 | 1 | 1 | reviewed |
 | [purchase_stock_picking_invoice_link](20.0/purchase_stock_picking_invoice_link) | OCA/stock-logistics-workflow | 19.0 | `3057a91` | AGPL-3 | 7 | 7 | none |
 | [purchase_tier_validation](20.0/purchase_tier_validation) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 4 | 4 | none |
+| [report_py3o](20.0/report_py3o) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 14 | 14 | reviewed |
 | [report_qweb_parameter](20.0/report_qweb_parameter) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 1 | 1 | reviewed |
 | [report_wkhtmltopdf_param](20.0/report_wkhtmltopdf_param) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 2 | 2 | none |
 | [report_xlsx_helper](20.0/report_xlsx_helper) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 1 | 1 | none |
+| [report_xml](20.0/report_xml) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 3 | 3 | reviewed |
 | [resource_booking](20.0/resource_booking) | OCA/calendar | 19.0 | `1d6bd36` | AGPL-3 | 42 | 42 | reviewed |
 | [rma](20.0/rma) | OCA/rma | 19.0 | `4774c03` | AGPL-3 | 74 | 75 | reviewed |
 | [rma_lot](20.0/rma_lot) | OCA/rma | 18.0 | `4e5260d` | AGPL-3 | 11 | 11 | reviewed |
 | [rma_reason](20.0/rma_reason) | OCA/rma | 18.0 | `4e5260d` | AGPL-3 | 3 | 3 | reviewed |
 | [sale_automatic_workflow](20.0/sale_automatic_workflow) | OCA/sale-workflow | 19.0 | `e62b0e1` | AGPL-3 | 18 | 18 | reviewed |
+| [sale_blanket_order](20.0/sale_blanket_order) | OCA/sale-blanket | 19.0 | `c7243cd` | AGPL-3 | 25 | 25 | reviewed |
 | [sale_cancel_reason](20.0/sale_cancel_reason) | OCA/sale-workflow | 19.0 | `e62b0e1` | AGPL-3 | 3 | 3 | none |
 | [sale_commission_oca](20.0/sale_commission_oca) | OCA/commission | 19.0 | `3649f32` | AGPL-3 | 4 | 4 | none |
 | [sale_delivery_state](20.0/sale_delivery_state) | OCA/sale-workflow | 19.0 | `e62b0e15` | AGPL-3 | 10 | 10 | none |
@@ -348,6 +353,7 @@
 | [sale_product_pack](20.0/sale_product_pack) | OCA/product-pack | 19.0 | `3d3af23` | AGPL-3 | 8 | 8 | reviewed |
 | [sale_product_set](20.0/sale_product_set) | OCA/sale-workflow | 19.0 | `e62b0e15` | AGPL-3 | 13 | 13 | reviewed |
 | [sale_project_task_recurrency](20.0/sale_project_task_recurrency) | OCA/project | 19.0 | `0e62631` | AGPL-3 | 18 | 18 | reviewed |
+| [sale_stock_available_info_popup](20.0/sale_stock_available_info_popup) | OCA/stock-logistics-availability | 19.0 | `f6f0272` | AGPL-3 | 2 | 2 | none |
 | [sale_stock_partner_warehouse](20.0/sale_stock_partner_warehouse) | OCA/sale-workflow | 19.0 | `e62b0e15` | AGPL-3 | 7 | 7 | reviewed |
 | [sale_stock_picking_blocking](20.0/sale_stock_picking_blocking) | OCA/sale-workflow | 19.0 | `e62b0e1` | AGPL-3 | 8 | 8 | reviewed |
 | [sale_stock_picking_invoice_link](20.0/sale_stock_picking_invoice_link) | OCA/stock-logistics-workflow | 19.0 | `3057a91` | AGPL-3 | 7 | 7 | reviewed |
@@ -358,6 +364,7 @@
 | [sentry](20.0/sentry) | OCA/server-tools | 19.0 | `71de4de` | AGPL-3 | 26 | 26 | reviewed |
 | [sequence_check_digit](20.0/sequence_check_digit) | OCA/server-ux | 18.0 | `c69ed17` | LGPL-3 | 13 | 13 | none |
 | [sequence_reset_period](20.0/sequence_reset_period) | OCA/server-ux | 19.0 | `ecb65d1` | LGPL-3 | 9 | 9 | none |
+| [server_action_mass_edit](20.0/server_action_mass_edit) | OCA/server-ux | 19.0 | `ecb65d1` | AGPL-3 | 13 | 13 | reviewed |
 | [server_action_navigate](20.0/server_action_navigate) | OCA/server-backend | 19.0 | `d6b0897` | AGPL-3 | 5 | 5 | none |
 | [server_environment](20.0/server_environment) | OCA/server-env | 19.0 | `7172600` | LGPL-3 | 17 | 17 | none |
 | [server_environment_data_encryption](20.0/server_environment_data_encryption) | OCA/server-env | 18.0 | `dc737ed` | AGPL-3 | 2 | 2 | reviewed |
@@ -379,6 +386,7 @@
 | [stock_move_location](20.0/stock_move_location) | OCA/stock-logistics-warehouse | 19.0 | `2d54780` | AGPL-3 | 12 | 12 | reviewed |
 | [stock_move_quantity_product_uom](20.0/stock_move_quantity_product_uom) | OCA/stock-logistics-warehouse | 19.0 | `2d54780` | LGPL-3 | 1 | 1 | reviewed |
 | [stock_no_negative](20.0/stock_no_negative) | OCA/stock-logistics-workflow | 19.0 | `3057a91` | AGPL-3 | 5 | 5 | reviewed |
+| [stock_owner_restriction](20.0/stock_owner_restriction) | OCA/stock-logistics-workflow | 19.0 | `3057a91` | AGPL-3 | 13 | 13 | reviewed |
 | [stock_picking_back2draft](20.0/stock_picking_back2draft) | OCA/stock-logistics-workflow | 19.0 | `3057a91` | AGPL-3 | 1 | 1 | reviewed |
 | [stock_picking_completion_info](20.0/stock_picking_completion_info) | OCA/stock-logistics-warehouse | 18.0 | `ee3167c` | AGPL-3 | 11 | 11 | reviewed |
 | [stock_picking_delivery_link](20.0/stock_picking_delivery_link) | OCA/delivery-carrier | 18.0 | `95c525a` | AGPL-3 | 3 | 3 | reviewed |
@@ -397,9 +405,14 @@
 | [subscription_oca](20.0/subscription_oca) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 62 | 62 | reviewed |
 | [tracking_manager](20.0/tracking_manager) | OCA/server-tools | 19.0 | `71de4de` | AGPL-3 | 21 | 21 | reviewed |
 | [uom_alias](20.0/uom_alias) | OCA/product-attribute | 19.0 | `5545a68` | LGPL-3 | 2 | 2 | none |
+| [web_chatter_position](20.0/web_chatter_position) | OCA/web | 19.0 | `1f57640` | LGPL-3 | 1 | 1 | reviewed, accepted |
 | [web_company_color](20.0/web_company_color) | OCA/web | 19.0 | `1f57640` | AGPL-3 | 7 | 7 | reviewed |
+| [web_dark_mode](20.0/web_dark_mode) | OCA/web | 19.0 | `1f57640` | AGPL-3 | 10 | 10 | reviewed, accepted |
 | [web_form_banner](20.0/web_form_banner) | OCA/web | 19.0 | `1f57640` | AGPL-3 | 8 | 8 | none |
+| [web_ir_actions_act_window_message](20.0/web_ir_actions_act_window_message) | OCA/web | 19.0 | `1f57640` | AGPL-3 | 1 | 1 | reviewed |
 | [web_m2x_options_manager](20.0/web_m2x_options_manager) | OCA/web | 19.0 | `1f57640` | AGPL-3 | 7 | 7 | none |
+| [web_notify](20.0/web_notify) | OCA/web | 19.0 | `1f57640` | LGPL-3 | 8 | 8 | none |
+| [web_theme_classic](20.0/web_theme_classic) | OCA/web | 19.0 | `1f57640` | AGPL-3 | 6 | 6 | reviewed, accepted |
 | [webservice_core](20.0/webservice_core) | OCA/web-api | 18.0 | `50c4d89` | AGPL-3 | 54 | 55 | none |
 | [website_require_login](20.0/website_require_login) | OCA/website | 19.0 | `d8318b7` | LGPL-3 | 2 | 2 | reviewed |
 | [website_sale_stock_provisioning_date](20.0/website_sale_stock_provisioning_date) | OCA/e-commerce | 19.0 | `36f5b14` | AGPL-3 | 2 | 2 | none |
