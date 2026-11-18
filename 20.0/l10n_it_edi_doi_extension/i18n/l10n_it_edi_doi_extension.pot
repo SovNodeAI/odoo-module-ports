@@ -1,0 +1,425 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_edi_doi_extension
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_edi_doi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_doi_extension.view_purchase_order_form
+msgid "<span class=\"o_stat_text\">Declaration of Intent</span>"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/purchase_order.py:0
+msgid "A line using tax %s should not contain any other taxes"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__declaration_invoiced
+msgid "Already Invoiced"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__amount
+msgid "Amount"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_account_move_doi__amount
+msgid ""
+"Amount of the invoice covered by this declaration of intent. If zero, the "
+"full remaining amount will be used."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__declaration_available
+msgid "Available"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model,name:l10n_it_edi_doi_extension.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_bank_statement_line__l10n_it_edi_doi_count
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move__l10n_it_edi_doi_count
+msgid "DOI Count"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_purchase_order__l10n_it_edi_doi_date
+msgid "Date on which Declaration of Intent is applied"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_account_move_doi__declaration_issue_date
+msgid "Date on which the Declaration of Intent was issued"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model,name:l10n_it_edi_doi_extension.model_l10n_it_edi_doi_declaration_of_intent
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__declaration_id
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_purchase_order__l10n_it_edi_doi_id
+msgid "Declaration of Intent"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_purchase_order__l10n_it_edi_doi_not_yet_invoiced
+msgid "Declaration of Intent Amount Not Yet Invoiced"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_res_company__l10n_it_edi_doi_bill_tax_id
+msgid "Declaration of Intent Bills Tax"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_res_company__l10n_it_edi_doi_tax_id
+msgid "Declaration of Intent Tax"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_purchase_order__l10n_it_edi_doi_warning
+msgid "Declaration of Intent Threshold Warning"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move.py:0
+#: code:addons/l10n_it_edi_doi_extension/models/purchase_order.py:0
+msgid "Declaration of Intent for %s"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_bank_statement_line__l10n_it_edi_doi_ids
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move__l10n_it_edi_doi_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_doi_extension.view_move_form_doi_tab
+msgid "Declarations of Intent"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move.py:0
+msgid "Declarations of Intent for %s"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.actions.act_window,name:l10n_it_edi_doi_extension.declaration_of_intent_action
+#: model:ir.ui.menu,name:l10n_it_edi_doi_extension.declaration_of_intent_menu
+msgid "Declarations of intent"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_bank_statement_line__doi_type
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move__doi_type
+msgid "Doi Type"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__declaration_end_date
+msgid "End Date"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_account_move_doi__declaration_start_date
+msgid "First date on which the Declaration of Intent is valid"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move.py:0
+msgid ""
+"Given the Declaration of Intent %(doi_name)s is linked to this Move, at "
+"least one line should contain the Tax %(doi_tax_name)s."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move.py:0
+#: code:addons/l10n_it_edi_doi_extension/models/purchase_order.py:0
+msgid ""
+"Given the tax %s is applied, there should be a Declaration of Intent "
+"selected."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_doi_extension.declaration_of_intent_search
+msgid "Group By"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__move_id
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_l10n_it_edi_doi_declaration_of_intent__move_doi_ids
+msgid "Invoice Declaration Lines"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model,name:l10n_it_edi_doi_extension.model_account_move_doi
+msgid "Invoice Declaration of Intent"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__declaration_issue_date
+msgid "Issue Date"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_doi_extension.declaration_of_intent_search
+msgid "Issued"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_doi_extension.selection__account_move__doi_type__in
+#: model:ir.model.fields.selection,name:l10n_it_edi_doi_extension.selection__l10n_it_edi_doi_declaration_of_intent__type__in
+msgid "Issued from company"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model,name:l10n_it_edi_doi_extension.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model,name:l10n_it_edi_doi_extension.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_account_move_doi__declaration_end_date
+msgid "Last date on which the Declaration of Intent is valid"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_l10n_it_edi_doi_declaration_of_intent__move_doi_ids
+msgid "Links to invoices using this declaration with specific amounts."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_account_bank_statement_line__l10n_it_edi_doi_ids
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_account_move__l10n_it_edi_doi_ids
+msgid ""
+"Multiple declarations of intent linked to this invoice. Use this when the "
+"invoice amount exceeds a single declaration's threshold."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move_doi.py:0
+msgid "New"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move.py:0
+#: code:addons/l10n_it_edi_doi_extension/models/purchase_order.py:0
+msgid "No Declaration of Intent found for %s."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_l10n_it_edi_doi_declaration_of_intent__number
+msgid "Number"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_doi_extension.declaration_of_intent_search
+msgid "Partner"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__protocol_number_part1
+msgid "Protocol 1"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__protocol_number_part2
+msgid "Protocol 2"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_l10n_it_edi_doi_declaration_of_intent__purchase_order_ids
+msgid "Purchase / Rfq Orders"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model,name:l10n_it_edi_doi_extension.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_doi_extension.declaration_of_intent_search
+msgid "Received"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_doi_extension.selection__account_move__doi_type__out
+#: model:ir.model.fields.selection,name:l10n_it_edi_doi_extension.selection__l10n_it_edi_doi_declaration_of_intent__type__out
+msgid "Received from customers"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_l10n_it_edi_doi_declaration_of_intent__number
+msgid "Sequential number for internal reference"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_doi_extension.declaration_of_intent_search
+msgid "Show issued declarations"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_doi_extension.declaration_of_intent_search
+msgid "Show received declarations"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move_line.py:0
+msgid ""
+"Since the invoice line %(line_name)s includes the Tax %(doi_tax)s for the "
+"Declaration of Intent, it cannot include other Taxes."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__declaration_start_date
+msgid "Start Date"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model,name:l10n_it_edi_doi_extension.model_account_tax
+msgid "Tax"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move_doi.py:0
+msgid "The amount covered by a declaration cannot be negative."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__declaration_threshold
+msgid "Threshold"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_bank_statement_line__l10n_it_edi_doi_total_amount
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move__l10n_it_edi_doi_total_amount
+msgid "Total DOI Amount"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_account_bank_statement_line__l10n_it_edi_doi_total_amount
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_account_move__l10n_it_edi_doi_total_amount
+msgid "Total amount covered by all linked declarations of intent."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_account_move_doi__declaration_threshold
+msgid ""
+"Total amount of allowed sales without VAT under this Declaration of Intent"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_account_move_doi__declaration_invoiced
+msgid "Total amount of sales under this Declaration of Intent"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,help:l10n_it_edi_doi_extension.field_purchase_order__l10n_it_edi_doi_not_yet_invoiced
+msgid ""
+"Total under the Declaration of Intent of thisdocument that can still be "
+"invoiced"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_l10n_it_edi_doi_declaration_of_intent__type
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_doi_extension.declaration_of_intent_search
+msgid "Type"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_purchase_order__l10n_it_edi_doi_use
+msgid "Use Declaration of Intent"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move.py:0
+msgid ""
+"Warning: The total amount covered by declarations (%(covered)s) is less than"
+" the invoice DOI amount (%(total)s). Please adjust the amounts or add more "
+"declarations."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/declaration_of_intent.py:0
+msgid ""
+"You cannot delete Declarations of Intents that are already used on at least "
+"one Purchase Order."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_tax.py:0
+msgid "You cannot delete the special tax for Declarations of Intent."
+msgstr ""

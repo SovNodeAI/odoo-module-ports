@@ -1,0 +1,4 @@
+id,name,model_id,group_id/id,operation,domain
+access_iot_device_output_action,access_iot_device_output_action,iot.device.output.action,iot_oca.group_iot_user,cru,
+access_iot_device_output,access_iot_device_output,iot.device.output,iot_oca.group_iot_user,r,
+manage_iot_device_output,access_iot_device_output,iot.device.output,iot_oca.group_iot_manager,cru,

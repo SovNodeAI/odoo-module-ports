@@ -1,0 +1,66 @@
+# Copyright 2017-2018 Tecnativa - Pedro M. Baeza
+# Copyright 2018 Brainbean Apps
+# Copyright 2020 InitOS Gmbh
+# Copyright 2021 Tecnativa - Víctor Martínez
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import models
+
+from odoo.addons.resource.models.resource_resource import Intervals
+
+
+class ResourceCalendar(models.Model):
+    _inherit = "resource.calendar"
+
+    def _attendance_intervals_batch_exclude_public_holidays(
+        self, start_dt, end_dt, intervals, resources_per_tz
+    ):
+        employee_id = self.env.context.get("employee_id", False)
+        if not employee_id:
+            return intervals
+        employee = self.env["hr.employee.public"].browse(employee_id)
+        # We will use the address of the employee or the partner of the company; the
+        # goal is to check only the public holidays for a specific country.
+        partner = employee.sudo().address_id or employee.company_id.partner_id
+        for tz, resources in resources_per_tz.items():
+            # The holidays are days in the timezone of the resource.
+            list_by_dates = (
+                self.env["calendar.public.holiday"]
+                .get_holidays_list(
+                    start_dt=start_dt.astimezone(tz).date(),
+                    end_dt=end_dt.astimezone(tz).date(),
+                    partner_id=partner.id,
+                )
+                .mapped("date")
+            )
+            for resource in resources:
+                interval_resource = intervals[resource.id]
+                attendances = []
+                for attendance in interval_resource._items:
+                    if attendance[0].date() not in list_by_dates:
+                        attendances.append(attendance)
+                intervals[resource.id] = Intervals(attendances)
+        return intervals
+
+    def _attendance_intervals_batch(
+        self, start_dt, end_dt, resources_per_tz=None, domain=None
+    ):
+        res = super()._attendance_intervals_batch(
+            start_dt,
+            end_dt,
+            resources_per_tz=resources_per_tz,
+            domain=domain,
+        )
+        if self.env.context.get("exclude_public_holidays") and resources_per_tz:
+            # We need to pass the employee_id to the context to be able to filter
+            # the public holidays correctly
+            resources = self.env["resource.resource"]
+            for tz_resources in resources_per_tz.values():
+                resources |= tz_resources
+            employees = resources.sudo().employee_id
+            if len(employees) == 1:
+                self = self.with_context(employee_id=employees.id)
+            return self._attendance_intervals_batch_exclude_public_holidays(
+                start_dt, end_dt, res, resources_per_tz
+            )
+        return res

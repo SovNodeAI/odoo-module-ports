@@ -1,0 +1,9 @@
+id,name,model_id,group_id/id,operation,domain
+access_whatsapp_composer,access.whatsapp.composer,whatsapp.composer,base.group_user,cru,
+access_mail_whatsapp_template_group_system,mail_whatsapp_template_group_system,mail.whatsapp.template,base.group_system,crud,
+access_mail_whatsapp_template_group_user,mail_whatsapp_template_group_user,mail.whatsapp.template,base.group_user,r,
+access_mail_whatsapp_template_button_group_system,access_mail_whatsapp_template_button_group_system,mail.whatsapp.template.button,base.group_system,crud,
+access_mail_whatsapp_template_button_group_user,access_mail_whatsapp_template_button_group_user,mail.whatsapp.template.button,base.group_user,r,
+access_mail_whatsapp_template_variable_group_system,access_mail_whatsapp_template_variable_group_system,mail.whatsapp.template.variable,base.group_system,crud,
+access_mail_whatsapp_template_variable_group_user,access_mail_whatsapp_template_variable_group_user,mail.whatsapp.template.variable,base.group_user,r,
+mail_whatsapp_template_rule,WhatsApp template: multicompany,mail.whatsapp.template,,crud,"[('company_id', 'in', company_ids + [False])]"

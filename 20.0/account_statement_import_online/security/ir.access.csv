@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_online_bank_statement_provider_admin,Full access on online.bank.statement.provider to System,online.bank.statement.provider,base.group_system,crud,
+access_online_bank_statement_provider_user,Full access on online.bank.statement.provider to Accountant,online.bank.statement.provider,account.group_account_user,crud,
+access_online_bank_statement_pull_debug_user,Full access on online.bank.statement.pull.debug to Accountant,online.bank.statement.pull.debug,account.group_account_user,crud,
+access_online_bank_statement_pull_wizard_user,Full access on online.bank.statement.pull.wizard to Accountant,online.bank.statement.pull.wizard,account.group_account_user,crud,

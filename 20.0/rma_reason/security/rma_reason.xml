@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Raumschmiede GmbH
+     Copyright 2024 BCIM
+     Copyright 2024 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.access" id="rma_reason_access_rma_user">
+        <field name="name">rma.reason access rma user</field>
+        <field name="model_id" ref="model_rma_reason" />
+        <field name="group_id" ref="rma.rma_group_user_own" />
+        <field name="operation">r</field>
+    </record>
+
+    <record model="ir.access" id="rma_reason_access_rma_manager">
+        <field name="name">rma.reason access rma manager</field>
+        <field name="model_id" ref="model_rma_reason" />
+        <field name="group_id" ref="rma.rma_group_manager" />
+        <field name="operation">crud</field>
+    </record>
+
+    <!-- Multi-Company Rules -->
+    <record id="rma_reason_rule_multi_company" model="ir.access">
+        <field name="name">RMA reason multi-company</field>
+        <field name="model_id" ref="model_rma_reason" />
+        <field name="operation">crud</field>
+        <field
+            name="domain"
+        >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+    </record>
+</odoo>

@@ -1,0 +1,19 @@
+<odoo>
+    <!-- Since Odoo 20 the scrap is a stock.move with `is_scrap` set, so the
+         analytic distribution is added on the scrap move form view. -->
+    <record id="view_scrap_analytic_form" model="ir.ui.view">
+        <field name="name">stock.move.scrap.analytic.form</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_scrap_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[1]" position="inside">
+                <field
+                    name="analytic_distribution"
+                    widget="analytic_distribution"
+                    groups="analytic.group_analytic_accounting"
+                    options="{'product_field': 'product_id', 'business_domain': 'stock_move'}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

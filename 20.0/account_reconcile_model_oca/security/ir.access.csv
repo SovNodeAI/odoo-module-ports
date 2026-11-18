@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_account_reconcile_model_partner_mapping_readonly,account.reconcile.model.partner.mapping.readonly,account.reconcile.model.partner.mapping,account.group_account_readonly,r,
+access_account_reconcile_model_partner_mapping_billing,account.reconcile.model.partner.mapping.billing,account.reconcile.model.partner.mapping,account.group_account_invoice,cr,
+access_account_reconcile_model_partner_mapping,account.reconcile.model.partner.mapping,account.reconcile.model.partner.mapping,account.group_account_basic,crud,
+account_reconcile_model_partner_mapping_comp_rule,Account partner mapping company rule,account.reconcile.model.partner.mapping,,crud,"[('company_id', 'parent_of', company_ids)]"

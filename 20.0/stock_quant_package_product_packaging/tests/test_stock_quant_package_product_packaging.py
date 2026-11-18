@@ -1,0 +1,133 @@
+# Copyright 2020 Camptocamp SA
+# Copyright 2025 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+from odoo.tests import TransactionCase
+
+
+class TestStockQuantPackageProductPackaging(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.receipt_picking_type = cls.env.ref("stock.picking_type_in")
+        # show_reserved must be set here because it changes the behaviour of
+        # put_in_pack operation:
+        # if show_reserved: qty_done must be set on stock.picking.move_line_ids
+        # if not show_reserved: qty_done must be set on
+        #   stock.picking.move_line_nosuggest_ids
+        # Demo data is not installed on the test bench, create the product
+        cls.product = cls.env["product.product"].create(
+            {"name": "Test Product", "is_storable": True}
+        )
+        cls.packaging = cls.env["uom.uom"].create(
+            {
+                "name": "10 pack",
+                "relative_factor": 10,
+                "relative_uom_id": cls.env.ref("uom.product_uom_unit").id,
+            }
+        )
+        cls.product.uom_ids = cls.packaging
+
+    def test_auto_assign_packaging(self):
+        location_dest = self.receipt_picking_type.default_location_dest_id
+        picking = self.env["stock.picking"].create(
+            {
+                "picking_type_id": self.receipt_picking_type.id,
+                "location_id": self.env.ref("stock.stock_location_suppliers").id,
+                "location_dest_id": location_dest.id,
+            }
+        )
+        picking._onchange_picking_type()
+        picking.write(
+            {
+                "move_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_qty": 30.0,
+                            "uom_id": self.product.uom_id.id,
+                            "location_id": picking.location_id.id,
+                            "location_dest_id": picking.location_dest_id.id,
+                        },
+                    )
+                ]
+            }
+        )
+        picking.action_confirm()
+        picking.move_line_ids.quantity = 10.0
+        first_package = picking.action_put_in_pack()
+        picking.action_assign()
+        picking.move_line_ids.filtered(
+            lambda ml: not ml.result_package_id
+        ).quantity = 20.0
+        second_package = picking.action_put_in_pack()
+        picking.button_validate()
+        self.assertEqual(first_package.single_product_id, self.product)
+        self.assertEqual(first_package.single_product_qty, 10.0)
+        self.assertEqual(second_package.single_product_id, self.product)
+        self.assertEqual(second_package.single_product_qty, 20.0)
+        self.assertEqual(first_package.product_packaging_id, self.packaging)
+        self.assertFalse(second_package.product_packaging_id)
+        # Add product to first package
+        picking = self.env["stock.picking"].create(
+            {
+                "picking_type_id": self.receipt_picking_type.id,
+                "location_id": self.env.ref("stock.stock_location_suppliers").id,
+                "location_dest_id": location_dest.id,
+            }
+        )
+        picking._onchange_picking_type()
+        picking.write(
+            {
+                "move_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_qty": 5.0,
+                            "uom_id": self.product.uom_id.id,
+                            "location_id": picking.location_id.id,
+                            "location_dest_id": picking.location_dest_id.id,
+                        },
+                    )
+                ]
+            }
+        )
+        picking.action_confirm()
+        picking.action_assign()
+        picking.move_line_ids.result_package_id = first_package
+        picking.button_validate()
+        self.assertFalse(first_package.product_packaging_id)
+        # Remove product from first package
+        picking = self.env["stock.picking"].create(
+            {
+                "picking_type_id": self.receipt_picking_type.id,
+                "location_id": location_dest.id,
+                "location_dest_id": self.env.ref("stock.stock_location_suppliers").id,
+            }
+        )
+        picking._onchange_picking_type()
+        picking.write(
+            {
+                "move_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_qty": 5.0,
+                            "uom_id": self.product.uom_id.id,
+                            "location_id": picking.location_dest_id.id,
+                            "location_dest_id": picking.location_id.id,
+                        },
+                    )
+                ]
+            }
+        )
+        picking.action_confirm()
+        picking.action_assign()
+        picking.move_line_ids.package_id = first_package
+        picking.button_validate()
+        self.assertEqual(first_package.product_packaging_id, self.packaging)

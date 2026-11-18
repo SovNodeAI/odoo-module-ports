@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="group_analytic_tags" model="res.groups">
+            <field name="name">Analytic Accounting Tags</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright (C) 2016 MultidadosTI (http://www.multidadosti.com.br)
+  @author Michell Stuttgart <michellstut@gmail.com>
+  License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+-->
+<odoo noupdate="1">
+    <!-- Odoo 20 removed the ``res.bank`` directory provided by l10n_br_base,
+    so the Brazilian banks used by the CNAB codes are defined here. -->
+    <record id="res_bank_001" model="res.bank">
+        <field name="code_bc">001</field>
+        <field name="name">Banco do Brasil S.A.</field>
+        <field name="short_name">BCO DO BRASIL S.A.</field>
+        <field name="bic">BRASBRRJ</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">00000000</field>
+        <field name="compe_member" eval="True" />
+    </record>
+    <record id="res_bank_004" model="res.bank">
+        <field name="code_bc">004</field>
+        <field name="name">Banco do Nordeste do Brasil S.A.</field>
+        <field name="short_name">BCO DO NORDESTE DO BRASIL S.A.</field>
+        <field name="bic">BNBRBRCF</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">07237373</field>
+        <field name="compe_member" eval="True" />
+    </record>
+    <record id="res_bank_021" model="res.bank">
+        <field name="code_bc">021</field>
+        <field name="name">BANESTES S.A. BANCO DO ESTADO DO ESPIRITO SANTO</field>
+        <field name="short_name">BCO BANESTES S.A.</field>
+        <field name="bic">BEESBRRJ</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">28127603</field>
+        <field name="compe_member" eval="True" />
+    </record>
+    <record id="res_bank_033" model="res.bank">
+        <field name="code_bc">033</field>
+        <field name="name">BANCO SANTANDER (BRASIL) S.A.</field>
+        <field name="short_name">BCO SANTANDER (BRASIL) S.A.</field>
+        <field name="bic">ABNABRSP</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">90400888</field>
+        <field name="compe_member" eval="True" />
+    </record>
+    <record id="res_bank_041" model="res.bank">
+        <field name="code_bc">041</field>
+        <field name="name">Banco do Estado do Rio Grande do Sul S.A.</field>
+        <field name="short_name">BCO DO ESTADO DO RS S.A.</field>
+        <field name="bic">BRGSBRRS</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">92702067</field>
+        <field name="compe_member" eval="True" />
+    </record>
+    <record id="res_bank_085" model="res.bank">
+        <field name="code_bc">085</field>
+        <field name="name">Cooperativa Central de Crédito - Ailos</field>
+        <field name="short_name">COOP CENTRAL AILOS</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">05463212</field>
+        <field name="compe_member" eval="True" />
+    </record>
+    <record id="res_bank_104" model="res.bank">
+        <field name="code_bc">104</field>
+        <field name="name">CAIXA ECONOMICA FEDERAL</field>
+        <field name="short_name">CAIXA ECONOMICA FEDERAL</field>
+        <field name="bic">CEFXBRSP</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">00360305</field>
+        <field name="compe_member" eval="True" />
+    </record>
+    <record id="res_bank_136" model="res.bank">
+        <field name="code_bc">136</field>
+        <field name="name"
+        >CONFEDERAÇÃO NACIONAL DAS COOPERATIVAS CENTRAIS UNICRED LTDA. - UNICRED DO BRASI</field>
+        <field name="short_name">UNICRED</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">00315557</field>
+        <field name="compe_member" eval="True" />
+    </record>
+    <record id="res_bank_237" model="res.bank">
+        <field name="code_bc">237</field>
+        <field name="name">Banco Bradesco S.A.</field>
+        <field name="short_name">BCO BRADESCO S.A.</field>
+        <field name="bic">BBDEBRSP</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">60746948</field>
+        <field name="compe_member" eval="True" />
+    </record>
+    <record id="res_bank_341" model="res.bank">
+        <field name="code_bc">341</field>
+        <field name="name">ITAÚ UNIBANCO S.A.</field>
+        <field name="short_name">ITAÚ UNIBANCO S.A.</field>
+        <field name="bic">ITAUBRSP</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">60701190</field>
+        <field name="compe_member" eval="True" />
+    </record>
+    <record id="res_bank_399" model="res.bank">
+        <field name="code_bc">399</field>
+        <field name="name">Kirton Bank S.A. - Banco Múltiplo</field>
+        <field name="short_name">KIRTON BANK</field>
+        <field name="bic">BCBBBRPR</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">01701201</field>
+        <field name="compe_member" eval="False" />
+    </record>
+    <record id="res_bank_748" model="res.bank">
+        <field name="code_bc">748</field>
+        <field name="name">BANCO COOPERATIVO SICREDI S.A.</field>
+        <field name="short_name">BCO COOPERATIVO SICREDI S.A.</field>
+        <field name="bic">BCSIBRRS</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">01181521</field>
+        <field name="compe_member" eval="True" />
+    </record>
+    <record id="res_bank_756" model="res.bank">
+        <field name="code_bc">756</field>
+        <field name="name">BANCO COOPERATIVO DO BRASIL S.A. - BANCOOB</field>
+        <field name="short_name">BANCOOB</field>
+        <field name="country_id" ref="base.br" />
+        <field name="ispb_number">02038232</field>
+        <field name="compe_member" eval="True" />
+    </record>
+</odoo>

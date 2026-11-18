@@ -1,0 +1,7 @@
+<odoo noupdate="1">
+    <record id="group_product_assortment_manager" model="res.groups">
+        <field name="name">Product Assortment Manager</field>
+        <field name="comment">Access to all product assortment</field>
+    </record>
+
+    </odoo>

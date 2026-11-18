@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018-2019 ForgeFlow, S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <!--
+        Since Odoo 19 the operations of a transfer are edited through the
+        stock move operations form (stock.view_stock_move_operations), which
+        already displays the purchase request allocations through
+        views/stock_move_views.xml. The former inline move form of the picking
+        (move_ids_without_package) no longer exists, so there is nothing left
+        to customise here.
+    -->
+</odoo>

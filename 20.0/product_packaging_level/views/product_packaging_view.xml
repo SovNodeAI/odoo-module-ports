@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_packaging_tree_view" model="ir.ui.view">
+        <field name="name">uom.uom.tree (in product_packaging_level)</field>
+        <field name="model">uom.uom</field>
+        <field name="inherit_id" ref="stock.uom_uom_view_list" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="display_name" string="Packaging" />
+            </field>
+            <field name="package_type_id" position="after">
+                <field name="qty_per_level" />
+                <field name="packaging_level_id" />
+            </field>
+            <field name="name" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_packaging_add_type_form" model="ir.ui.view">
+        <field name="name">uom.uom.form (in product_packaging_level)</field>
+        <field name="model">uom.uom</field>
+        <field name="inherit_id" ref="stock.uom_uom_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='package_type_id']" position="after">
+                <field name="qty_per_level" />
+                <field name="packaging_level_id" />
+            </xpath>
+            <xpath expr="//group[@name='uom_details']/field[@name='name']" position="attributes">
+                <attribute name="force_save">1</attribute>
+                <attribute name="invisible">packaging_level_id and name_policy != 'user_defined'</attribute>
+            </xpath>
+            <xpath expr="//group[@name='uom_details']/field[@name='name']" position="after">
+                <field name="display_name" invisible="not packaging_level_id or name_policy == 'user_defined'" />
+                <field name="name_policy" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_uom_view_form" model="ir.ui.view">
+        <field name="name">product.uom.form (in product_packaging_level)</field>
+        <field name="model">product.uom</field>
+        <field name="inherit_id" ref="product.product_uom_view_form" />
+        <field name="arch" type="xml">
+            <field name="barcode" position="attributes">
+                <attribute name="required">barcode_required_for_gtin</attribute>
+            </field>
+            <field name="barcode" position="after">
+                <field name="barcode_required_for_gtin" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>

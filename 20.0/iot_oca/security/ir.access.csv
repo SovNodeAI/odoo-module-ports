@@ -1,0 +1,12 @@
+id,name,model_id,group_id/id,operation,domain
+access_iot_device,access_iot_device,iot.device,iot_oca.group_iot_user,ru,
+manage_iot_device,access_iot_device,iot.device,iot_oca.group_iot_manager,cru,
+access_iot_device_action,access_iot_device_action,iot.device.action,iot_oca.group_iot_user,cru,
+access_iot_system,access_iot_system,iot.communication.system,iot_oca.group_iot_user,r,
+manage_iot_system,access_iot_system,iot.communication.system,iot_oca.group_iot_manager,cru,
+access_iot_system_action,access_iot_system_action,iot.communication.system.action,iot_oca.group_iot_user,r,
+manage_iot_system_action,access_iot_system_action,iot.communication.system.action,iot_oca.group_iot_manager,cru,
+access_iot_device_group,access_iot_device_group,iot.device.group,iot_oca.group_iot_user,r,
+manage_iot_device_group,manage_iot_device_group,iot.device.group,iot_oca.group_iot_manager,cru,
+access_iot_device_tag,access_iot_device_tag,iot.device.tag,iot_oca.group_iot_user,r,
+manage_iot_device_tag,manage_iot_device_tag,iot.device.tag,iot_oca.group_iot_manager,cru,
