@@ -24,6 +24,21 @@ These are in [`from-older-versions/`](from-older-versions). In a customer delive
 
 A module ported from 16 or 17 can therefore pass on 18, 19 or 20 with a large share of its tests no longer running, and nothing reports it. In `partner_firstname`, 26 of 61 test runs disappeared this way until we switched them back on.
 
+### Since 20.0: one access model, and Odoo's upgrade script can drop record rules
+
+Odoo 20 replaces `ir.model.access` and `ir.rule` with one model, `ir.access` (`odoo/addons/base/models/ir_access.py`; the data is in `security/ir.access.csv`). A row with a group is a permission, and permissions add up. A row without a group is a restriction for everybody. The old two layers, "may this group touch the model at all" and "which records", no longer exist.
+
+Odoo ships a script that converts a module's access files (`odoo/upgrade_code/19.4-00-ir-access.py`). It removes the module's record rules from the XML and writes `ir.access` rows. In two situations it removes a rule and writes nothing in its place:
+
+- The rule is on a model that another module owns, for example a rule on `account.move` in a module that depends on `account`. The script keeps only the operations it can find a permission for, and it cannot see the other module's permissions.
+- A group was limited by a rule while a wider group, often all internal users, had the same operation without a rule. The wider row covers the limited one, so the limit disappears.
+
+Nothing fails when this happens. The module installs, and tests rarely cover record rules.
+
+We found it in our own ports on 18 November 2026: 6 of the 106 ported modules that had record rules were affected, and five of them were on this page. In one, users who were allowed to read only their own credit notes could read every journal entry. In another, users who were limited to their own appraisals could read everyone's. Three are corrected here (`rma`, `mail_gateway`, `product_assortment`) and pass their tests again. The other two are no longer on this page. In one, the rule can only be put back by also limiting users the original did not limit. In the other, putting it back makes two of the module's own tests fail, so its access design needs a decision from whoever uses the module. Every port is now compared rule by rule with its original, and a port with an open difference is not published.
+
+The same script re-writes the XML files it touches through a parser, which drops the XML declaration and the copyright comment at the top of the file. That had happened in 13 files across 11 of our ports; they are restored, and it is checked on every port.
+
 ### Since 20.0: a currency rate applies from the day after its date
 
 `res.currency._get_rates` in `odoo/addons/base/models/res_currency.py` looks for the latest rate dated strictly before the given date. Odoo 19 and older included the date itself (`<=`).

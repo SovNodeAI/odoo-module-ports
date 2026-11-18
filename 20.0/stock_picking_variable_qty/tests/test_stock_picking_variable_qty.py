@@ -1,0 +1,530 @@
+# Copyright 2026 Moduon Team S.L.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
+from odoo import Command
+
+from odoo.addons.base.tests.common import BaseCommon
+
+
+class TestPickingVariableQuantity(BaseCommon):
+    _test_user_groups = (
+        "product.group_product_manager",
+        "stock.group_stock_manager",
+        "sales_team.group_sale_salesman",
+        "base.group_partner_manager",
+    )
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Variable Qty Product",
+                "is_storable": True,
+                "invoice_policy": "delivery",
+            }
+        )
+        cls.uom_unit = cls.env.ref("uom.product_uom_unit")
+        cls.warehouse = cls.env["stock.warehouse"].create(
+            {
+                "name": "Warehouse Pick Ship",
+                "code": "VPQ",
+                "delivery_steps": "pick_ship",
+            }
+        )
+        delivery_route = cls.warehouse.delivery_route_id
+        # These tests target the regression on legacy pull-rule chains, so the
+        # route is forced away from the newer push/pull setup.
+        delivery_route.rule_ids[0].write(
+            {"location_dest_id": delivery_route.rule_ids[1].location_src_id.id}
+        )
+        delivery_route.rule_ids[1].write({"action": "pull"})
+        cls.pick_rule = delivery_route.rule_ids.filtered(
+            lambda rule: rule.location_dest_id == cls.warehouse.wh_output_stock_loc_id
+        )
+        cls.ship_rule = delivery_route.rule_ids.filtered(
+            lambda rule: rule.location_dest_id.usage == "customer"
+        )
+        cls.warehouse.pick_type_id.propagate_variable_qty = True
+        cls.env["stock.quant"]._update_available_quantity(
+            cls.product, cls.warehouse.lot_stock_id, 40.0
+        )
+
+    def _create_pick_ship_pickings(self, stock_qty, move_qty):
+        stock_location = self.pick_rule.location_src_id
+        ship_location = self.pick_rule.location_dest_id
+        customer_location = self.ship_rule.location_dest_id
+        self.env["stock.quant"]._update_available_quantity(
+            self.product, stock_location, stock_qty
+        )
+        pick_picking = self.env["stock.picking"].create(
+            {
+                "location_id": stock_location.id,
+                "location_dest_id": ship_location.id,
+                "picking_type_id": self.warehouse.pick_type_id.id,
+            }
+        )
+        pick_move = self.env["stock.move"].create(
+            {
+                "description_picking": "pick move",
+                "picking_id": pick_picking.id,
+                "rule_id": self.pick_rule.id,
+                "location_id": stock_location.id,
+                "location_dest_id": ship_location.id,
+                "product_id": self.product.id,
+                "uom_id": self.uom_unit.id,
+                "product_uom_qty": move_qty,
+                "warehouse_id": self.warehouse.id,
+                "origin": "origin_max_qty",
+                "procure_method": "make_to_stock",
+            }
+        )
+        ship_picking = self.env["stock.picking"].create(
+            {
+                "location_id": ship_location.id,
+                "location_dest_id": customer_location.id,
+                "picking_type_id": self.warehouse.out_type_id.id,
+            }
+        )
+        ship_move = self.env["stock.move"].create(
+            {
+                "description_picking": "ship move",
+                "picking_id": ship_picking.id,
+                "rule_id": self.ship_rule.id,
+                "location_id": ship_location.id,
+                "location_dest_id": customer_location.id,
+                "product_id": self.product.id,
+                "uom_id": self.uom_unit.id,
+                "product_uom_qty": move_qty,
+                "warehouse_id": self.warehouse.id,
+                "origin": "origin_max_qty",
+                "procure_method": "make_to_stock",
+            }
+        )
+        pick_move.write({"move_dest_ids": [(4, ship_move.id)]})
+        ship_move.write({"move_orig_ids": [(4, pick_move.id)]})
+        pick_picking.do_unreserve()
+        ship_picking.do_unreserve()
+        return pick_picking, ship_picking
+
+    def _create_pick_ship_pickings_with_splits(
+        self, stock_qty, pick_quantities, ship_quantities
+    ):
+        stock_location = self.pick_rule.location_src_id
+        ship_location = self.pick_rule.location_dest_id
+        customer_location = self.ship_rule.location_dest_id
+        self.env["stock.quant"]._update_available_quantity(
+            self.product, stock_location, stock_qty
+        )
+        pick_picking = self.env["stock.picking"].create(
+            {
+                "location_id": stock_location.id,
+                "location_dest_id": ship_location.id,
+                "picking_type_id": self.warehouse.pick_type_id.id,
+            }
+        )
+        ship_picking = self.env["stock.picking"].create(
+            {
+                "location_id": ship_location.id,
+                "location_dest_id": customer_location.id,
+                "picking_type_id": self.warehouse.out_type_id.id,
+            }
+        )
+        pick_moves = self.env["stock.move"]
+        ship_moves = self.env["stock.move"]
+        for index, quantity in enumerate(pick_quantities, start=1):
+            pick_moves |= self.env["stock.move"].create(
+                {
+                    "description_picking": f"pick move {index}",
+                    "picking_id": pick_picking.id,
+                    "rule_id": self.pick_rule.id,
+                    "location_id": stock_location.id,
+                    "location_dest_id": ship_location.id,
+                    "product_id": self.product.id,
+                    "uom_id": self.uom_unit.id,
+                    "product_uom_qty": quantity,
+                    "warehouse_id": self.warehouse.id,
+                    "origin": f"origin_split_qty_{index}",
+                    "procure_method": "make_to_stock",
+                }
+            )
+        for index, quantity in enumerate(ship_quantities, start=1):
+            ship_moves |= self.env["stock.move"].create(
+                {
+                    "description_picking": f"ship move {index}",
+                    "picking_id": ship_picking.id,
+                    "rule_id": self.ship_rule.id,
+                    "location_id": ship_location.id,
+                    "location_dest_id": customer_location.id,
+                    "product_id": self.product.id,
+                    "uom_id": self.uom_unit.id,
+                    "product_uom_qty": quantity,
+                    "warehouse_id": self.warehouse.id,
+                    "origin": f"origin_split_qty_{index}",
+                    "procure_method": "make_to_stock",
+                }
+            )
+        pick_moves.write({"move_dest_ids": [(6, 0, ship_moves.ids)]})
+        ship_moves.write({"move_orig_ids": [(6, 0, pick_moves.ids)]})
+        return pick_picking, ship_picking, pick_moves, ship_moves
+
+    @classmethod
+    def _create_sale_order(cls, quantity, product=None):
+        product = product or cls.product
+        return cls.env["sale.order"].create(
+            {
+                "partner_id": cls.partner.id,
+                "warehouse_id": cls.warehouse.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": product.id,
+                            "product_uom_qty": quantity,
+                        }
+                    )
+                ],
+            }
+        )
+
+    def _confirm_sale_and_get_pickings(self, ordered_qty, product=None):
+        product = product or self.product
+        order = self._create_sale_order(ordered_qty, product=product)
+        order.action_confirm()
+        self.assertEqual(len(order.picking_ids), 2)
+        pick_picking = order.picking_ids.filtered(
+            lambda picking: picking.location_dest_id
+            == self.warehouse.wh_output_stock_loc_id
+        )
+        ship_picking = order.picking_ids.filtered(
+            lambda picking: picking.location_dest_id.usage == "customer"
+        )
+        self.assertEqual(len(pick_picking), 1)
+        self.assertEqual(len(ship_picking), 1)
+        return order, pick_picking, ship_picking
+
+    def _process_picking(self, picking, done_qty, cancel_backorder=False):
+        picking.action_assign()
+        move = picking.move_ids
+        move.quantity = done_qty
+        move.picked = True
+        move._action_done(cancel_backorder=cancel_backorder)
+        return move
+
+    def _get_backorder(self, picking):
+        return self.env["stock.picking"].search([("backorder_id", "=", picking.id)])
+
+    def _validate_with_wizard(self, picking, backorder):
+        picking.button_validate()
+        wizard = (
+            self.env["stock.backorder.confirmation"]
+            .with_context(button_validate_picking_ids=picking.ids)
+            .create({"pick_ids": [Command.set(picking.ids)]})
+        )
+        if backorder:
+            wizard.process()
+        else:
+            wizard.process_cancel_backorder()
+
+    def test_variable_shortfall_warns_on_last_delivery(self):
+        order, pick, ship = self._confirm_sale_and_get_pickings(10.0)
+        self._process_picking(pick, 6, cancel_backorder=True)
+        ship.move_ids.write({"quantity": 4, "picked": True})
+        self._validate_with_wizard(ship, backorder=True)
+        self.assertFalse(order.activity_ids)
+        backorder = self._get_backorder(ship)
+        backorder.move_ids.write({"quantity": 2, "picked": True})
+        backorder.button_validate()
+        self.assertEqual(order.activity_ids.user_id, order.user_id)
+        self.assertIn("6.0", order.activity_ids.note)
+        self.assertIn("10.0", order.activity_ids.note)
+
+    def test_variable_shortfall_checks_every_move_of_the_line(self):
+        order, pick, ship = self._confirm_sale_and_get_pickings(10.0)
+        self._process_picking(pick, 6, cancel_backorder=True)
+        move = ship.move_ids
+        split = self.env["stock.move"].create(move._split(2))
+        split._action_confirm(merge=False)
+        # The first move of the line does not come from a variable operation.
+        move.move_orig_ids = [Command.clear()]
+        split.move_orig_ids = pick.move_ids
+        move.write({"quantity": 4, "picked": True})
+        split.write({"quantity": 2, "picked": True})
+        ship.button_validate()
+        self.assertEqual(ship.state, "done")
+        self.assertEqual(len(order.activity_ids), 1)
+
+    def test_variable_shortfall_standard_warning_is_not_duplicated(self):
+        order, pick, ship = self._confirm_sale_and_get_pickings(10.0)
+        self._process_picking(pick, 6, cancel_backorder=True)
+        ship.move_ids.write({"quantity": 5, "picked": True})
+        self._validate_with_wizard(ship, backorder=False)
+        self.assertEqual(len(order.activity_ids), 1)
+
+    def test_pick_ship_qty_done_exceeded(self):
+        pick_picking, ship_picking = self._create_pick_ship_pickings(2.0, 1.0)
+        pick_picking.action_assign()
+        pick_picking.move_line_ids[0].quantity += 1.0
+        pick_picking.button_validate()
+        ship_picking.do_unreserve()
+        ship_picking.action_assign()
+        self.assertEqual(ship_picking.move_line_ids[0].quantity, 2.0)
+        ship_picking.button_validate()
+
+    def test_pick_ship_qty_done_not_reached(self):
+        pick_picking, ship_picking = self._create_pick_ship_pickings(2.0, 2.0)
+        pick_picking.action_assign()
+        pick_picking.button_validate()
+        pick_picking.move_line_ids[0].quantity -= 1.0
+        pick_picking.with_context(skip_sanity_check=True).button_validate()
+        ship_picking.do_unreserve()
+        ship_picking.action_assign()
+        self.assertEqual(ship_picking.move_line_ids[0].quantity, 1.0)
+        ship_picking.with_context(skip_sanity_check=True).button_validate()
+
+    def test_pick_ship_keeps_downstream_qty_when_disabled(self):
+        self.warehouse.pick_type_id.propagate_variable_qty = False
+        pick_picking, ship_picking = self._create_pick_ship_pickings(2.0, 1.0)
+        pick_picking.action_assign()
+        pick_picking.move_line_ids[0].quantity += 1.0
+        pick_picking.button_validate()
+        ship_picking.do_unreserve()
+        ship_picking.action_assign()
+        self.assertEqual(ship_picking.move_line_ids[0].quantity, 1.0)
+
+    def test_pick_ship_split_origins_spread_extra_across_dest_moves(self):
+        _pick_picking, _ship_picking, pick_moves, ship_moves = (
+            self._create_pick_ship_pickings_with_splits(20.0, [5.0, 5.0], [5.0, 5.0])
+        )
+        # Calling the helper directly isolates the redistribution logic from
+        # move-line side effects so this regression stays focused on grouping.
+        pick_moves.write({"quantity": 0.0})
+        pick_moves[0].quantity = 6.0
+        pick_moves[1].quantity = 5.0
+        pick_moves._adjust_variable_quantity()
+        self.assertEqual(ship_moves.sorted("id")[0].product_uom_qty, 6.0)
+        self.assertEqual(ship_moves.sorted("id")[1].product_uom_qty, 5.0)
+
+    def test_pick_ship_split_origins_zero_unneeded_dest_moves(self):
+        _pick_picking, _ship_picking, pick_moves, ship_moves = (
+            self._create_pick_ship_pickings_with_splits(20.0, [5.0, 5.0], [5.0, 5.0])
+        )
+        pick_moves.write({"quantity": 0.0})
+        pick_moves[0].quantity = 2.0
+        pick_moves[1].quantity = 3.0
+        pick_moves._adjust_variable_quantity()
+        self.assertEqual(ship_moves.sorted("id")[0].product_uom_qty, 5.0)
+        self.assertEqual(ship_moves.sorted("id")[1].product_uom_qty, 0.0)
+
+    def test_partial_origin_backorder_preserves_other_origin_quantity(self):
+        pick_picking, ship_picking, pick_moves, ship_moves = (
+            self._create_pick_ship_pickings_with_splits(20.0, [5.0, 5.0], [10.0])
+        )
+        pick_moves._action_confirm(merge=False)
+        ship_moves._action_confirm(merge=False)
+        pick_picking.action_assign()
+        pick_moves[1].quantity = 5.0
+        pick_moves[1].picked = True
+        pick_moves[0].quantity = 2.0
+        pick_moves[0].picked = True
+        pick_moves[0]._action_done()
+
+        pick_backorder = self._get_backorder(pick_picking)
+        self.assertEqual(len(pick_backorder), 1)
+        self.assertEqual(ship_moves.product_uom_qty, 7.0)
+        backorder_ship_moves = ship_picking.move_ids - ship_moves
+        self.assertEqual(backorder_ship_moves.product_uom_qty, 3.0)
+        self.assertTrue(backorder_ship_moves.move_orig_ids & pick_backorder.move_ids)
+
+    def test_pick_extra_updates_ship_move_qty(self):
+        order, pick_picking, ship_picking = self._confirm_sale_and_get_pickings(10.0)
+        self.assertTrue(
+            order.order_line.filtered(lambda line: line.product_id == self.product)
+        )
+        ship_move = ship_picking.move_ids.filtered(
+            lambda move: move.product_id == self.product
+        )
+        self._process_picking(pick_picking, 12.0)
+        self.assertEqual(ship_move.product_uom_qty, 12.0)
+
+    def test_pick_partial_cancel_backorder_updates_ship_move_qty(self):
+        order, pick_picking, ship_picking = self._confirm_sale_and_get_pickings(10.0)
+        self.assertTrue(
+            order.order_line.filtered(lambda line: line.product_id == self.product)
+        )
+        ship_move = ship_picking.move_ids.filtered(
+            lambda move: move.product_id == self.product
+        )
+        self._process_picking(pick_picking, 6.0, cancel_backorder=True)
+        self.assertFalse(self._get_backorder(pick_picking))
+        self.assertEqual(ship_move.product_uom_qty, 6.0)
+
+    def test_pick_partial_then_extra_backorder_updates_ship_move_qty(self):
+        order, pick_picking, ship_picking = self._confirm_sale_and_get_pickings(10.0)
+        self.assertTrue(
+            order.order_line.filtered(lambda line: line.product_id == self.product)
+        )
+        ship_move = ship_picking.move_ids.filtered(
+            lambda move: move.product_id == self.product
+        )
+        self._process_picking(pick_picking, 6.0)
+        backorder_pick = self._get_backorder(pick_picking)
+        self.assertEqual(len(backorder_pick), 1)
+        self.assertEqual(backorder_pick.move_ids.product_uom_qty, 4.0)
+        self.assertEqual(ship_move.product_uom_qty, 6.0)
+        self._process_picking(backorder_pick, 5.0, cancel_backorder=True)
+        customer_moves = order.picking_ids.filtered(
+            lambda picking: picking.location_dest_id.usage == "customer"
+        ).move_ids.filtered(lambda move: move.product_id == self.product)
+        self.assertEqual(sum(customer_moves.mapped("product_uom_qty")), 11.0)
+
+    def test_pick_partial_backorder_keeps_customer_delivery_continuity(self):
+        order, pick_picking, ship_picking = self._confirm_sale_and_get_pickings(3.0)
+        self.assertTrue(
+            order.order_line.filtered(lambda line: line.product_id == self.product)
+        )
+        self._process_picking(pick_picking, 2.0)
+        backorder_pick = self._get_backorder(pick_picking)
+        self.assertEqual(len(backorder_pick), 1)
+        self.assertEqual(backorder_pick.move_ids.product_uom_qty, 1.0)
+
+        ship_moves = ship_picking.move_ids.filtered(
+            lambda move: move.product_id == self.product
+        )
+        self.assertEqual(sorted(ship_moves.mapped("product_uom_qty")), [1.0, 2.0])
+        ship_picking.action_assign()
+        done_ship_move = ship_moves.filtered(lambda move: move.product_uom_qty == 2.0)
+        pending_ship_move = ship_moves - done_ship_move
+        done_ship_move.quantity = 2.0
+        done_ship_move.picked = True
+        pending_ship_move.quantity = 0.0
+        pending_ship_move.picked = False
+        ship_moves._action_done()
+        backorder_ship = self._get_backorder(ship_picking)
+        self.assertEqual(len(backorder_ship), 1)
+        self.assertEqual(backorder_ship.move_ids.product_uom_qty, 1.0)
+
+        self._process_picking(backorder_pick, 1.0)
+        self.assertEqual(backorder_ship.move_ids.move_orig_ids, backorder_pick.move_ids)
+        self._process_picking(backorder_ship, 1.0)
+        customer_moves = (ship_picking | backorder_ship).move_ids.filtered(
+            lambda move: move.product_id == self.product
+        )
+        self.assertEqual(sum(customer_moves.mapped("quantity")), 3.0)
+
+    def test_pick_exact_quantity_keeps_ship_move_qty(self):
+        order, pick_picking, ship_picking = self._confirm_sale_and_get_pickings(10.0)
+        self.assertTrue(
+            order.order_line.filtered(lambda line: line.product_id == self.product)
+        )
+        ship_move = ship_picking.move_ids.filtered(
+            lambda move: move.product_id == self.product
+        )
+        self._process_picking(pick_picking, 10.0)
+        self.assertEqual(ship_move.product_uom_qty, 10.0)
+
+    def test_pick_keeps_ship_move_qty_when_disabled(self):
+        self.warehouse.pick_type_id.propagate_variable_qty = False
+        order, pick_picking, ship_picking = self._confirm_sale_and_get_pickings(10.0)
+        self.assertTrue(
+            order.order_line.filtered(lambda line: line.product_id == self.product)
+        )
+        ship_move = ship_picking.move_ids.filtered(
+            lambda move: move.product_id == self.product
+        )
+        self._process_picking(pick_picking, 12.0)
+        self.assertEqual(ship_move.product_uom_qty, 10.0)
+
+    def _get_ship_move_after_pick(self, ordered_qty, done_qty):
+        _order, pick_picking, ship_picking = self._confirm_sale_and_get_pickings(
+            ordered_qty
+        )
+        pick_move = self._process_picking(pick_picking, done_qty)
+        ship_move = pick_move.move_dest_ids
+        ship_picking.action_assign()
+        return pick_move, ship_move
+
+    def test_done_pick_increase_updates_ship_move(self):
+        pick_move, ship_move = self._get_ship_move_after_pick(10.0, 10.0)
+        self.assertEqual(ship_move.quantity, 10.0)
+        pick_move.move_line_ids.quantity = 12.0
+        self.assertEqual(ship_move.product_uom_qty, 12.0)
+        self.assertEqual(ship_move.quantity, 12.0)
+
+    def test_done_pick_decrease_updates_ship_move(self):
+        pick_move, ship_move = self._get_ship_move_after_pick(10.0, 10.0)
+        pick_move.move_line_ids.quantity = 8.0
+        self.assertEqual(ship_move.product_uom_qty, 8.0)
+        self.assertEqual(ship_move.quantity, 8.0)
+
+    def test_done_pick_correction_after_partial_pick(self):
+        pick_move, ship_move = self._get_ship_move_after_pick(10.0, 9.0)
+        self.assertEqual(ship_move.product_uom_qty, 9.0)
+        pick_move.move_line_ids.quantity = 7.0
+        self.assertEqual(ship_move.product_uom_qty, 7.0)
+        self.assertEqual(ship_move.quantity, 7.0)
+
+    def test_done_pick_updates_ship_move_picked_as_reserved(self):
+        pick_move, ship_move = self._get_ship_move_after_pick(10.0, 10.0)
+        ship_move.picked = True
+        pick_move.move_line_ids.quantity = 12.0
+        self.assertEqual(ship_move.product_uom_qty, 12.0)
+        self.assertEqual(ship_move.quantity, 12.0)
+        self.assertTrue(ship_move.picked)
+
+    def test_done_pick_keeps_ship_move_picked_quantity(self):
+        pick_move, ship_move = self._get_ship_move_after_pick(10.0, 10.0)
+        ship_move.quantity = 9.0
+        ship_move.picked = True
+        messages = ship_move.picking_id.message_ids
+        picked_line = ship_move.move_line_ids
+        pick_move.move_line_ids.quantity = 12.0
+        self.assertEqual(ship_move.product_uom_qty, 12.0)
+        self.assertEqual(ship_move.move_line_ids, picked_line)
+        self.assertEqual(picked_line.quantity, 9.0)
+        new_messages = ship_move.picking_id.message_ids - messages
+        self.assertEqual(
+            len(
+                new_messages.filtered(
+                    lambda message: "previous operation" in message.body
+                )
+            ),
+            1,
+        )
+
+    def test_done_pick_keeps_ship_move_when_disabled(self):
+        self.warehouse.pick_type_id.propagate_variable_qty = False
+        pick_move, ship_move = self._get_ship_move_after_pick(10.0, 10.0)
+        pick_move.move_line_ids.quantity = 12.0
+        self.assertEqual(ship_move.product_uom_qty, 10.0)
+        self.assertEqual(ship_move.quantity, 10.0)
+
+    def test_done_pick_keeps_ship_lines_picked_by_operator(self):
+        product = self.env["product.product"].create(
+            {"name": "Lot Product", "is_storable": True, "tracking": "lot"}
+        )
+        lots = self.env["stock.lot"].create(
+            [{"name": name, "product_id": product.id} for name in ("A", "B")]
+        )
+        for lot in lots:
+            self.env["stock.quant"]._update_available_quantity(
+                product, self.warehouse.lot_stock_id, 5.0, lot_id=lot
+            )
+        _order, pick_picking, ship_picking = self._confirm_sale_and_get_pickings(
+            10.0, product=product
+        )
+        pick_picking.action_assign()
+        pick_picking.move_ids.picked = True
+        pick_picking.move_ids._action_done()
+        ship_picking.action_assign()
+        ship_move = ship_picking.move_ids
+        lot_a_line = ship_move.move_line_ids.filtered(
+            lambda line: line.lot_id == lots[0]
+        )
+        lot_a_line.picked = True
+        pick_picking.move_line_ids.filtered(
+            lambda line: line.lot_id == lots[1]
+        ).quantity = 4.0
+        # The unconfirmed lot isn't picked on the operator's behalf
+        self.assertEqual(ship_move.product_uom_qty, 9.0)
+        self.assertEqual(ship_move.move_line_ids, lot_a_line)
+        self.assertEqual(lot_a_line.quantity, 5.0)

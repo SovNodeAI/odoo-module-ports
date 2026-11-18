@@ -1,0 +1,2 @@
+id,name,model_id,group_id/id,operation,domain
+ir_filters_product_assortment_rule,ir.filters.product.assortment.manager.rule,ir.filters,product_assortment.group_product_assortment_manager,cru,"[('is_assortment', '=', True)]"

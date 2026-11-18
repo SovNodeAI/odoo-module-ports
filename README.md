@@ -2,13 +2,13 @@
 
 SovNode ports Odoo modules to new Odoo versions. This repository is our public track record: community modules we have ported, each one installed on a clean database of the target version and proven by its own test suite.
 
-Figures as of 17 November 2026.
+Figures as of 18 November 2026.
 
 ## What is here
 
 | Folder | What it holds | Table |
 |---|---|---|
-| [`20.0/`](20.0) | 341 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes: 4,932 test runs in all. | [MODULES.md](MODULES.md) |
+| [`20.0/`](20.0) | 393 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes: 5,517 test runs in all. | [MODULES.md](MODULES.md) |
 | [`from-older-versions/`](from-older-versions) | 38 ports made from the Odoo 15.0, 16.0 and 17.0 versions of well-known modules, to Odoo 19.0 and 20.0. | [OLDER_VERSIONS.md](OLDER_VERSIONS.md) |
 | [NOTES.md](NOTES.md) | Where a port had to change behaviour because Odoo removed something, and what we found in Odoo 18, 19 and 20 that affects any port. | |
 
@@ -30,7 +30,7 @@ The one port not published (a large bank-reconciliation module, 17.0 to 20.0) pa
 1. **Installed and tested on a real database.** The module is installed on a clean database of the target version with its dependencies, and its own tests are run.
 2. **A pass only counts if every test actually ran.** We compare the tests the module defines with the tests that started. Since Odoo 18 the test runner no longer runs test methods that a class inherits from a parent class, and nothing warns about it. A module ported from 16 or 17 can "pass" with a third of its tests silently gone. We check for that on every port and switch those tests back on.
 3. **Changed tests are reviewed.** When a test has to change for the new version, it must still check what it checked before. Every changed test is read by a reviewer that did not make the port. A questioned change is either put back or justified from the Odoo source code.
-4. **Nothing left behind.** Each port is scanned for leftover debugging lines and for files that are no longer loaded.
+4. **Nothing left behind, nothing lost.** Each port is scanned for leftover debugging lines and for files that are no longer loaded. Its record rules are compared with the original's, because Odoo's own upgrade script for 20.0 can drop a rule without replacing it (see [NOTES.md](NOTES.md)). Copyright comments are checked file by file.
 5. **License, authors and dependencies are untouched.**
 
 ## What a pass does not prove

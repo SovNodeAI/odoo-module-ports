@@ -7,3 +7,5 @@ access_mail_message_gateway_link,mail.message.link.all,mail.message.gateway.link
 access_mail_gateway_system,mail_gateway,mail.gateway,base.group_system,crud,
 mail_gateway_rule,Mail.gateway: multicompany rule,mail.gateway,,crud,"[('company_id', 'in', company_ids + [False]) ]"
 access_mail_compose_gateway_message,access.mail.compose.gateway.message,mail.compose.gateway.message,base.group_user,cru,
+discuss_channel_gateway_rule,discuss.channel: access gateway,discuss.channel,mail_gateway.gateway_user,ru,"[('channel_type', '=', 'gateway'), ('company_id', 'in', company_ids + [False])]"
+ir_rule_discuss_channel_partner_group_user,discuss.channel.member: write its own entries on gateway channels members,discuss.channel.member,mail_gateway.gateway_user,ud,"[('channel_id.channel_type', '=', 'gateway')]"

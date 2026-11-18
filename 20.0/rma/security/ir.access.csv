@@ -18,6 +18,6 @@ access_rma_finalization_user_own,rma.finalization.user.own,rma.finalization,rma.
 access_rma_finalization_manager,rma.finalization.manager,rma.finalization,rma.rma_group_manager,crud,
 rma_finalization_comp_rule,RMA Finalization Reason multi-company,rma.finalization,,crud,"[('company_id', 'in', company_ids + [False])]"
 access_rma_finalization_wizard_user_own,rma.finalization.wizard.user.own,rma.finalization.wizard,rma.group_rma_manual_finalization,crud,
-access_account_move_rma_user,account_move rma_user,account.move,rma.rma_group_user_own,r,
-access_account_move_line_rma_user,account_move_line rma_user,account.move.line,rma.rma_group_user_own,r,
+access_account_move_rma_user,account_move rma_user,account.move,rma.rma_group_user_own,r,"[('move_type', '=', 'out_refund'), '|', ('invoice_user_id', '=', user.id), ('invoice_user_id', '=', False)]"
+access_account_move_line_rma_user,account_move_line rma_user,account.move.line,rma.rma_group_user_own,r,"[('move_id.move_type', '=', 'out_refund'), '|', ('move_id.invoice_user_id', '=', user.id), ('move_id.invoice_user_id', '=', False)]"
 access_rma_rma_wizard_user,rma.rma.wizard.user,rma.rma.wizard,rma.rma_group_user_own,crud,

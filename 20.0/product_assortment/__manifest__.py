@@ -15,6 +15,7 @@
     "data": [
         "data/ir_cron.xml",
         "security/product_assortment_security.xml",
+        "security/ir.access.csv",
         "views/product_assortment.xml",
         "views/res_partner_view.xml",
     ],
