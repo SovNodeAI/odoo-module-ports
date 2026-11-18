@@ -6,14 +6,14 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ### 18 November 2026, afternoon: browser tests had not been running
 
-Until 1:25 pm on 18 November our test machine lacked one Python package, `websocket-client`. Without it Odoo skips every test that needs a browser: a module's tours and JavaScript tests, and Odoo's own JavaScript suites, which run with the module installed. Our counter recorded a test that skipped itself as run. So for modules with web code, "every test ran and passed" was not true of their browser tests, and nothing had exercised their JavaScript on Odoo 20. This page said otherwise from 17 November until the correction.
+Until 1:25 pm on 18 November our test machine lacked one Python package, `websocket-client`. Without it Odoo skips every test that needs a browser: a module's tours and its JavaScript unit tests. Our counter recorded a test that skipped itself as run. So for modules with web code, "every test ran and passed" was not true of their browser tests, and nothing had exercised their JavaScript on Odoo 20. This page said otherwise from 17 November until the correction.
 
 What we did:
 
 - Installed the package. Changed the counter: a test that skips itself now counts as not run.
 - Ran again every module that carries web code (JavaScript or templates) and every module with a browser test of its own. A module with web code is listed here only after a passing run in which the browser tests really ran.
-- 36 modules that were listed here in the morning are off the page. 23 have web code that is not yet ported to Owl 3 (see "the web client runs on Owl 3" below). 6 fail a browser test for another reason, mostly a tour whose steps no longer match Odoo 20's screens. 4 have tests that skip themselves. 3 extend a method Odoo 20 removed. They come back as they pass.
-- 15 of the 38 ports from older versions are off the page as well. They are ports of three modules that carry web code or browser tests (`contract`, `helpdesk_mgmt`, `base_tier_validation`), and they are being run again.
+- 35 modules that were listed here in the morning are off the page. 22 have web code that is not yet ported to Owl 3 (see "the web client runs on Owl 3" below). 6 fail a browser test for another reason, mostly a tour whose steps no longer match Odoo 20's screens. 4 have tests that skip themselves. 3 extend a method Odoo 20 removed. They come back as they pass.
+- 10 of the 38 ports from older versions are off the page as well. The five ports of `contract` fail their tour now that it runs. Five ports of `helpdesk_mgmt` and `base_tier_validation` still contain JavaScript of the old version that the target version cannot load; no test of theirs opens those screens, so they had passed. The JavaScript import check now runs on these ports too, against the source of their target version.
 
 The same afternoon we made the dead-method check look at each model separately (a same-named method on another model had hidden some cases) and added three checks. They found, in modules that passed all their tests:
 
@@ -123,7 +123,7 @@ Odoo 20 ships Owl 3 (`addons/web/static/lib/owl/owl.js`) with a compatibility la
 
 Files moved as well. These import paths exist in 19.0 and not in 20.0: `@web/core/orm_service`, `@web/core/ui/ui_service`, `@web/webclient/actions/action_service`, `@web/legacy/js/public/public_widget`, `@web/core/ensure_jquery`, `@web/views/kanban/kanban_compiler`, `@mail/chatter/web_portal/chatter`, and `@mail/core/common/record` (now `@mail/model/record`). With such an import the browser reports "The following modules are needed by other modules but have not been defined", and the code that depends on it does not load.
 
-Only a test that opens a browser sees any of this: a tour, a JavaScript unit test, or Odoo's own JavaScript suites, which run with the module installed. See "Corrections to this page" for what that meant for us.
+Only a test that opens a browser sees any of this: a tour or a JavaScript unit test of the module. A module without one can install and pass every test with web code that does not load. See "Corrections to this page" for what that meant for us.
 
 ### Since 20.0: the analysis reports are built from lists of columns
 

@@ -1,0 +1,63 @@
+// Navbar icon and dropdown
+.o_tier_navbar_item {
+    > a {
+        opacity: 1;
+        > i {
+            font-size: larger;
+        }
+    }
+    &.o_no_notification > a {
+        opacity: 0.5;
+        > i {
+            transform: translateY(0px);
+        }
+        .o_notification_counter {
+            display: none;
+        }
+    }
+    .o_notification_counter {
+        margin-top: -0.8rem;
+        margin-right: 0;
+        margin-left: -0.6rem;
+        background: #00a09d;
+        color: white;
+        vertical-align: super;
+        font-size: 0.7em;
+    }
+}
+
+.o_tier_systray_dropdown {
+    direction: ltr;
+    width: 350px;
+    padding: 0;
+
+    .o_tier_systray_dropdown_items {
+        flex: 0 1 auto;
+        max-height: 400px;
+        min-height: 50px;
+        overflow-y: auto;
+
+        .o_tier_preview {
+            min-height: 50px;
+            padding: 5px;
+            cursor: pointer;
+            .o_tier_preview_image {
+                width: 40px;
+                height: 40px;
+            }
+            .o_preview_info {
+                margin-left: 10px;
+            }
+        }
+    }
+    .o_activity_filter_button {
+        padding: 2px;
+    }
+    .o_no_activity {
+        cursor: initial;
+        align-items: center;
+        color: grey;
+        opacity: 0.5;
+        padding: 3px;
+    }
+}

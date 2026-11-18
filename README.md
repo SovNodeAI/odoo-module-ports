@@ -2,14 +2,14 @@
 
 SovNode ports Odoo modules to new Odoo versions. This repository is our public track record: community modules we have ported, each one installed on a clean database of the target version and proven by its own test suite.
 
-Figures as of 18 November 2026, 2:20 pm (US Central). That afternoon we found that our test machine had been skipping browser tests, and we took 36 modules off this page until they pass with those tests running. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
+Figures as of 18 November 2026, 2:35 pm (US Central). That afternoon we found that our test machine had been skipping browser tests, and we took 35 modules off this page until they pass with those tests running. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
 
 ## What is here
 
 | Folder | What it holds | Table |
 |---|---|---|
-| [`20.0/`](20.0) | 408 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 4,354 test runs in all. | [MODULES.md](MODULES.md) |
-| [`from-older-versions/`](from-older-versions) | 23 ports made from the Odoo 15.0, 16.0 and 17.0 versions of well-known modules, to Odoo 19.0 and 20.0. | [OLDER_VERSIONS.md](OLDER_VERSIONS.md) |
+| [`20.0/`](20.0) | 409 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 4,495 test runs in all. | [MODULES.md](MODULES.md) |
+| [`from-older-versions/`](from-older-versions) | 28 ports made from the Odoo 15.0, 16.0 and 17.0 versions of well-known modules, to Odoo 19.0 and 20.0. | [OLDER_VERSIONS.md](OLDER_VERSIONS.md) |
 | [NOTES.md](NOTES.md) | Where a port had to change behaviour because Odoo removed something, and what we found in Odoo 18, 19 and 20 that affects any port. | |
 
 The ports from older versions are there for one reason. Most databases that need upgrading today are on 15, 16 or 17, and the private modules in them have to make that whole jump at once. So we took the old versions of modules everyone knows and ported those, instead of starting from the newest upstream code.
@@ -17,18 +17,18 @@ The ports from older versions are there for one reason. Most databases that need
 | Route | Ports tried | Published here |
 |---|---|---|
 | 17.0 to 20.0 | 10 | 6 |
-| 16.0 to 20.0 | 7 | 4 |
+| 16.0 to 20.0 | 7 | 5 |
 | 15.0 to 20.0 | 2 | 2 |
-| 17.0 to 19.0 | 7 | 4 |
-| 16.0 to 19.0 | 7 | 4 |
-| 15.0 to 19.0 | 6 | 3 |
+| 17.0 to 19.0 | 7 | 6 |
+| 16.0 to 19.0 | 7 | 5 |
+| 15.0 to 19.0 | 6 | 4 |
 
-Sixteen ports are not published. Fifteen are ports of three modules that carry web code or browser tests (`contract`, `helpdesk_mgmt`, `base_tier_validation`): they pass their other tests and are being run again with the browser tests switched on, and they come back one by one as they pass. The sixteenth (a large bank-reconciliation module, 17.0 to 20.0) passes all 35 of its tests, but two of the changes made to its tests could not be proven correct from the Odoo source, so it stays out.
+Eleven ports are not published. Five are the ports of `contract`: with the browser tests switched on, its tour fails. Five are ports of `helpdesk_mgmt` and `base_tier_validation` that still contain JavaScript written for the old version, which the target version cannot load; their tests pass because none of them opens those screens. The eleventh (a large bank-reconciliation module, 17.0 to 20.0) passes all 35 of its tests, but two of the changes made to its tests could not be proven correct from the Odoo source, so it stays out.
 
 ## How a port is checked
 
 1. **Installed and tested on a real database.** The module is installed on a clean database of the target version with its dependencies, and its own tests are run.
-2. **A pass only counts if every test actually ran.** We compare the tests the module defines with the tests that started. A test that skips itself counts as not run. Browser tests (tours, JavaScript tests, and Odoo's own JavaScript suites with the module installed) run in Chrome; a module that carries web code is listed only after a run in which they ran. Since Odoo 18 the test runner no longer runs test methods that a class inherits from a parent class, and nothing warns about it. A module ported from 16 or 17 can "pass" with a third of its tests silently gone. We check for that on every port and switch those tests back on.
+2. **A pass only counts if every test actually ran.** We compare the tests the module defines with the tests that started. A test that skips itself counts as not run. Browser tests (a module's tours and its JavaScript unit tests) run in Chrome; a module that carries web code is listed only after a run in which they ran. Since Odoo 18 the test runner no longer runs test methods that a class inherits from a parent class, and nothing warns about it. A module ported from 16 or 17 can "pass" with a third of its tests silently gone. We check for that on every port and switch those tests back on.
 3. **Changed tests are reviewed.** When a test has to change for the new version, it must still check what it checked before. Every changed test is read by a reviewer that did not make the port. A questioned change is either put back or justified from the Odoo source code.
 4. **Nothing left behind, nothing lost.** Each port is scanned for leftover debugging lines and for files that are no longer loaded. Its record rules are compared with the original's, because Odoo's own upgrade script for 20.0 can drop a rule without replacing it (see [NOTES.md](NOTES.md)). Copyright comments are checked file by file. Every method that extends a parent method is checked against the source of the target version, model by model, because a method Odoo has renamed or removed is simply never called again and no test notices. The same goes for calls to methods Odoo removed, for JavaScript imports that point at files Odoo moved, and for Python packages Odoo no longer installs.
 5. **License, authors and dependencies are untouched.**
@@ -36,7 +36,7 @@ Sixteen ports are not published. Fifteen are ports of three modules that carry w
 ## What a pass does not prove
 
 - Screens are not checked visually. Click through on a staging system.
-- A module's web code is proven only as far as a browser test exercises it. Many modules have no browser test of their own; for those, the proof is that Odoo's JavaScript suites still pass with the module installed and that every import resolves.
+- A module's web code is proven only as far as a browser test of that module exercises it. Many modules have none. For those, the web code is only checked statically: every JavaScript import has to resolve to a file of the target version that exports the name, and no component may use something Owl 3 rejects. That is not proof that the screen works.
 - These are code ports. Scripts that convert the data of an existing database are not included.
 - Modules without tests of their own are not in this repository. We port those too, but "it installs cleanly" is weaker proof and we do not present it as more.
 - These ports have not been reviewed by the OCA maintainers and are not the official OCA branches. Where the OCA publishes its own version of a module for your Odoo version, use that one.
