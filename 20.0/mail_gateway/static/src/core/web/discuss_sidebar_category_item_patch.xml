@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="mail.ThreadIcon" t-inherit-mode="extension">
+        <xpath expr="//t[@name='extra']" position="after">
+            <div
+                t-if="this.channel?.channel_type === 'gateway'"
+                class="oi o-fs-small"
+                data-icon="travel"
+                t-att="attr"
+                title="Gateway"
+            />
+        </xpath>
+    </t>
+</templates>

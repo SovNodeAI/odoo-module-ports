@@ -1,3 +1,0 @@
-id,name,model_id,group_id/id,operation,domain
-access_account_pain_regulatory_reporting_read,Read access on account.pain.regulatory.reporting,account.pain.regulatory.reporting,base.group_user,r,
-access_account_pain_regulatory_reporting_full,Full access on account.pain.regulatory.reporting,account.pain.regulatory.reporting,account_payment_batch_oca.group_account_payment,crud,

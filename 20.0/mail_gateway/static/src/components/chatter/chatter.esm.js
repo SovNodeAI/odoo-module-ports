@@ -1,0 +1,20 @@
+import { Chatter } from "@mail/chatter/web_portal_project/chatter";
+import { GatewayFollower } from "../gateway_follower/gateway_follower.esm";
+import { onWillStart } from "@odoo/owl";
+import { patch } from "@web/core/utils/patch";
+import { user } from "@web/core/user";
+
+Object.assign(Chatter.components, { GatewayFollower });
+
+patch(Chatter.prototype, {
+    setup() {
+        super.setup(...arguments);
+        this.user = user;
+        onWillStart(async () => {
+            this.hasGatewayGroup = await this.user.hasGroup("mail_gateway.gateway_user");
+        });
+    },
+    toggleComposer(mode = false) {
+        super.toggleComposer(...arguments);
+    },
+});

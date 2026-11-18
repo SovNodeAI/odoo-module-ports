@@ -4,6 +4,28 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
+### 18 November 2026, evening: a module is not listed while what it depends on has a defect
+
+Until now each module was judged alone: its own tests, its own code. But a module shows the screens and prints the templates of the modules it depends on. `sale_tier_validation` was listed here while `base_tier_validation`, whose review widget it puts on the sale order, still had JavaScript that Odoo 20 cannot load. Its tests passed because none of them opens that form in a browser.
+
+The rule now: a module is listed only while every community module it depends on, at any depth, is free of defects we know of. 23 modules came off the page for that reason. They return when the module they depend on is corrected:
+
+- on `account_payment_batch_oca`: `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`
+- on `account_reconcile_oca`: `account_in_payment`
+- on `base_tier_validation`: `account_move_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `purchase_tier_validation`, `sale_tier_validation`
+- on `ddmrp`: `ddmrp_cron_actions_as_job`
+- on `dms_field`: `dms_field_auto_classification`
+- on `helpdesk_mgmt`: `helpdesk_mgmt_activity`, `helpdesk_mgmt_crm`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_mgmt_sla`, `helpdesk_ticket_partner_response`
+- on `l10n_br_account`: `l10n_br_contract`
+- on `l10n_br_account`, `l10n_br_purchase`: `l10n_br_purchase_blanket_order`
+- on `mgmtsystem_nonconformity`: `mgmtsystem_review`
+- on `mis_builder`: `l10n_es_mis_report`, `mis_template_financial_report`
+- on `product_configurator`: `product_configurator_sale`
+
+[MODULES.md](MODULES.md) now ends with a table of every dependency that is not in this repository, and why.
+
+Also this evening: `mail_gateway` and `barcode_stock` came back from their web-code correction with all tests passing, including new ones. `mail_gateway` is listed again, with two visible changes written up under "Behaviour changes". `barcode_stock` waits for `barcode_scanner`, which it depends on.
+
 ### 18 November 2026, late afternoon: values that no longer reach a called template
 
 While correcting `contract` we found that its report and portal templates handed values to Odoo's layout templates in a way Odoo 20 no longer honours (see "a value set inside a `t-call` no longer reaches the called template" below). Nothing had failed: no install error, no failing test.
@@ -57,12 +79,14 @@ These are in [`from-older-versions/`](from-older-versions). In a customer delive
 | `contract` | 15.0 to 19.0 | Two tests were renamed (`..._fields_view_get` to `..._get_view`), with the same assertions. | `fields_view_get` was replaced by `get_view` in Odoo 16; upstream renamed them the same way. |
 | `purchase_request` | 16.0 and 17.0, to 19.0 and 20.0 | One test no longer configures a "fixed procurement group" on a stock rule; it passes the reference on the move instead. | See "Procurement groups are gone" below. The test still checks that a request is reused, or not reused, according to the reference. |
 
-One port in [`20.0/`](20.0) has a visible change as well:
+Some ports in [`20.0/`](20.0) have a visible change as well:
 
 | Module | Route | What changed | Why |
 |---|---|---|---|
 | `project_task_code_portal` | 19.0 to 20.0 | The task code is shown in a column of its own in the portal task list. In 19.0 it replaced the task number Odoo showed there. Two tests reach the portal pages another way. | Odoo 20's portal task list has no number column to replace. For the tests, see "The portal reaches a project only through a collaborator" below. |
 | `l10n_it_delivery_note` | 18.0 to 20.0 | The root of the virtual locations is no longer found by itself. It has to be chosen once in the warehouse settings; until then the module says so in an error message. | Odoo removed the "Virtual Locations" parent location the module looked up (`stock.stock_location_locations_virtual` is in 18.0's `addons/stock/data/stock_data.xml` and not in 19.0 or 20.0). |
+| `mail_gateway` | 19.0 to 20.0 | Gateway conversations are listed in a "Gateway" tab of the messaging menu. In 19.0 they were a category of the Discuss sidebar. | Odoo 20's Discuss has no sidebar categories. Odoo's own live chat moved to a tab the same way (`addons/im_livechat/static/src/core/public_web/messaging_menu_model_patch.js`). |
+| `mail_gateway` | 19.0 to 20.0 | The delivery status of a gateway message shows Odoo's standard status symbols, green when sent and red when it failed. In 19.0 it showed the gateway's brand icon. | Odoo 20 draws a status icon by its name in Odoo's own icon font (`addons/mail/static/src/core/common/message_notification_popover.xml`); an icon class of the old font is not drawn there. |
 | `account_payment_partner` | 18.0 to 20.0 | The module no longer adds the payment mode column to the invoice analysis itself. | Since 19.0 the module it depends on, `account_payment_mode`, carries the same field and adds the column; adding it twice makes the column ambiguous. |
 
 ## Things in Odoo 18, 19 and 20 that affect any port

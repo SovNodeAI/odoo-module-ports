@@ -2,13 +2,13 @@
 
 SovNode ports Odoo modules to new Odoo versions. This repository is our public track record: community modules we have ported, each one installed on a clean database of the target version and proven by its own test suite.
 
-Figures as of 18 November 2026, 4:30 pm (US Central). That afternoon we found that our test machine had been skipping browser tests, and later that some templates handed values to other templates in a way Odoo 20 dropped. 36 modules that were listed in the morning are off this page until they are corrected and pass. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
+Figures as of 18 November 2026, 5:12 pm (US Central). That afternoon we found that our test machine had been skipping browser tests, and later that some templates handed values to other templates in a way Odoo 20 dropped. In the evening we stopped listing a module while a module it depends on has an open defect. 58 modules that were listed in the morning are off this page until they are corrected and pass. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
 
 ## What is here
 
 | Folder | What it holds | Table |
 |---|---|---|
-| [`20.0/`](20.0) | 413 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 4,808 test runs in all. | [MODULES.md](MODULES.md) |
+| [`20.0/`](20.0) | 391 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 4,762 test runs in all. | [MODULES.md](MODULES.md) |
 | [`from-older-versions/`](from-older-versions) | 28 ports made from the Odoo 15.0, 16.0 and 17.0 versions of well-known modules, to Odoo 19.0 and 20.0. | [OLDER_VERSIONS.md](OLDER_VERSIONS.md) |
 | [NOTES.md](NOTES.md) | Where a port had to change behaviour because Odoo removed something, and what we found in Odoo 18, 19 and 20 that affects any port. | |
 
@@ -32,6 +32,7 @@ Eleven ports are not published. Five are the ports of `contract`: with the brows
 3. **Changed tests are reviewed.** When a test has to change for the new version, it must still check what it checked before. Every changed test is read by a reviewer that did not make the port. A questioned change is either put back or justified from the Odoo source code.
 4. **Nothing left behind, nothing lost.** Each port is scanned for leftover debugging lines and for files that are no longer loaded. Its record rules are compared with the original's, because Odoo's own upgrade script for 20.0 can drop a rule without replacing it (see [NOTES.md](NOTES.md)). Copyright comments are checked file by file. Every method that extends a parent method is checked against the source of the target version, model by model, because a method Odoo has renamed or removed is simply never called again and no test notices. The same goes for calls to methods Odoo removed, for JavaScript imports that point at files Odoo moved, and for Python packages Odoo no longer installs.
 5. **License, authors and dependencies are untouched.**
+6. **Nothing listed stands on a known defect.** A module is listed only while every community module it depends on, at any depth, is free of defects we know of. Dependencies that are not in this repository are named at the end of [MODULES.md](MODULES.md), each with the reason.
 
 ## What a pass does not prove
 

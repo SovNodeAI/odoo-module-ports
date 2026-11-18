@@ -1,3 +1,0 @@
-id,name,model_id,group_id/id,operation,domain
-access_mgmtsystem_review_manager,mgmtsystem.review.manager,mgmtsystem.review,mgmtsystem.group_mgmtsystem_manager,cru,
-access_mgmtsystem_review_line_manager,mgmtsystem.review.line.manager,mgmtsystem.review.line,mgmtsystem.group_mgmtsystem_manager,cru,
