@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-410 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5643 test runs in all.
+428 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5880 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -27,9 +27,12 @@
 | [account_fiscal_year](20.0/account_fiscal_year) | OCA/account-financial-tools | 19.0 | `4a1c887` | AGPL-3 | 4 | 4 | none |
 | [account_global_discount](20.0/account_global_discount) | OCA/account-invoicing | 19.0 | `5b5f7d5` | AGPL-3 | 10 | 10 | none |
 | [account_in_payment](20.0/account_in_payment) | OCA/account-reconcile | 19.0 | `fa7be05` | AGPL-3 | 2 | 2 | none |
+| [account_invoice_ar_ap_by_journal](20.0/account_invoice_ar_ap_by_journal) | OCA/account-invoicing | 18.0 | `4a901e9` | AGPL-3 | 1 | 1 | reviewed |
+| [account_invoice_export](20.0/account_invoice_export) | OCA/edi | 19.0 | `9dc91ef` | AGPL-3 | 6 | 6 | none |
 | [account_invoice_fixed_discount](20.0/account_invoice_fixed_discount) | OCA/account-invoicing | 19.0 | `5b5f7d5` | AGPL-3 | 5 | 5 | reviewed |
 | [account_invoice_import](20.0/account_invoice_import) | OCA/edi | 19.0 | `9dc91ef` | AGPL-3 | 9 | 9 | reviewed |
 | [account_invoice_inter_company](20.0/account_invoice_inter_company) | OCA/multi-company | 19.0 | `2992d5a` | AGPL-3 | 14 | 14 | reviewed |
+| [account_invoice_merge](20.0/account_invoice_merge) | OCA/account-invoicing | 19.0 | `5b5f7d5` | AGPL-3 | 10 | 10 | none |
 | [account_invoice_overdue_warn](20.0/account_invoice_overdue_warn) | OCA/credit-control | 19.0 | `ade8df1` | AGPL-3 | 1 | 1 | none |
 | [account_invoice_pricelist](20.0/account_invoice_pricelist) | OCA/account-invoicing | 19.0 | `5b5f7d5` | AGPL-3 | 14 | 14 | reviewed |
 | [account_invoice_refund_link](20.0/account_invoice_refund_link) | OCA/account-invoicing | 19.0 | `5b5f7d5` | AGPL-3 | 4 | 6 | reviewed |
@@ -86,6 +89,7 @@
 | [automation_oca](20.0/automation_oca) | OCA/automation | 18.0 | `c2d94a9` | AGPL-3 | 67 | 70 | reviewed |
 | [autovacuum_message_attachment](20.0/autovacuum_message_attachment) | OCA/server-tools | 18.0 | `55308ba` | LGPL-3 | 4 | 4 | reviewed |
 | [barcode_scanner](20.0/barcode_scanner) | OCA/barcode-interface | 18.0 | `b1c4eb8` | AGPL-3 | 1 | 1 | none |
+| [barcode_stock](20.0/barcode_stock) | OCA/barcode-interface | 18.0 | `b1c4eb8` | AGPL-3 | 59 | 59 | reviewed |
 | [base_business_document_import](20.0/base_business_document_import) | OCA/edi | 19.0 | `9dc91ef` | AGPL-3 | 16 | 16 | none |
 | [base_cancel_confirm](20.0/base_cancel_confirm) | OCA/server-ux | 19.0 | `ecb65d1` | AGPL-3 | 3 | 3 | reviewed |
 | [base_edi](20.0/base_edi) | OCA/edi | 19.0 | `9dc91ef` | LGPL-3 | 1 | 1 | none |
@@ -161,6 +165,7 @@
 | [fieldservice_stage_validation](20.0/fieldservice_stage_validation) | OCA/field-service | 19.0 | `650561d` | AGPL-3 | 2 | 2 | none |
 | [fieldservice_stock](20.0/fieldservice_stock) | OCA/field-service | 19.0 | `650561d` | AGPL-3 | 5 | 5 | none |
 | [helpdesk_mgmt](20.0/helpdesk_mgmt) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 35 | 35 | reviewed |
+| [helpdesk_mgmt_activity](20.0/helpdesk_mgmt_activity) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 6 | 6 | reviewed |
 | [helpdesk_mgmt_crm](20.0/helpdesk_mgmt_crm) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 3 | 3 | reviewed |
 | [helpdesk_mgmt_merge](20.0/helpdesk_mgmt_merge) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 2 | 2 | reviewed |
 | [helpdesk_mgmt_portal_follower](20.0/helpdesk_mgmt_portal_follower) | OCA/helpdesk | 18.0 | `9fbf485` | AGPL-3 | 2 | 2 | reviewed |
@@ -173,8 +178,10 @@
 | [hr_expense_analytic_tag](20.0/hr_expense_analytic_tag) | OCA/account-analytic | 19.0 | `502ac4e` | AGPL-3 | 5 | 10 | reviewed |
 | [hr_holidays_public](20.0/hr_holidays_public) | OCA/hr-holidays | 19.0 | `46e293f` | AGPL-3 | 17 | 17 | reviewed |
 | [hr_job_category](20.0/hr_job_category) | OCA/hr | 19.0 | `1c718db` | AGPL-3 | 4 | 4 | reviewed |
+| [hr_shift](20.0/hr_shift) | OCA/shift-planning | 18.0 | `6c44585` | AGPL-3 | 8 | 8 | reviewed |
 | [hr_timesheet_sheet](20.0/hr_timesheet_sheet) | OCA/timesheet | 19.0 | `daaa000` | AGPL-3 | 29 | 29 | reviewed |
 | [hr_timesheet_time_control](20.0/hr_timesheet_time_control) | OCA/timesheet | 19.0 | `daaa000` | AGPL-3 | 20 | 20 | reviewed |
+| [hr_timesheet_time_control_begin_end](20.0/hr_timesheet_time_control_begin_end) | OCA/timesheet | 19.0 | `daaa000` | AGPL-3 | 11 | 11 | reviewed |
 | [iap_alternative_provider](20.0/iap_alternative_provider) | OCA/server-tools | 19.0 | `71de4de` | AGPL-3 | 3 | 3 | none |
 | [iot_oca](20.0/iot_oca) | OCA/iot | 18.0 | `30f6d87` | AGPL-3 | 3 | 3 | none |
 | [iot_output_oca](20.0/iot_output_oca) | OCA/iot | 18.0 | `30f6d87` | AGPL-3 | 5 | 5 | none |
@@ -221,9 +228,11 @@
 | [l10n_nl_tax_statement](20.0/l10n_nl_tax_statement) | OCA/l10n-netherlands | 19.0 | `543c5d1` | AGPL-3 | 17 | 17 | reviewed |
 | [l10n_th_base_sequence](20.0/l10n_th_base_sequence) | OCA/l10n-thailand | 19.0 | `a5cc1dc` | AGPL-3 | 4 | 4 | none |
 | [mail_activity_done](20.0/mail_activity_done) | OCA/mail | 18.0 | `1a7341e` | LGPL-3 | 3 | 3 | reviewed |
+| [mail_autosubscribe](20.0/mail_autosubscribe) | OCA/mail | 18.0 | `1a7341e` | AGPL-3 | 8 | 8 | reviewed |
 | [mail_environment](20.0/mail_environment) | OCA/server-env | 19.0 | `7172600` | AGPL-3 | 11 | 11 | none |
 | [mail_gateway](20.0/mail_gateway) | OCA/mail | 19.0 | `849f3ce` | AGPL-3 | 82 | 82 | reviewed |
 | [mail_gateway_whatsapp](20.0/mail_gateway_whatsapp) | OCA/social | 18.0 | `75b2203` | AGPL-3 | 21 | 21 | reviewed |
+| [mail_layout_force](20.0/mail_layout_force) | OCA/mail | 18.0 | `1a7341e` | AGPL-3 | 4 | 4 | none |
 | [mail_message_search](20.0/mail_message_search) | OCA/mail | 19.0 | `849f3ce` | AGPL-3 | 3 | 3 | none |
 | [mail_restrict_follower_selection](20.0/mail_restrict_follower_selection) | OCA/mail | 19.0 | `849f3ce` | AGPL-3 | 5 | 5 | reviewed |
 | [mail_template_substitute](20.0/mail_template_substitute) | OCA/mail | 19.0 | `849f3ce` | AGPL-3 | 6 | 6 | reviewed |
@@ -270,6 +279,7 @@
 | [partner_manual_rank](20.0/partner_manual_rank) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 2 | 2 | none |
 | [partner_multi_relation](20.0/partner_multi_relation) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 48 | 49 | reviewed |
 | [partner_ref_unique](20.0/partner_ref_unique) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 5 | 5 | reviewed |
+| [partner_stage](20.0/partner_stage) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 6 | 6 | none |
 | [partner_statement](20.0/partner_statement) | OCA/account-financial-reporting | 19.0 | `94ad458` | AGPL-3 | 32 | 36 | none |
 | [password_security](20.0/password_security) | OCA/server-auth | 19.0 | `ae09869` | LGPL-3 | 40 | 40 | reviewed |
 | [payroll](20.0/payroll) | OCA/payroll | 19.0 | `cbcaace` | LGPL-3 | 27 | 27 | reviewed |
@@ -296,13 +306,16 @@
 | [product_secondary_unit](20.0/product_secondary_unit) | OCA/product-attribute | 19.0 | `5545a68` | AGPL-3 | 10 | 10 | none |
 | [product_sequence](20.0/product_sequence) | OCA/product-attribute | 19.0 | `5545a68` | AGPL-3 | 16 | 16 | reviewed |
 | [product_state](20.0/product_state) | OCA/product-attribute | 19.0 | `5545a68` | AGPL-3 | 5 | 5 | none |
+| [project_forecast_line](20.0/project_forecast_line) | OCA/project | 19.0 | `0e62631` | AGPL-3 | 73 | 73 | reviewed |
 | [project_group](20.0/project_group) | OCA/project | 19.0 | `0e62631` | AGPL-3 | 2 | 2 | reviewed |
 | [project_hr](20.0/project_hr) | OCA/project | 19.0 | `0e62631` | AGPL-3 | 6 | 6 | reviewed |
 | [project_parent](20.0/project_parent) | OCA/project | 19.0 | `0e62631` | LGPL-3 | 2 | 2 | none |
 | [project_sequence](20.0/project_sequence) | OCA/project | 19.0 | `0e62631` | LGPL-3 | 11 | 11 | reviewed |
+| [project_stage_extra_info](20.0/project_stage_extra_info) | OCA/project | 19.0 | `0e62631` | AGPL-3 | 1 | 1 | none |
 | [project_sub_manager](20.0/project_sub_manager) | OCA/project | 18.0 | `36ab69b` | AGPL-3 | 4 | 4 | none |
 | [project_tag_hierarchy](20.0/project_tag_hierarchy) | OCA/project | 19.0 | `0e62631` | AGPL-3 | 3 | 3 | none |
 | [project_task_code](20.0/project_task_code) | OCA/project | 19.0 | `0e62631` | AGPL-3 | 12 | 12 | reviewed |
+| [project_task_code_portal](20.0/project_task_code_portal) | OCA/project | 19.0 | `0e62631` | AGPL-3 | 11 | 11 | reviewed, accepted |
 | [project_task_default_user](20.0/project_task_default_user) | OCA/project | 19.0 | `0e62631` | AGPL-3 | 8 | 8 | reviewed |
 | [project_task_description_template](20.0/project_task_description_template) | OCA/project | 19.0 | `0e62631` | LGPL-3 | 2 | 2 | reviewed |
 | [project_task_stage_state](20.0/project_task_stage_state) | OCA/project | 19.0 | `0e62631` | AGPL-3 | 8 | 8 | reviewed |
@@ -328,6 +341,7 @@
 | [purchase_stock_picking_invoice_link](20.0/purchase_stock_picking_invoice_link) | OCA/stock-logistics-workflow | 19.0 | `3057a91` | AGPL-3 | 7 | 7 | none |
 | [purchase_tier_validation](20.0/purchase_tier_validation) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 4 | 4 | none |
 | [report_py3o](20.0/report_py3o) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 14 | 14 | reviewed |
+| [report_qweb_parameter](20.0/report_qweb_parameter) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 1 | 1 | reviewed |
 | [report_xlsx_helper](20.0/report_xlsx_helper) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 1 | 1 | none |
 | [report_xml](20.0/report_xml) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 3 | 3 | reviewed |
 | [resource_booking](20.0/resource_booking) | OCA/calendar | 19.0 | `1d6bd36` | AGPL-3 | 42 | 42 | reviewed |
@@ -349,8 +363,10 @@
 | [sale_order_secondary_unit](20.0/sale_order_secondary_unit) | OCA/sale-workflow | 19.0 | `e62b0e1` | AGPL-3 | 10 | 10 | reviewed |
 | [sale_partner_incoterm](20.0/sale_partner_incoterm) | OCA/sale-workflow | 19.0 | `e62b0e15` | AGPL-3 | 1 | 1 | none |
 | [sale_partner_selectable_option](20.0/sale_partner_selectable_option) | OCA/sale-workflow | 19.0 | `e62b0e1` | AGPL-3 | 1 | 1 | reviewed |
+| [sale_product_pack](20.0/sale_product_pack) | OCA/product-pack | 19.0 | `3d3af23` | AGPL-3 | 8 | 8 | reviewed |
 | [sale_project_task_recurrency](20.0/sale_project_task_recurrency) | OCA/project | 19.0 | `0e62631` | AGPL-3 | 18 | 18 | reviewed |
 | [sale_stock_available_info_popup](20.0/sale_stock_available_info_popup) | OCA/stock-logistics-availability | 19.0 | `f6f0272` | AGPL-3 | 2 | 2 | none |
+| [sale_stock_partner_warehouse](20.0/sale_stock_partner_warehouse) | OCA/sale-workflow | 19.0 | `e62b0e15` | AGPL-3 | 7 | 7 | reviewed |
 | [sale_stock_picking_blocking](20.0/sale_stock_picking_blocking) | OCA/sale-workflow | 19.0 | `e62b0e1` | AGPL-3 | 8 | 8 | reviewed |
 | [sale_stock_picking_invoice_link](20.0/sale_stock_picking_invoice_link) | OCA/stock-logistics-workflow | 19.0 | `3057a91` | AGPL-3 | 7 | 7 | reviewed |
 | [sale_stock_picking_note](20.0/sale_stock_picking_note) | OCA/sale-workflow | 19.0 | `e62b0e15` | AGPL-3 | 3 | 3 | reviewed |
@@ -375,6 +391,7 @@
 | [stay](20.0/stay) | OCA/vertical-abbey | 18.0 | `889b18f` | AGPL-3 | 2 | 2 | none |
 | [stock_analytic](20.0/stock_analytic) | OCA/account-analytic | 19.0 | `502ac4e` | AGPL-3 | 10 | 10 | reviewed |
 | [stock_available](20.0/stock_available) | OCA/stock-logistics-availability | 19.0 | `f6f0272` | AGPL-3 | 2 | 2 | reviewed |
+| [stock_cycle_count](20.0/stock_cycle_count) | OCA/stock-logistics-warehouse | 18.0 | `ee3167c` | AGPL-3 | 14 | 14 | reviewed |
 | [stock_demand_estimate_matrix](20.0/stock_demand_estimate_matrix) | OCA/stock-logistics-warehouse | 19.0 | `2d54780` | AGPL-3 | 8 | 8 | none |
 | [stock_inventory](20.0/stock_inventory) | OCA/stock-logistics-warehouse | 19.0 | `2d54780` | LGPL-3 | 18 | 18 | reviewed |
 | [stock_inventory_discrepancy](20.0/stock_inventory_discrepancy) | OCA/stock-logistics-warehouse | 19.0 | `2d54780` | AGPL-3 | 4 | 4 | reviewed |
@@ -412,6 +429,7 @@
 | [web_m2x_options_manager](20.0/web_m2x_options_manager) | OCA/web | 19.0 | `1f57640` | AGPL-3 | 7 | 7 | none |
 | [web_notify](20.0/web_notify) | OCA/web | 19.0 | `1f57640` | LGPL-3 | 8 | 8 | none |
 | [web_widget_dropdown_dynamic](20.0/web_widget_dropdown_dynamic) | OCA/web | 19.0 | `1f57640` | LGPL-3 | 5 | 5 | none |
+| [web_widget_open_tab](20.0/web_widget_open_tab) | OCA/web | 18.0 | `77f56ce` | AGPL-3 | 3 | 3 | none |
 | [web_widget_x2many_2d_matrix](20.0/web_widget_x2many_2d_matrix) | OCA/web | 19.0 | `1f57640` | AGPL-3 | 1 | 1 | none |
 | [webservice_core](20.0/webservice_core) | OCA/web-api | 18.0 | `50c4d89` | AGPL-3 | 54 | 55 | none |
 | [website_require_login](20.0/website_require_login) | OCA/website | 19.0 | `d8318b7` | LGPL-3 | 2 | 2 | reviewed |

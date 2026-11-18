@@ -8,7 +8,7 @@ Figures as of 18 November 2026.
 
 | Folder | What it holds | Table |
 |---|---|---|
-| [`20.0/`](20.0) | 410 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes: 5,643 test runs in all. | [MODULES.md](MODULES.md) |
+| [`20.0/`](20.0) | 428 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes: 5,880 test runs in all. | [MODULES.md](MODULES.md) |
 | [`from-older-versions/`](from-older-versions) | 38 ports made from the Odoo 15.0, 16.0 and 17.0 versions of well-known modules, to Odoo 19.0 and 20.0. | [OLDER_VERSIONS.md](OLDER_VERSIONS.md) |
 | [NOTES.md](NOTES.md) | Where a port had to change behaviour because Odoo removed something, and what we found in Odoo 18, 19 and 20 that affects any port. | |
 

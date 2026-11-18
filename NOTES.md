@@ -16,6 +16,12 @@ These are in [`from-older-versions/`](from-older-versions). In a customer delive
 | `contract` | 15.0 to 19.0 | Two tests were renamed (`..._fields_view_get` to `..._get_view`), with the same assertions. | `fields_view_get` was replaced by `get_view` in Odoo 16; upstream renamed them the same way. |
 | `purchase_request` | 16.0 and 17.0, to 19.0 and 20.0 | One test no longer configures a "fixed procurement group" on a stock rule; it passes the reference on the move instead. | See "Procurement groups are gone" below. The test still checks that a request is reused, or not reused, according to the reference. |
 
+One port in [`20.0/`](20.0) has a visible change as well:
+
+| Module | Route | What changed | Why |
+|---|---|---|---|
+| `project_task_code_portal` | 19.0 to 20.0 | The task code is shown in a column of its own in the portal task list. In 19.0 it replaced the task number Odoo showed there. Two tests reach the portal pages another way. | Odoo 20's portal task list has no number column to replace. For the tests, see "The portal reaches a project only through a collaborator" below. |
+
 ## Things in Odoo 18, 19 and 20 that affect any port
 
 ### Since 18.0: inherited test methods silently stop running
@@ -36,6 +42,8 @@ Odoo ships a script that converts a module's access files (`odoo/upgrade_code/19
 Nothing fails when this happens. The module installs, and tests rarely cover record rules.
 
 We found it in our own ports on 18 November 2026: 6 of the 106 ported modules that had record rules were affected, and five of them were on this page. In one, users who were allowed to read only their own credit notes could read every journal entry. In another, users who were limited to their own appraisals could read everyone's. Three are corrected here (`rma`, `mail_gateway`, `product_assortment`) and pass their tests again. The other two are no longer on this page. In one, the rule can only be put back by also limiting users the original did not limit. In the other, putting it back makes two of the module's own tests fail, so its access design needs a decision from whoever uses the module. Every port is now compared rule by rule with its original, and a port with an open difference is not published.
+
+One more trap for a module that changes another module's permissions: `project_todo`, which is installed automatically with `project`, ships its own copy of project's task permissions under its own names (`addons/project_todo/security/ir.access.csv`). A module that takes a task permission away from a group has to take away both copies, or the group keeps it.
 
 The same script re-writes the XML files it touches through a parser, which drops the XML declaration and the copyright comment at the top of the file. That had happened in 13 files across 11 of our ports; they are restored, and it is checked on every port.
 
@@ -65,6 +73,12 @@ We found it in our own ports on 18 November 2026: 9 of 480 ported modules had lo
 All five are corrected here and pass their tests again. Three other modules (`account_financial_report`, `base_location`, `l10n_br_coa`) call a parent method that already did not exist in their 19.0 original, so the port neither added nor lost anything there, and they are unchanged.
 
 Every port is now checked for this: each method that calls `super()` has to exist in the source of the target version, and a method that Odoo no longer calls may not be kept alive by the module's tests alone.
+
+### Since 20.0: the portal reaches a project only through a collaborator
+
+In 19.0 a portal user could read a project they followed. In 20.0 the portal permission on `project.project` asks for a collaborator record (`project_project_rule_portal` in `addons/project/security/ir.access.csv`), and every access mode of the share wizard, including "View", creates one. A collaborator who opens `/my/projects/<id>` is sent on to the project sharing view (`portal_my_project` in `addons/project/controllers/portal.py`). So the plain portal task list of a project is now only reached with the project's access token.
+
+The share wizard's email changed too: `project.share.wizard.action_send_mail` sends a sign-up link and no longer a link carrying `access_token`, `pid` and `hash`. Tests that picked those out of the email have nothing to pick.
 
 ### Since 20.0: a currency rate applies from the day after its date
 
@@ -98,3 +112,6 @@ We met this with `account_payment_partner` from 16.0 on top of the 20.0 version 
 
 - A domain `('field', 'in', value)` with a single value is turned into a one-item list before any search method sees it (`odoo/orm/domains.py`), so code and tests that expected an error from it no longer get one.
 - There is no `account.group` model in 20.0.
+- `ir.config_parameter` has no `get_param` and `set_param` in 20.0. Use the typed pairs: `get_str`/`set_str`, `get_int`/`set_int`, `get_bool`/`set_bool`, `get_float`/`set_float` (`odoo/addons/base/models/ir_config_parameter.py`).
+- In 20.0, tests built on `BaseCommon` run as a test user who has only the internal user group, unless the class sets `_test_user_groups` (`odoo/addons/base/tests/common.py`). A test that passed as the superuser can fail on access for that reason alone.
+- The published `odoo-test-helper` package does not load fake models on 20.0, because the registry internals it uses changed (`MetaModel.module_to_models` is now `_module_to_models__`, and `Registry.load` no longer takes a cursor). The four ports that need it carry an adapted copy of its loader in their `tests/` folder, with the original copyright and licence lines.

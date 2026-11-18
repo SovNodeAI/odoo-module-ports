@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2025 Cetmix OÜ
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="portal_tasks_list_override" inherit_id="project.portal_tasks_list">
+        <!-- Odoo 20 no longer displays the task id in the portal task list,
+             so add a dedicated column showing the task code instead. -->
+        <xpath expr="//thead//th[1]" position="before">
+            <th/>
+        </xpath>
+        <xpath expr="//td[hasclass('text-wrap')]" position="before">
+            <td class="text-start">#<span t-out="task.code"/></td>
+        </xpath>
+        <xpath expr="//th[@name='groupby_name_col']" position="attributes">
+            <attribute name="t-att-colspan">grouped_tasks_colspan + 1</attribute>
+        </xpath>
+        <xpath expr="//a[contains(@t-attf-href, '/my/')]" position="attributes">
+            <attribute
+                name="t-attf-href"
+            >/my/#{task_url}/#{task.code}?{{ keep_query() }}</attribute>
+        </xpath>
+    </template>
+
+    <template id="portal_my_task_override" inherit_id="project.portal_my_task">
+        <xpath
+            expr="//small[hasclass('text-muted')]/span[@t-field='task.id']"
+            position="attributes"
+        >
+            <attribute name="t-field">task.code</attribute>
+        </xpath>
+    </template>
+</odoo>
