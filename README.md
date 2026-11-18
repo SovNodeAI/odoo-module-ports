@@ -2,13 +2,13 @@
 
 SovNode ports Odoo modules to new Odoo versions. This repository is our public track record: community modules we have ported, each one installed on a clean database of the target version and proven by its own test suite.
 
-Figures as of 18 November 2026, 2:35 pm (US Central). That afternoon we found that our test machine had been skipping browser tests, and we took 35 modules off this page until they pass with those tests running. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
+Figures as of 18 November 2026, 4:30 pm (US Central). That afternoon we found that our test machine had been skipping browser tests, and later that some templates handed values to other templates in a way Odoo 20 dropped. 36 modules that were listed in the morning are off this page until they are corrected and pass. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
 
 ## What is here
 
 | Folder | What it holds | Table |
 |---|---|---|
-| [`20.0/`](20.0) | 409 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 4,495 test runs in all. | [MODULES.md](MODULES.md) |
+| [`20.0/`](20.0) | 413 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 4,808 test runs in all. | [MODULES.md](MODULES.md) |
 | [`from-older-versions/`](from-older-versions) | 28 ports made from the Odoo 15.0, 16.0 and 17.0 versions of well-known modules, to Odoo 19.0 and 20.0. | [OLDER_VERSIONS.md](OLDER_VERSIONS.md) |
 | [NOTES.md](NOTES.md) | Where a port had to change behaviour because Odoo removed something, and what we found in Odoo 18, 19 and 20 that affects any port. | |
 
@@ -36,6 +36,7 @@ Eleven ports are not published. Five are the ports of `contract`: with the brows
 ## What a pass does not prove
 
 - Screens are not checked visually. Click through on a staging system.
+- A report or a portal page is proven only where a test renders it. A template can install without an error and print without a value it used to receive. We check statically for the one cause of that we know in Odoo 20 (see "a value set inside a `t-call`" in [NOTES.md](NOTES.md)); print your documents on a staging system.
 - A module's web code is proven only as far as a browser test of that module exercises it. Many modules have none. For those, the web code is only checked statically: every JavaScript import has to resolve to a file of the target version that exports the name, and no component may use something Owl 3 rejects. That is not proof that the screen works.
 - These are code ports. Scripts that convert the data of an existing database are not included.
 - Modules without tests of their own are not in this repository. We port those too, but "it installs cleanly" is weaker proof and we do not present it as more.

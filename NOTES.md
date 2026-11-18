@@ -4,6 +4,21 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
+### 18 November 2026, late afternoon: values that no longer reach a called template
+
+While correcting `contract` we found that its report and portal templates handed values to Odoo's layout templates in a way Odoo 20 no longer honours (see "a value set inside a `t-call` no longer reaches the called template" below). Nothing had failed: no install error, no failing test.
+
+What we did:
+
+- Wrote a check that runs Odoo's own rewrite script over every server template of every port, in memory, and reports each value that would be lost.
+- It found the pattern in 9 more modules. Counting `contract`, that is 10.
+- 2 are corrected, each with a new test that opens the page: `contract` and `business_requirement_deliverable`. The portal page of the second failed with an error as soon as a customer opened it.
+- 5 that were listed here are off the page until corrected: `account_billing`, `connector_importer`, `l10n_it_delivery_note`, `partner_statement`, `resource_booking`. What a user would have seen: a billing document or a partner statement printed without the address block, a delivery note without its title, a portal page of delivery notes or bookings that fails or loses its breadcrumbs.
+- 3 were not listed for other reasons and wait for the same correction: `account_invoice_overdue_reminder`, `account_payment_batch_oca`, `rma_sale`.
+- The check now runs on every port before it is listed.
+
+State of the earlier correction at 4:30 pm: 4 of the 35 modules taken off in the afternoon are back, with their web code ported to Owl 3 and their browser tests passing (`contract`, `business_requirement_deliverable`, `web_widget_x2many_2d_matrix`, `web_widget_dropdown_dynamic`). With the 5 above, 36 of the morning's modules are off the page.
+
 ### 18 November 2026, afternoon: browser tests had not been running
 
 Until 1:25 pm on 18 November our test machine lacked one Python package, `websocket-client`. Without it Odoo skips every test that needs a browser: a module's tours and its JavaScript unit tests. Our counter recorded a test that skipped itself as run. So for modules with web code, "every test ran and passed" was not true of their browser tests, and nothing had exercised their JavaScript on Odoo 20. This page said otherwise from 17 November until the correction.
@@ -113,6 +128,33 @@ The share wizard's email changed too: `project.share.wizard.action_send_mail` se
 Up to 19.0 a module put its card on `/my` by inheriting the `portal.portal_my_home` template and calling `portal.portal_docs_entry` with a title, a link and a counter name. In 20.0 the cards are `portal.entry` records loaded from a data file (`addons/portal/models/portal_entry.py`; `addons/project/data/portal_entry_data.xml` is an example), and the number on a card comes from `_prepare_portal_counter_values`.
 
 A module that still does it the old way installs without an error, and the page still opens. Its card is just not there, so portal users have no way to reach the module's pages from their home page. A test that opens `/my` and looks for the card's link catches it.
+
+### Since 20.0: a value set inside a `t-call` no longer reaches the called template
+
+Up to 19.0 a template could hand values to the template it calls by setting them inside the call:
+
+```xml
+<t t-call="web.external_layout">
+    <t t-set="address">...</t>
+    <div class="page">...</div>
+</t>
+```
+
+Odoo 19 already treated this as the old form, and still passed the values on (`ir_qweb.py`, `_compile_directive_call`, the branch named `is_deprecated_version`). Odoo 20 removed that branch. The body of a `t-call` is now rendered later and in its own scope. The called template receives the caller's values as they are at the call, plus the attributes of the `t-call`, and nothing that the body sets. Odoo's own modules were rewritten with `odoo/upgrade_code/19.1-00-t-call.py`:
+
+```xml
+<t t-set="address">...</t>
+<t t-call="web.external_layout" address="address">
+    <div class="page">...</div>
+</t>
+```
+
+Nothing fails at install, and no test fails unless it renders the template and looks for the value. What a user sees instead: a report without its address block or its document title; a portal list with a plain title where the breadcrumbs were; a portal page that calls `portal.message_thread` and fails with `KeyError: 'object'` when a customer opens it.
+
+Two details:
+
+- An attribute given to an outer `t-call` is not seen by a `t-call` inside its body. Odoo's own portal pages pass `breadcrumbs_searchbar="True"` to `portal.portal_layout` and again to `portal.portal_searchbar`.
+- Odoo's script is a good detector. Applied to a file as it is, it dropped the comment above the root element in our runs, which in community modules is the copyright notice. We use it to find the places and write the change by hand.
 
 ### Since 20.0: the web client runs on Owl 3
 

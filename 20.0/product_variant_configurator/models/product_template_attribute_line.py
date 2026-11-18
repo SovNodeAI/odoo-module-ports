@@ -1,0 +1,28 @@
+# Copyright 2015 Oihane Crucelaegui - AvanzOSC
+# Copyright 2015-2017 Tecnativa - Pedro M. Baeza
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
+
+from odoo import api, fields, models
+
+
+class ProductTemplateAttributeLine(models.Model):
+    _inherit = "product.template.attribute.line"
+
+    required = fields.Boolean(
+        default=False,
+    )
+
+    _product_attribute_uniq = models.Constraint(
+        "unique(product_tmpl_id, attribute_id)",
+        "The attribute already exists for this product",
+    )
+
+    def _update_product_template_attribute_values(self):
+        if self.env.context.get("creating_variants"):
+            self = self.with_context(create_product_product=False)
+        return super()._update_product_template_attribute_values()
+
+    @api.onchange("attribute_id")
+    def _onchange_attribute_id_clean_value(self):
+        """This is for consistency when changing attribute in the product."""
+        self.value_ids = False
