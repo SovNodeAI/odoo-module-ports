@@ -22,4 +22,5 @@
     "demo": ["demo/web_form_banner_rule_demo.xml"],
     "maintainers": ["yostashiro", "aungkokolin1997"],
     "installable": True,
+    "external_dependencies": {"python": ["pytz"]},
 }

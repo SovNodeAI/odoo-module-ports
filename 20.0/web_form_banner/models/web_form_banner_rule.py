@@ -166,7 +166,7 @@ class WebFormBannerRule(models.Model):
             base = (
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("web.base.url", default="")
+                .get_str("web.base.url", default="")
             )
             return f"{base}/web#id={rec.id}&model={rec._name}&view_type=form"
         except Exception:

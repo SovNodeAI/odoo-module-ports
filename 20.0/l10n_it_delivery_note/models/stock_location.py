@@ -12,16 +12,16 @@ class StockLocation(models.Model):
     @api.model
     def get_virtual_locations_root(self):
         IrConfigParameter = self.env["ir.config_parameter"].sudo()
-        location_id = IrConfigParameter.get_param("stock.location.virtual_root")
+        location_id = IrConfigParameter.get_int("stock.location.virtual_root")
         if location_id:
-            virtual_locations_root = self.browse(int(location_id)).exists()
+            virtual_locations_root = self.browse(location_id).exists()
 
         else:
             ResConfigSettings = self.env["res.config.settings"].sudo()
             virtual_locations_root = ResConfigSettings._default_virtual_locations_root()
 
             if virtual_locations_root:
-                IrConfigParameter.set_param(
+                IrConfigParameter.set_int(
                     "stock.location.virtual_root", virtual_locations_root.id
                 )
 

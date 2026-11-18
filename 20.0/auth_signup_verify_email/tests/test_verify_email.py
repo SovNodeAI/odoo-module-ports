@@ -1,0 +1,76 @@
+# Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from lxml.html import document_fromstring
+
+try:
+    from unittest.mock import patch
+except ImportError:
+    from unittest.mock import patch
+
+from odoo.tests.common import HttpCase
+from odoo.tools.misc import mute_logger
+
+from odoo.addons.mail.models import mail_template
+
+
+class UICase(HttpCase):
+    def setUp(self):
+        super().setUp()
+        # The website module adds auth_signup_uninvited to website; the bare
+        # website model lives in base since 20.0, so check the field itself.
+        if "auth_signup_uninvited" in self.env["website"]._fields:
+            # Enable public signup in website if it is installed; otherwise
+            # tests here would fail
+            current_website = (
+                self.env.website
+                or self.env.website.browse(self.env.context.get("host_id"))
+                or self.env.ref("base.default_website")
+            )
+            current_website.auth_signup_uninvited = "b2c"
+        self.env["ir.config_parameter"].set_str("auth_signup.invitation_scope", "b2c")
+        self.data = {
+            "csrf_token": self.csrf_token(),
+            "name": "Somebody",
+        }
+
+    def html_doc(self, url="/web/signup", data=None, timeout=30):
+        """Get an HTML LXML document."""
+        with patch(mail_template.__name__ + ".MailTemplate.send_mail"):
+            resp = self.url_open(url, data=data, timeout=timeout)
+        return document_fromstring(resp.content)
+
+    def csrf_token(self):
+        """Get a valid CSRF token."""
+        doc = self.html_doc()
+        return doc.xpath("//input[@name='csrf_token']")[0].get("value")
+
+    def test_bad_email(self):
+        """Test rejection of bad emails."""
+        self.data["login"] = "bad email"
+        doc = self.html_doc(data=self.data)
+        self.assertTrue(doc.xpath('//p[@class="alert alert-danger"]'))
+
+    def test_failed_recaptcha(self):
+        """Test rejection of failed reCaptcha."""
+        self.data["login"] = "contributors@odoo-community.org"
+        # Patched on the registry class: the captcha modules override this
+        # method too, and patching the one in base would leave their override
+        # in front of it.
+        with patch.object(
+            type(self.env["ir.http"]),
+            "_verify_request_recaptcha_token",
+            return_value=False,
+        ):
+            doc = self.html_doc(data=self.data)
+        self.assertTrue(doc.xpath('//p[@class="alert alert-danger"]'))
+        self.assertFalse(
+            self.env["res.users"].sudo().search([("login", "=", self.data["login"])])
+        )
+
+    @mute_logger("odoo.addons.auth_signup_verify_email.controllers.main")
+    def test_good_email(self):
+        """Test acceptance of good emails."""
+        self.data["login"] = "contributors@odoo-community.org"
+        doc = self.html_doc(data=self.data)
+        self.assertTrue(doc.xpath('//p[@class="alert alert-success"]'))

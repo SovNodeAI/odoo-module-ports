@@ -1,8 +1,7 @@
 # Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
-from odoo.tools import SQL
+from odoo import fields, models
 
 
 class AccountInvoiceReport(models.Model):
@@ -14,6 +13,7 @@ class AccountInvoiceReport(models.Model):
         readonly=True,
     )
 
-    @api.model
-    def _select(self) -> SQL:
-        return SQL("%s, move.payment_mode_id AS payment_mode_id", super()._select())
+    # No _select_list() here. This module comes from the 18.0 branch; since 19.0 the
+    # module it depends on, account_payment_mode, carries the same field and adds the
+    # column to the report itself. Adding it a second time makes the column ambiguous
+    # and the invoice analysis fails.

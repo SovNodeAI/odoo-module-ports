@@ -1,2 +1,0 @@
-- [Binhex](https://www.binhex.cloud/):
-  - Oliver Garcia

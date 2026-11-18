@@ -2,6 +2,31 @@
 
 Two kinds of note: behaviour that changed in a published port because Odoo removed something, and things we found in Odoo 18, 19 and 20 that affect any port. Every statement about Odoo below was checked in the Odoo source code; the file is named so you can check it too.
 
+## Corrections to this page
+
+### 18 November 2026, afternoon: browser tests had not been running
+
+Until 1:25 pm on 18 November our test machine lacked one Python package, `websocket-client`. Without it Odoo skips every test that needs a browser: a module's tours and JavaScript tests, and Odoo's own JavaScript suites, which run with the module installed. Our counter recorded a test that skipped itself as run. So for modules with web code, "every test ran and passed" was not true of their browser tests, and nothing had exercised their JavaScript on Odoo 20. This page said otherwise from 17 November until the correction.
+
+What we did:
+
+- Installed the package. Changed the counter: a test that skips itself now counts as not run.
+- Started running again every module that carries web code (JavaScript or templates) and every module with a browser test of its own. A module with web code is listed here only after a passing run in which the browser tests really ran.
+- 47 modules that were listed here in the morning are off the page. 23 have web code that is not yet ported to Owl 3 (see "the web client runs on Owl 3" below). 5 failed a browser test for another reason. 3 extend a method Odoo 20 removed. 4 have tests that skip themselves. The other 12 were still waiting for their browser run when this was written. They come back as they pass.
+- 15 of the 38 ports from older versions are off the page as well. They are ports of three modules that carry web code or browser tests (`contract`, `helpdesk_mgmt`, `base_tier_validation`), and they are being run again.
+
+The same afternoon we made the dead-method check look at each model separately (a same-named method on another model had hidden some cases) and added three checks. They found, in modules that passed all their tests:
+
+| What | Modules | State now |
+|---|---|---|
+| A column added to an analysis report the old way: on Odoo 20 the invoice analysis failed on it, the sales analysis showed it empty | 12 | 9 corrected, each with a new test that reads the column through the report; 3 Brazilian localisation modules are off the page until done |
+| A user preference that an ordinary user could no longer change on their own record | 5 | corrected, each with a new test |
+| A call to a method Odoo 20 removed (`get_param`, `set_param`, `get_formview_action`), in code the tests did not reach | 10 | corrected; 2 with a new test |
+| `pytz` imported without being declared, a package Odoo 20 no longer installs | 19 | declared in the manifest |
+| A portal card and an access check written the pre-20 way, in the port of `contract` from 16.0 | 1 | corrected, waiting for its browser run |
+
+Each kind is described under "Things in Odoo 18, 19 and 20 that affect any port". All of these checks now run on every port before it is listed.
+
 ## Behaviour changes in the published ports
 
 These are in [`from-older-versions/`](from-older-versions). In a customer delivery, this is what the change summary would tell you.
@@ -21,6 +46,8 @@ One port in [`20.0/`](20.0) has a visible change as well:
 | Module | Route | What changed | Why |
 |---|---|---|---|
 | `project_task_code_portal` | 19.0 to 20.0 | The task code is shown in a column of its own in the portal task list. In 19.0 it replaced the task number Odoo showed there. Two tests reach the portal pages another way. | Odoo 20's portal task list has no number column to replace. For the tests, see "The portal reaches a project only through a collaborator" below. |
+| `l10n_it_delivery_note` | 18.0 to 20.0 | The root of the virtual locations is no longer found by itself. It has to be chosen once in the warehouse settings; until then the module says so in an error message. | Odoo removed the "Virtual Locations" parent location the module looked up (`stock.stock_location_locations_virtual` is in 18.0's `addons/stock/data/stock_data.xml` and not in 19.0 or 20.0). |
+| `account_payment_partner` | 18.0 to 20.0 | The module no longer adds the payment mode column to the invoice analysis itself. | Since 19.0 the module it depends on, `account_payment_mode`, carries the same field and adds the column; adding it twice makes the column ambiguous. |
 
 ## Things in Odoo 18, 19 and 20 that affect any port
 
@@ -80,6 +107,36 @@ In 19.0 a portal user could read a project they followed. In 20.0 the portal per
 
 The share wizard's email changed too: `project.share.wizard.action_send_mail` sends a sign-up link and no longer a link carrying `access_token`, `pid` and `hash`. Tests that picked those out of the email have nothing to pick.
 
+### Since 20.0: the cards on the portal home page are records
+
+Up to 19.0 a module put its card on `/my` by inheriting the `portal.portal_my_home` template and calling `portal.portal_docs_entry` with a title, a link and a counter name. In 20.0 the cards are `portal.entry` records loaded from a data file (`addons/portal/models/portal_entry.py`; `addons/project/data/portal_entry_data.xml` is an example), and the number on a card comes from `_prepare_portal_counter_values`.
+
+A module that still does it the old way installs without an error, and the page still opens. Its card is just not there, so portal users have no way to reach the module's pages from their home page. A test that opens `/my` and looks for the card's link catches it.
+
+### Since 20.0: the web client runs on Owl 3
+
+Odoo 20 ships Owl 3 (`addons/web/static/lib/owl/owl.js`) with a compatibility layer for older component code (`addons/web/static/src/owl2/owl3_compatibility_layer.js`). Three things in it break a module's JavaScript, and no Python test notices:
+
+- A component that declares `static props` or `static defaultProps` throws when it is created. The layer's `Component` constructor raises the error itself. Properties are declared in the instance, `props = useProps({ name: t.string().optional() })`, as in `addons/web/static/src/core/checkbox/checkbox.js`.
+- Owl no longer exports `useState`, `useRef`, `reactive`, `onRendered` or `useExternalListener`. Odoo 20's own code does not import them anywhere; it uses `signal`, `proxy` and `signal.ref()`. A component written with the old hooks has to be rewritten with these.
+- Old template directives and hooks have to be renamed for the layer: `t-portal` to `t-custom-portal`, `t-model` to `t-custom-model`, `useEffect` to `useLayoutEffect` (the header of the layer file lists them).
+
+Files moved as well. These import paths exist in 19.0 and not in 20.0: `@web/core/orm_service`, `@web/core/ui/ui_service`, `@web/webclient/actions/action_service`, `@web/legacy/js/public/public_widget`, `@web/core/ensure_jquery`, `@web/views/kanban/kanban_compiler`, `@mail/chatter/web_portal/chatter`, and `@mail/core/common/record` (now `@mail/model/record`). With such an import the browser reports "The following modules are needed by other modules but have not been defined", and the code that depends on it does not load.
+
+Only a test that opens a browser sees any of this: a tour, a JavaScript unit test, or Odoo's own JavaScript suites, which run with the module installed. See "Corrections to this page" for what that meant for us.
+
+### Since 20.0: the analysis reports are built from lists of columns
+
+`account.invoice.report` and `purchase.report` are built by `_table_sql()` from `_select_list(table)` and, for purchases, `_groupby_list(table)`. `sale.report` is built from `_select_dict(table)` and `_groupby_list(table)`. The methods modules used to extend, `_select`, `_from`, `_where`, `_group_by`, `_select_additional_fields` and `_group_by_sale`, are gone (`addons/account/report/account_invoice_report.py`, `addons/purchase/report/purchase_report.py`, `addons/sale/report/sale_report.py`).
+
+A module that still extends the old methods installs, and its tests pass. On the invoice analysis, reading the module's field fails with "column does not exist". On the sales analysis the field is simply empty, because a field the dictionary does not contain is filled with NULL. Odoo's own modules show the new way: `addons/l10n_latam_invoice_document/report/invoice_report.py`, `addons/project_purchase/report/purchase_report.py`, `addons/sale_stock/report/sale_report.py`.
+
+One trap on top: a same-named method that survives on another model hides the problem from a check by name. `_select_additional_fields` is gone from `sale.report` and still exists on `event.sale.report`.
+
+### Since 20.0: a field users may change on their own record is marked on the field
+
+`res.users` has no `SELF_READABLE_FIELDS` and `SELF_WRITEABLE_FIELDS`. A field that a user may change on their own user record is declared with `user_writeable=True` (`_has_field_access` in `odoo/addons/base/models/res_users.py`). A module that still extends the two lists installs, and an ordinary user who changes that preference gets an access error. Tests that run as the administrator do not see it.
+
 ### Since 20.0: a currency rate applies from the day after its date
 
 `res.currency._get_rates` in `odoo/addons/base/models/res_currency.py` looks for the latest rate dated strictly before the given date. Odoo 19 and older included the date itself (`<=`).
@@ -112,6 +169,8 @@ We met this with `account_payment_partner` from 16.0 on top of the 20.0 version 
 
 - A domain `('field', 'in', value)` with a single value is turned into a one-item list before any search method sees it (`odoo/orm/domains.py`), so code and tests that expected an error from it no longer get one.
 - There is no `account.group` model in 20.0.
-- `ir.config_parameter` has no `get_param` and `set_param` in 20.0. Use the typed pairs: `get_str`/`set_str`, `get_int`/`set_int`, `get_bool`/`set_bool`, `get_float`/`set_float` (`odoo/addons/base/models/ir_config_parameter.py`).
+- `ir.config_parameter` has no `get_param` and `set_param` in 20.0. Use the typed pairs: `get_str`/`set_str`, `get_int`/`set_int`, `get_bool`/`set_bool`, `get_float`/`set_float` (`odoo/addons/base/models/ir_config_parameter.py`). A call left in a controller, a wizard or a button method only fails when a user gets there.
+- No model has `get_formview_action()` in 20.0; `_get_records_action()` returns the same kind of action (`odoo/addons/base/models/ir_ui_view.py`). `check_access_rights()` and `check_access_rule()` are gone too; `has_access(operation)` and `check_access(operation)` remain (`odoo/orm/models.py`).
+- Odoo 20 no longer installs `pytz` and `xlwt` (they are in 19.0's `requirements.txt` and not in 20.0's; Odoo itself moved to `zoneinfo`). A module that imports `pytz` works on a machine that happens to have it and fails to load on a clean Odoo 20, unless its manifest declares it under `external_dependencies`.
 - In 20.0, tests built on `BaseCommon` run as a test user who has only the internal user group, unless the class sets `_test_user_groups` (`odoo/addons/base/tests/common.py`). A test that passed as the superuser can fail on access for that reason alone.
 - The published `odoo-test-helper` package does not load fake models on 20.0, because the registry internals it uses changed (`MetaModel.module_to_models` is now `_module_to_models__`, and `Registry.load` no longer takes a cursor). The four ports that need it carry an adapted copy of its loader in their `tests/` folder, with the original copyright and licence lines.

@@ -18,6 +18,7 @@
     "uninstall_hook": "uninstall_hook",
     "external_dependencies": {
         "python": [
+            "pytz",
             # Used implicitly
             "cssselect",
         ],

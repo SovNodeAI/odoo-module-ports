@@ -207,7 +207,7 @@ class OnlineBankStatementProvider(models.Model):
     def action_check_gocardless_agreement(self):
         self.ensure_one()
         self.gocardless_requisition_ref = str(uuid4())
-        base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
+        base_url = self.env["ir.config_parameter"].sudo().get_str("web.base.url")
         redirect_url = url_join(base_url, "gocardless/response")
         _response, data = self._gocardless_request(
             "requisitions",

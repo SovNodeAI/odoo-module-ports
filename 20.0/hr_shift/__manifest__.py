@@ -26,4 +26,5 @@
             "/hr_shift/static/src/xml/generate_planning_views.xml",
         ],
     },
+    "external_dependencies": {"python": ["pytz"]},
 }

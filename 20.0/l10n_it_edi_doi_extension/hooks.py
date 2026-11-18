@@ -339,7 +339,7 @@ def _log_migration_choices(env):
         return
 
     base_url = (
-        env["ir.config_parameter"].sudo().get_param("web.base.url", "").rstrip("/")
+        env["ir.config_parameter"].sudo().get_str("web.base.url", "").rstrip("/")
     )
 
     def _doi_label(d):

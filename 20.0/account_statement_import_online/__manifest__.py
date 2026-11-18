@@ -27,4 +27,5 @@
         "views/online_bank_statement_provider.xml",
     ],
     "installable": True,
+    "external_dependencies": {"python": ["pytz"]},
 }

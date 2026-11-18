@@ -17,4 +17,5 @@
     ],
     "license": "AGPL-3",
     "installable": True,
+    "external_dependencies": {"python": ["pytz"]},
 }

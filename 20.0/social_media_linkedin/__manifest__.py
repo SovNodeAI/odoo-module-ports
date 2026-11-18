@@ -21,4 +21,5 @@
         "wizards/wizard_social_account.xml",
     ],
     "installable": True,
+    "external_dependencies": {"python": ["pytz"]},
 }

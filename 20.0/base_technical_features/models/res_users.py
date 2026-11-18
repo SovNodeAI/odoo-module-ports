@@ -11,6 +11,7 @@ class ResUsers(models.Model):
         compute="_compute_technical_features",
         inverse="_inverse_technical_features",
         help="Whether the user has technical features always enabled.",
+        user_writeable=True,
     )
 
     def has_group(self, group_ext_id: str) -> bool:
@@ -38,11 +39,3 @@ class ResUsers(models.Model):
             to_add.sudo().write({"group_ids": [Command.link(group.id)]})
         if to_remove := self - to_add:
             to_remove.sudo().write({"group_ids": [Command.unlink(group.id)]})
-
-    @property
-    def SELF_READABLE_FIELDS(self):
-        return super().SELF_READABLE_FIELDS + ["technical_features"]
-
-    @property
-    def SELF_WRITEABLE_FIELDS(self):
-        return super().SELF_WRITEABLE_FIELDS + ["technical_features"]

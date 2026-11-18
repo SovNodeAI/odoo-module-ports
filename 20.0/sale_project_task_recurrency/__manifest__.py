@@ -13,4 +13,5 @@
     "data": ["views/product_template_views.xml"],
     "installable": True,
     "license": "AGPL-3",
+    "external_dependencies": {"python": ["pytz"]},
 }

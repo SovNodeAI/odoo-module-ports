@@ -53,7 +53,7 @@ class ImportSourceConsumerMixin(models.AbstractModel):
 
     def open_source_config(self):
         self.ensure_one()
-        action = self.env[self.source_model].get_formview_action()
+        action = self.env[self.source_model]._get_records_action()
         action.update(
             {
                 "views": [(self.env[self.source_model].get_config_view_id(), "form")],

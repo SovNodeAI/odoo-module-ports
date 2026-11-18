@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <!-- Group accesses are OR-ed: these accesses extend the standard portal
+         visibility (based on partner_id) with read-only access to the
+         documents on which the portal user is the named sale contact. -->
+    <record id="sale_order_rule_portal_sale_contact" model="ir.access">
+        <field name="name">Portal Sale Orders as Sale Contact</field>
+        <field name="model_id" ref="sale.model_sale_order" />
+        <field name="group_id" ref="base.group_portal" />
+        <field name="operation">r</field>
+        <field
+            name="domain"
+        >[('sale_contact_partner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <record id="sale_order_line_rule_portal_sale_contact" model="ir.access">
+        <field name="name">Portal Sale Order Lines as Sale Contact</field>
+        <field name="model_id" ref="sale.model_sale_order_line" />
+        <field name="group_id" ref="base.group_portal" />
+        <field name="operation">r</field>
+        <field
+            name="domain"
+        >[('order_id.sale_contact_partner_id', '=', user.partner_id.id)]</field>
+    </record>
+</odoo>

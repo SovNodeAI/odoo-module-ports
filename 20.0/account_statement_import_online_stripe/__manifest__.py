@@ -12,4 +12,5 @@
     "depends": ["account_statement_import_online"],
     "data": ["views/online_bank_statement_provider.xml"],
     "installable": True,
+    "external_dependencies": {"python": ["pytz"]},
 }

@@ -17,4 +17,5 @@
         "views/edi_exchange_record.xml",
     ],
     "demo": [],
+    "external_dependencies": {"python": ["pytz"]},
 }

@@ -93,7 +93,7 @@ class ServerEnvMixin(models.AbstractModel):
         action_id = self.env.context.get("params", {}).get("action")
         if not action_id:
             # We don't know which action we are using... take default one
-            action = self.get_formview_action()
+            action = self._get_records_action()
         else:
             action = (
                 self.env["ir.actions.act_window"].browse(action_id).sudo().read()[0]
