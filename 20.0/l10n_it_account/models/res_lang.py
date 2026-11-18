@@ -7,8 +7,8 @@ from odoo import models
 class Lang(models.Model):
     _inherit = "res.lang"
 
-    def toggle_active(self):
-        res = super().toggle_active()
+    def action_unarchive(self):
+        res = super().action_unarchive()
 
         if "it_IT" in [lang.code for lang in self.filtered(lambda L: L.active)]:
             self.update_menu_finance_it_translation()

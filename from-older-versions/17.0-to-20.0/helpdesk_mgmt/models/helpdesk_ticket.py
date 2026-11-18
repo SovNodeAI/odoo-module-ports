@@ -268,10 +268,10 @@ class HelpdeskTicket(models.Model):
     # Mail gateway
     # ---------------------------------------------------
 
-    def _track_template(self, tracking):
-        res = super()._track_template(tracking)
+    def _track_template_parameters(self, tracked_fields):
+        res = super()._track_template_parameters(tracked_fields)
         ticket = self[0]
-        if "stage_id" in tracking and ticket.stage_id.mail_template_id:
+        if "stage_id" in tracked_fields and ticket.stage_id.mail_template_id:
             res["stage_id"] = (
                 ticket.stage_id.mail_template_id,
                 {

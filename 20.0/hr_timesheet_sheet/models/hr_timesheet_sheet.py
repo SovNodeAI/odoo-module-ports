@@ -825,11 +825,11 @@ class Sheet(models.Model):
     # OpenChatter methods and notifications
     # ------------------------------------------------
 
-    def _track_subtype(self, init_values):
+    def _track_log_get_default_subtype(self, track_init_values):
         if self:
             record = self[0]
-            if "state" in init_values and record.state == "confirm":
+            if "state" in track_init_values and record.state == "confirm":
                 return self.env.ref("hr_timesheet_sheet.mt_timesheet_confirmed")
-            elif "state" in init_values and record.state == "done":
+            elif "state" in track_init_values and record.state == "done":
                 return self.env.ref("hr_timesheet_sheet.mt_timesheet_approved")
-        return super()._track_subtype(init_values)
+        return super()._track_log_get_default_subtype(track_init_values)

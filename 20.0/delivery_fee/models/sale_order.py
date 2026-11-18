@@ -77,8 +77,8 @@ class SaleOrderLine(models.Model):
     is_delivery_fee = fields.Boolean(string="Is a Delivery Fee", default=False)
     delivery_fee_picking_id = fields.Many2one(comodel_name="stock.picking")
 
-    def _is_not_sellable_line(self):
-        return self.is_delivery_fee or super()._is_not_sellable_line()
+    def _sellable_lines_domain(self):
+        return super()._sellable_lines_domain() + [("is_delivery_fee", "=", False)]
 
     def _compute_pricelist_item_id(self):
         delivery_fee_lines = self.filtered("is_delivery_fee")

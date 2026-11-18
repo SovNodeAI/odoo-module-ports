@@ -1,0 +1,7 @@
+id,name,model_id,group_id/id,operation,domain
+access_business_requirement_deliverable_user,business.requirement.deliverable.user,business.requirement.deliverable,business_requirement.group_business_requirement_user,crud,
+access_business_requirement_deliverable_manager,business.requirement.deliverable.manager,business.requirement.deliverable,business_requirement.group_business_requirement_manager,crud,
+access_business_requirement_deliverable_portal,business.requirement.deliverable.portal,business.requirement.deliverable,base.group_portal,r,"['&', ('portal_published', '=', True), ('message_partner_ids', 'child_of', [user.partner_id.commercial_partner_id.id]), ('business_requirement_id.portal_published', '=', True), ('business_requirement_id.message_partner_ids', 'child_of', [user.partner_id.commercial_partner_id.id])]"
+access_business_requirement_deliverable_section_user,business.requirement.deliverable.section.user,business.requirement.deliverable.section,business_requirement.group_business_requirement_user,r,
+access_business_requirement_deliverable_section_manager,business.requirement.deliverable.section.manager,business.requirement.deliverable.section,business_requirement.group_business_requirement_manager,crud,
+access_business_requirement_deliverable_section_portal,business.requirement.deliverable.section.portal,business.requirement.deliverable.section,base.group_portal,r,

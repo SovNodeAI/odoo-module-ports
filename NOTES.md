@@ -39,6 +39,33 @@ We found it in our own ports on 18 November 2026: 6 of the 106 ported modules th
 
 The same script re-writes the XML files it touches through a parser, which drops the XML declaration and the copyright comment at the top of the file. That had happened in 13 files across 11 of our ports; they are restored, and it is checked on every port.
 
+### In every new version: a method a module extends can be gone, and nothing fails
+
+A module usually adds behaviour by extending a method of the model it inherits: it defines the method again and calls `super()`. When a new Odoo version renames or removes that method, the module still installs and its tests still pass, because nothing calls the old name any more. The feature is just gone. There is no error and no warning.
+
+Some of the renames we met:
+
+| Before | Odoo 20 | File in 20.0 |
+|---|---|---|
+| `mail.thread._track_template(changes)` | `_track_template_parameters(tracked_fields)` | `addons/mail/models/mail_thread.py` |
+| `mail.thread._track_subtype(init_values)` | `_track_log_get_default_subtype(track_init_values)` | `addons/mail/models/mail_thread.py` |
+| `toggle_active()` on any model | removed; `action_archive()` and `action_unarchive()` remain | `odoo/orm/models.py` |
+| `_prepare_home_portal_values(counters)` in portal controllers | `_prepare_portal_counter_values(counter)` | `addons/portal/controllers/portal.py` |
+| `mail.thread._thread_to_store(...)` | `_store_thread_fields(...)` | `addons/mail/models/mail_thread.py` |
+| `sale.order.line._is_not_sellable_line()` (18.0) | `_sellable_lines_domain()` | `addons/sale/models/sale_order_line.py` |
+
+We found it in our own ports on 18 November 2026: 9 of 480 ported modules had lost a feature this way, and five of them were on this page, along with the port of `helpdesk_mgmt` made from 17.0.
+
+- `helpdesk_mgmt`: the email template of a stage was no longer sent when a ticket reached that stage.
+- `hr_timesheet_sheet`: confirming or approving a timesheet no longer used the module's "confirmed" and "approved" message subtypes, so their followers were not notified.
+- `l10n_it_account`: activating Italian from the language list no longer re-applied the Italian name of the accounting menu.
+- `mgmtsystem_nonconformity`: the chatter no longer received the number of non-conformities linked to a record, so its button did not show.
+- `delivery_fee`: fee lines were no longer left out of the order lines Odoo treats as sellable (the ones it offers for linking to projects, tasks and timesheets).
+
+All five are corrected here and pass their tests again. Three other modules (`account_financial_report`, `base_location`, `l10n_br_coa`) call a parent method that already did not exist in their 19.0 original, so the port neither added nor lost anything there, and they are unchanged.
+
+Every port is now checked for this: each method that calls `super()` has to exist in the source of the target version, and a method that Odoo no longer calls may not be kept alive by the module's tests alone.
+
 ### Since 20.0: a currency rate applies from the day after its date
 
 `res.currency._get_rates` in `odoo/addons/base/models/res_currency.py` looks for the latest rate dated strictly before the given date. Odoo 19 and older included the date itself (`<=`).
