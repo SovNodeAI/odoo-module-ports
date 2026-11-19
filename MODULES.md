@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-410 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5133 test runs in all.
+414 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5214 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -139,6 +139,7 @@
 | [dms_auto_classification](20.0/dms_auto_classification) | OCA/dms | 18.0 | `a083c5b` | AGPL-3 | 7 | 7 | reviewed |
 | [document_page_access_group](20.0/document_page_access_group) | OCA/knowledge | 19.0 | `3ba8a78` | AGPL-3 | 3 | 3 | none |
 | [document_page_reference](20.0/document_page_reference) | OCA/knowledge | 18.0 | `b19da27` | AGPL-3 | 8 | 8 | reviewed |
+| [document_url](20.0/document_url) | OCA/knowledge | 19.0 | `3ba8a78` | AGPL-3 | 2 | 2 | reviewed, accepted |
 | [edi_core_oca](20.0/edi_core_oca) | OCA/edi-framework | 19.0 | `73845cf` | LGPL-3 | 138 | 139 | reviewed |
 | [edi_queue_oca](20.0/edi_queue_oca) | OCA/edi-framework | 19.0 | `73845cf` | LGPL-3 | 16 | 16 | reviewed |
 | [edi_webservice_core_oca](20.0/edi_webservice_core_oca) | OCA/edi-framework | 18.0 | `8c263d9` | AGPL-3 | 8 | 8 | reviewed |
@@ -187,6 +188,8 @@
 | [l10n_br_fiscal_edi](20.0/l10n_br_fiscal_edi) | OCA/l10n-brazil | 19.0 | `d6b9f0d` | AGPL-3 | 31 | 31 | none |
 | [l10n_br_purchase](20.0/l10n_br_purchase) | OCA/l10n-brazil | 19.0 | `d6b9f0d` | AGPL-3 | 15 | 15 | reviewed, accepted |
 | [l10n_br_purchase_blanket_order](20.0/l10n_br_purchase_blanket_order) | OCA/l10n-brazil | 18.0 | `c50420c` | AGPL-3 | 10 | 10 | reviewed |
+| [l10n_br_sale](20.0/l10n_br_sale) | OCA/l10n-brazil | 19.0 | `d6b9f0d` | AGPL-3 | 21 | 28 | reviewed, accepted |
+| [l10n_br_sale_blanket_order](20.0/l10n_br_sale_blanket_order) | OCA/l10n-brazil | 18.0 | `c50420c` | AGPL-3 | 13 | 13 | reviewed, accepted |
 | [l10n_br_stock](20.0/l10n_br_stock) | OCA/l10n-brazil | 18.0 | `c50420c` | AGPL-3 | 6 | 6 | reviewed |
 | [l10n_es_aeat](20.0/l10n_es_aeat) | OCA/l10n-spain | 19.0 | `3349525` | AGPL-3 | 39 | 39 | reviewed, accepted |
 | [l10n_es_aeat_mod190](20.0/l10n_es_aeat_mod190) | OCA/l10n-spain | 19.0 | `3349525` | AGPL-3 | 4 | 4 | reviewed |
@@ -330,6 +333,7 @@
 | [rma](20.0/rma) | OCA/rma | 19.0 | `4774c03` | AGPL-3 | 74 | 75 | reviewed |
 | [rma_lot](20.0/rma_lot) | OCA/rma | 18.0 | `4e5260d` | AGPL-3 | 11 | 11 | reviewed |
 | [rma_reason](20.0/rma_reason) | OCA/rma | 18.0 | `4e5260d` | AGPL-3 | 3 | 3 | reviewed |
+| [rma_sale](20.0/rma_sale) | OCA/rma | 19.0 | `4774c03` | AGPL-3 | 38 | 38 | reviewed, accepted |
 | [sale_advance_payment](20.0/sale_advance_payment) | OCA/sale-workflow | 19.0 | `e62b0e15` | AGPL-3 | 5 | 5 | reviewed |
 | [sale_automatic_workflow](20.0/sale_automatic_workflow) | OCA/sale-workflow | 19.0 | `e62b0e1` | AGPL-3 | 18 | 18 | reviewed |
 | [sale_blanket_order](20.0/sale_blanket_order) | OCA/sale-blanket | 19.0 | `c7243cd` | AGPL-3 | 25 | 25 | reviewed |
@@ -443,7 +447,7 @@ Some listed modules depend on a community module that is not listed here. The te
 | `dms` | community 20.0 | `dms_auto_classification` |
 | `document_knowledge` | community 20.0 | `document_page_access_group` |
 | `document_page` | community 20.0 | `document_page_access_group`, `document_page_reference` |
-| `l10n_br_account` | not all of its tests run yet | `l10n_br_contract`, `l10n_br_purchase` |
+| `l10n_br_account` | not all of its tests run yet | `l10n_br_contract`, `l10n_br_purchase`, `l10n_br_sale` |
 | `l10n_br_coa` | not all of its tests run yet | `l10n_br_coa_generic`, `l10n_br_coa_simple` |
 | `l10n_br_fiscal` | not all of its tests run yet | `l10n_br_fiscal_certificate`, `l10n_br_fiscal_dfe`, `l10n_br_fiscal_edi` |
 | `l10n_fr_state` | community 20.0 | `l10n_fr_department` |
