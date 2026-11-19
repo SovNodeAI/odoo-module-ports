@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-414 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5214 test runs in all.
+416 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5274 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -85,6 +85,8 @@
 | [auth_signup_verify_email](20.0/auth_signup_verify_email) | OCA/server-auth | 18.0 | `23df47b` | AGPL-3 | 3 | 3 | reviewed |
 | [auth_user_case_insensitive](20.0/auth_user_case_insensitive) | OCA/server-auth | 19.0 | `ae09869` | AGPL-3 | 3 | 3 | none |
 | [autovacuum_message_attachment](20.0/autovacuum_message_attachment) | OCA/server-tools | 18.0 | `55308ba` | LGPL-3 | 4 | 4 | reviewed |
+| [barcode_scanner](20.0/barcode_scanner) | OCA/barcode-interface | 18.0 | `b1c4eb8` | AGPL-3 | 1 | 1 | reviewed, accepted |
+| [barcode_stock](20.0/barcode_stock) | OCA/barcode-interface | 18.0 | `b1c4eb8` | AGPL-3 | 59 | 59 | reviewed, accepted |
 | [base_business_document_import](20.0/base_business_document_import) | OCA/edi | 19.0 | `9dc91ef` | AGPL-3 | 16 | 16 | none |
 | [base_cancel_confirm](20.0/base_cancel_confirm) | OCA/server-ux | 19.0 | `ecb65d1` | AGPL-3 | 3 | 3 | reviewed |
 | [base_edi](20.0/base_edi) | OCA/edi | 19.0 | `9dc91ef` | LGPL-3 | 1 | 1 | none |
