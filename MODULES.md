@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-416 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5274 test runs in all.
+421 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5313 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -49,12 +49,15 @@
 | [account_operating_unit](20.0/account_operating_unit) | OCA/operating-unit | 19.0 | `df56d49` | LGPL-3 | 15 | 15 | reviewed |
 | [account_partner_company_group](20.0/account_partner_company_group) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 1 | 1 | reviewed, accepted |
 | [account_payment_base_oca_sale](20.0/account_payment_base_oca_sale) | OCA/bank-payment-alternative | 19.0 | `5893a02` | AGPL-3 | 4 | 4 | reviewed |
+| [account_payment_mandate](20.0/account_payment_mandate) | OCA/bank-payment-alternative | 19.0 | `5893a02` | AGPL-3 | 19 | 19 | reviewed |
 | [account_payment_mode](20.0/account_payment_mode) | OCA/bank-payment | 19.0 | `b5d4fbf` | AGPL-3 | 23 | 23 | reviewed, accepted |
 | [account_payment_order](20.0/account_payment_order) | OCA/bank-payment | 19.0 | `b5d4fbf` | AGPL-3 | 24 | 26 | reviewed |
 | [account_payment_order_notification](20.0/account_payment_order_notification) | OCA/bank-payment | 19.0 | `b5d4fbf` | AGPL-3 | 1 | 1 | reviewed |
 | [account_payment_partner](20.0/account_payment_partner) | OCA/bank-payment | 18.0 | `24ba240` | AGPL-3 | 23 | 23 | reviewed, accepted |
 | [account_payment_purchase](20.0/account_payment_purchase) | OCA/bank-payment | 19.0 | `b5d4fbf` | AGPL-3 | 5 | 5 | reviewed |
 | [account_payment_purchase_stock](20.0/account_payment_purchase_stock) | OCA/bank-payment | 19.0 | `b5d4fbf` | AGPL-3 | 4 | 4 | none |
+| [account_payment_sepa_base](20.0/account_payment_sepa_base) | OCA/bank-payment-alternative | 19.0 | `5893a02` | AGPL-3 | 2 | 2 | none |
+| [account_payment_sepa_direct_debit](20.0/account_payment_sepa_direct_debit) | OCA/bank-payment-alternative | 19.0 | `5893a02` | AGPL-3 | 5 | 5 | reviewed |
 | [account_payment_term_extension](20.0/account_payment_term_extension) | OCA/account-payment | 19.0 | `376d018` | AGPL-3 | 22 | 22 | reviewed |
 | [account_reconcile_model_oca](20.0/account_reconcile_model_oca) | OCA/account-reconcile | 18.0 | `db252b0` | LGPL-3 | 36 | 36 | reviewed, accepted |
 | [account_reconcile_oca](20.0/account_reconcile_oca) | OCA/account-reconcile | 19.0 | `fa7be05` | AGPL-3 | 48 | 48 | reviewed, accepted |
@@ -238,6 +241,8 @@
 | [membership_variable_period](20.0/membership_variable_period) | OCA/vertical-association | 19.0 | `a36cce3` | AGPL-3 | 11 | 11 | none |
 | [mgmtsystem](20.0/mgmtsystem) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 1 | 1 | none |
 | [mgmtsystem_action](20.0/mgmtsystem_action) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 7 | 7 | none |
+| [mgmtsystem_nonconformity](20.0/mgmtsystem_nonconformity) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 11 | 12 | reviewed, accepted |
+| [mgmtsystem_review](20.0/mgmtsystem_review) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 1 | 1 | reviewed |
 | [mis_builder](20.0/mis_builder) | OCA/mis-builder | 19.0 | `adbe5c3` | AGPL-3 | 97 | 98 | reviewed, accepted |
 | [mis_template_financial_report](20.0/mis_template_financial_report) | OCA/account-financial-reporting | 18.0 | `ae0fff3` | AGPL-3 | 1 | 1 | none |
 | [module_auto_update](20.0/module_auto_update) | OCA/server-tools | 19.0 | `71de4de` | LGPL-3 | 13 | 13 | reviewed |
@@ -437,6 +442,7 @@ Some listed modules depend on a community module that is not listed here. The te
 |---|---|---|
 | `account_financial_risk` | community 20.0 | `sale_financial_risk` |
 | `account_payment_base_oca` | no tests of its own | `account_payment_base_oca_sale` |
+| `account_payment_batch_oca` | not all of its tests run yet | `account_payment_mandate`, `account_payment_sepa_base` |
 | `account_statement_import_base` | no tests of its own | `account_statement_import_file`, `account_statement_import_generate_unique_id`, `account_statement_import_online` |
 | `analytic_operating_unit` | no tests of its own | `account_operating_unit` |
 | `base_cron_exclusion` | community 20.0 | `ddmrp` |
@@ -449,6 +455,7 @@ Some listed modules depend on a community module that is not listed here. The te
 | `dms` | community 20.0 | `dms_auto_classification` |
 | `document_knowledge` | community 20.0 | `document_page_access_group` |
 | `document_page` | community 20.0 | `document_page_access_group`, `document_page_reference` |
+| `document_page_procedure` | no tests of its own | `mgmtsystem_nonconformity` |
 | `l10n_br_account` | not all of its tests run yet | `l10n_br_contract`, `l10n_br_purchase`, `l10n_br_sale` |
 | `l10n_br_coa` | not all of its tests run yet | `l10n_br_coa_generic`, `l10n_br_coa_simple` |
 | `l10n_br_fiscal` | not all of its tests run yet | `l10n_br_fiscal_certificate`, `l10n_br_fiscal_dfe`, `l10n_br_fiscal_edi` |
