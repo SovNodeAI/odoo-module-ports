@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-421 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5313 test runs in all.
+423 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5361 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -271,6 +271,7 @@
 | [partner_multi_relation](20.0/partner_multi_relation) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 48 | 49 | reviewed |
 | [partner_ref_unique](20.0/partner_ref_unique) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 5 | 5 | reviewed |
 | [partner_stage](20.0/partner_stage) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 6 | 6 | none |
+| [partner_statement](20.0/partner_statement) | OCA/account-financial-reporting | 19.0 | `94ad458` | AGPL-3 | 35 | 39 | reviewed |
 | [password_security](20.0/password_security) | OCA/server-auth | 19.0 | `ae09869` | LGPL-3 | 40 | 40 | reviewed |
 | [payroll](20.0/payroll) | OCA/payroll | 19.0 | `cbcaace` | LGPL-3 | 27 | 27 | reviewed |
 | [payroll_account](20.0/payroll_account) | OCA/payroll | 18.0 | `d54bf91` | LGPL-3 | 3 | 3 | reviewed |
@@ -412,6 +413,7 @@
 | [stock_quant_package_dimension](20.0/stock_quant_package_dimension) | OCA/stock-logistics-tracking | 18.0 | `0392600` | AGPL-3 | 3 | 3 | reviewed |
 | [stock_quant_package_product_packaging](20.0/stock_quant_package_product_packaging) | OCA/stock-logistics-tracking | 18.0 | `0392600` | AGPL-3 | 10 | 11 | reviewed |
 | [stock_split_picking](20.0/stock_split_picking) | OCA/stock-logistics-workflow | 19.0 | `3057a91` | AGPL-3 | 16 | 16 | reviewed |
+| [stock_weighing](20.0/stock_weighing) | OCA/stock-weighing | 18.0 | `0fcf92e` | AGPL-3 | 9 | 9 | reviewed, accepted |
 | [subscription_oca](20.0/subscription_oca) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 62 | 62 | reviewed |
 | [tracking_manager](20.0/tracking_manager) | OCA/server-tools | 19.0 | `71de4de` | AGPL-3 | 21 | 21 | reviewed |
 | [uom_alias](20.0/uom_alias) | OCA/product-attribute | 19.0 | `5545a68` | LGPL-3 | 2 | 2 | none |
@@ -465,7 +467,7 @@ Some listed modules depend on a community module that is not listed here. The te
 | `partner_contact_personal_information_page` | community 20.0 | `partner_contact_birthdate`, `partner_contact_gender` |
 | `product_set` | community 20.0 | `sale_product_set` |
 | `queue_job` | community 20.0 | `connector`, `ddmrp_cron_actions_as_job`, `edi_queue_oca`, `l10n_br_fiscal_dfe` |
-| `report_xlsx` | community 20.0 | `account_financial_report`, `l10n_nl_tax_statement`, `mis_builder`, `mrp_bom_structure_xlsx`, `report_xlsx_helper` |
+| `report_xlsx` | community 20.0 | `account_financial_report`, `l10n_nl_tax_statement`, `mis_builder`, `mrp_bom_structure_xlsx`, `partner_statement`, `report_xlsx_helper` |
 | `sale_triple_discount` | not all of its tests run yet | `sale_order_general_discount_triple` |
 | `shopify_connector` | not all of its tests run yet | `shopify_connector_account` |
 | `sql_request_abstract` | no tests of its own | `bi_sql_editor` |
@@ -474,6 +476,10 @@ Some listed modules depend on a community module that is not listed here. The te
 | `stock_restrict_lot` | community 20.0 | `sale_order_lot_selection`, `stock_picking_return_lot` |
 | `stock_warehouse_calendar` | community 20.0 | `ddmrp` |
 | `uom_unece` | no tests of its own | `base_business_document_import` |
+| `web_filter_header_button` | community 20.0 | `stock_weighing` |
+| `web_ir_actions_act_multi` | community 20.0 | `stock_weighing` |
 | `web_m2x_options` | community 20.0 | `web_m2x_options_manager` |
+| `web_quick_start_screen` | community 20.0 | `stock_weighing` |
 | `web_timeline` | community 20.0 | `project_timeline` |
 | `web_widget_bokeh_chart` | community 20.0 | `ddmrp` |
+| `web_widget_numeric_step` | community 20.0 | `stock_weighing` |

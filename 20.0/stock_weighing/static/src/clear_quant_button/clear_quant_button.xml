@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t
+        t-name="stock_weighing.ClearQuantButton"
+        t-inherit="web.Many2OneField"
+        t-inherit-mode="extension"
+    >
+        <!-- Odoo 20: web.Many2OneField is only <Many2One/>. The button sits beside
+             it, and only for the wizard's field: every other many2one field is
+             rendered exactly as before. -->
+        <xpath expr="//Many2One" position="replace">
+            <div t-if="this.isWeighingQuantField" class="d-flex align-items-center">
+                <Many2One t-props="this.weighingQuantM2oProps" />
+                <button
+                    t-if="this.showClearQuantButton"
+                    type="button"
+                    class="btn btn-primary ms-1 fa fa-trash o_weighing_clear_quant_btn"
+                    t-on-click="this.onClickClearQuant"
+                    title="Clear source stock"
+                    aria-label="Clear source stock"
+                />
+            </div>
+            <t t-else="">$0</t>
+        </xpath>
+    </t>
+</templates>
