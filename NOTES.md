@@ -26,6 +26,8 @@ The rule now: a module is listed only while every community module it depends on
 
 Also this evening: `mail_gateway` and `barcode_stock` came back from their web-code correction with all tests passing, including new ones. `mail_gateway` is listed again, with two visible changes written up under "Behaviour changes". `barcode_stock` waits for `barcode_scanner`, which it depends on.
 
+<!-- state --> State at 6:06 pm on 18 November: 394 modules listed. Back on the page since the evening correction, because they were corrected or the module they depend on was: `ddmrp`, `ddmrp_cron_actions_as_job`, `l10n_br_contract`. 55 of the modules listed in the morning are still off.
+
 ### 18 November 2026, late afternoon: values that no longer reach a called template
 
 While correcting `contract` we found that its report and portal templates handed values to Odoo's layout templates in a way Odoo 20 no longer honours (see "a value set inside a `t-call` no longer reaches the called template" below). Nothing had failed: no install error, no failing test.

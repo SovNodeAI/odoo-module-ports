@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-391 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 4762 test runs in all.
+394 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 4831 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -128,6 +128,8 @@
 | [currency_rate_update_xe](20.0/currency_rate_update_xe) | OCA/currency | 18.0 | `e7d64f8` | AGPL-3 | 3 | 3 | none |
 | [data_encryption](20.0/data_encryption) | OCA/server-env | 18.0 | `dc737ed` | AGPL-3 | 10 | 10 | reviewed |
 | [database_cleanup](20.0/database_cleanup) | OCA/server-tools | 19.0 | `71de4de` | AGPL-3 | 11 | 11 | reviewed |
+| [ddmrp](20.0/ddmrp) | OCA/ddmrp | 19.0 | `84ec100` | LGPL-3 | 63 | 63 | reviewed, accepted |
+| [ddmrp_cron_actions_as_job](20.0/ddmrp_cron_actions_as_job) | OCA/ddmrp | 19.0 | `84ec100` | LGPL-3 | 3 | 3 | none |
 | [delivery_carrier_partner](20.0/delivery_carrier_partner) | OCA/delivery-carrier | 19.0 | `b6258c7` | AGPL-3 | 1 | 1 | none |
 | [delivery_dropoff_site](20.0/delivery_dropoff_site) | OCA/delivery-carrier | 18.0 | `95c525a` | AGPL-3 | 10 | 10 | reviewed |
 | [delivery_fee](20.0/delivery_fee) | OCA/delivery-carrier | 18.0 | `95c525a` | LGPL-3 | 12 | 12 | reviewed |
@@ -168,6 +170,7 @@
 | [l10n_br_cnab_structure](20.0/l10n_br_cnab_structure) | OCA/l10n-brazil | 18.0 | `c50420c` | AGPL-3 | 35 | 35 | reviewed |
 | [l10n_br_coa_generic](20.0/l10n_br_coa_generic) | OCA/l10n-brazil | 19.0 | `d6b9f0d` | AGPL-3 | 1 | 1 | none |
 | [l10n_br_coa_simple](20.0/l10n_br_coa_simple) | OCA/l10n-brazil | 19.0 | `d6b9f0d` | AGPL-3 | 1 | 1 | none |
+| [l10n_br_contract](20.0/l10n_br_contract) | OCA/l10n-brazil | 18.0 | `c50420c` | AGPL-3 | 3 | 3 | reviewed |
 | [l10n_br_currency_rate_update](20.0/l10n_br_currency_rate_update) | OCA/l10n-brazil | 19.0 | `d6b9f0d` | AGPL-3 | 7 | 7 | none |
 | [l10n_br_fiscal_certificate](20.0/l10n_br_fiscal_certificate) | OCA/l10n-brazil | 19.0 | `d6b9f0d` | AGPL-3 | 9 | 9 | reviewed |
 | [l10n_br_fiscal_edi](20.0/l10n_br_fiscal_edi) | OCA/l10n-brazil | 19.0 | `d6b9f0d` | AGPL-3 | 31 | 31 | none |
@@ -414,6 +417,7 @@ Some listed modules depend on a community module that is not listed here. The te
 | `account_payment_base_oca` | no tests of its own | `account_payment_base_oca_sale` |
 | `account_statement_import_base` | no tests of its own | `account_statement_import_file`, `account_statement_import_generate_unique_id`, `account_statement_import_online` |
 | `analytic_operating_unit` | no tests of its own | `account_operating_unit` |
+| `base_cron_exclusion` | community 20.0 | `ddmrp` |
 | `base_maintenance` | no tests of its own | `maintenance_equipment_contract`, `maintenance_equipment_status`, `maintenance_plan` |
 | `base_unece` | no tests of its own | `account_tax_unece` |
 | `base_user_role` | not all of its tests run yet | `base_user_role_company`, `base_user_role_history` |
@@ -423,20 +427,24 @@ Some listed modules depend on a community module that is not listed here. The te
 | `dms` | community 20.0 | `dms_auto_classification` |
 | `document_knowledge` | community 20.0 | `document_page_access_group` |
 | `document_page` | community 20.0 | `document_page_access_group`, `document_page_reference` |
+| `l10n_br_account` | not all of its tests run yet | `l10n_br_contract` |
 | `l10n_br_coa` | not all of its tests run yet | `l10n_br_coa_generic`, `l10n_br_coa_simple` |
 | `l10n_br_fiscal` | not all of its tests run yet | `l10n_br_fiscal_certificate`, `l10n_br_fiscal_edi` |
 | `l10n_fr_state` | community 20.0 | `l10n_fr_department` |
 | `l10n_it_edi_sdi` | no tests of its own | `l10n_it_edi_pec` |
+| `mrp_multi_level` | community 20.0 | `ddmrp` |
 | `partner_contact_personal_information_page` | community 20.0 | `partner_contact_birthdate`, `partner_contact_gender` |
 | `product_set` | community 20.0 | `sale_product_set` |
-| `queue_job` | community 20.0 | `connector`, `edi_queue_oca` |
+| `queue_job` | community 20.0 | `connector`, `ddmrp_cron_actions_as_job`, `edi_queue_oca` |
 | `report_xlsx` | community 20.0 | `account_financial_report`, `l10n_nl_tax_statement`, `mrp_bom_structure_xlsx`, `report_xlsx_helper` |
 | `sale_triple_discount` | not all of its tests run yet | `sale_order_general_discount_triple` |
 | `shopify_connector` | not all of its tests run yet | `shopify_connector_account` |
 | `sql_request_abstract` | no tests of its own | `bi_sql_editor` |
-| `stock_demand_estimate` | community 20.0 | `stock_demand_estimate_matrix` |
+| `stock_demand_estimate` | community 20.0 | `ddmrp`, `stock_demand_estimate_matrix` |
 | `stock_picking_invoice_link` | community 20.0 | `purchase_stock_picking_invoice_link`, `sale_stock_picking_invoice_link` |
 | `stock_restrict_lot` | community 20.0 | `sale_order_lot_selection`, `stock_picking_return_lot` |
+| `stock_warehouse_calendar` | community 20.0 | `ddmrp` |
 | `uom_unece` | no tests of its own | `base_business_document_import` |
 | `web_m2x_options` | community 20.0 | `web_m2x_options_manager` |
 | `web_timeline` | community 20.0 | `project_timeline` |
+| `web_widget_bokeh_chart` | community 20.0 | `ddmrp` |
