@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-423 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5361 test runs in all.
+430 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5456 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -44,6 +44,7 @@
 | [account_lock_date_update](20.0/account_lock_date_update) | OCA/account-financial-tools | 19.0 | `4a1c887` | AGPL-3 | 1 | 1 | none |
 | [account_manual_currency](20.0/account_manual_currency) | OCA/account-invoicing | 18.0 | `4a901e9` | AGPL-3 | 2 | 2 | reviewed |
 | [account_move_name_sequence](20.0/account_move_name_sequence) | OCA/account-financial-tools | 19.0 | `4a1c887` | AGPL-3 | 25 | 25 | reviewed |
+| [account_move_tier_validation](20.0/account_move_tier_validation) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 3 | 3 | reviewed |
 | [account_multicompany_easy_creation](20.0/account_multicompany_easy_creation) | OCA/multi-company | 18.0 | `cf22d0e` | AGPL-3 | 2 | 2 | reviewed |
 | [account_netting](20.0/account_netting) | OCA/account-financial-tools | 19.0 | `4a1c887` | AGPL-3 | 1 | 1 | none |
 | [account_operating_unit](20.0/account_operating_unit) | OCA/operating-unit | 19.0 | `df56d49` | LGPL-3 | 15 | 15 | reviewed |
@@ -110,6 +111,9 @@
 | [base_technical_features](20.0/base_technical_features) | OCA/server-ux | 19.0 | `ecb65d1` | AGPL-3 | 9 | 9 | reviewed, accepted |
 | [base_technical_user](20.0/base_technical_user) | OCA/server-tools | 19.0 | `71de4de` | AGPL-3 | 6 | 6 | none |
 | [base_territory](20.0/base_territory) | OCA/field-service | 19.0 | `650561d` | AGPL-3 | 19 | 19 | none |
+| [base_tier_validation](20.0/base_tier_validation) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 68 | 72 | reviewed, accepted |
+| [base_tier_validation_formula](20.0/base_tier_validation_formula) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 5 | 5 | none |
+| [base_tier_validation_forward](20.0/base_tier_validation_forward) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 3 | 3 | none |
 | [base_user_role_company](20.0/base_user_role_company) | OCA/server-backend | 19.0 | `d6b0897` | AGPL-3 | 7 | 7 | none |
 | [base_user_role_history](20.0/base_user_role_history) | OCA/server-backend | 19.0 | `d6b0897` | AGPL-3 | 8 | 8 | reviewed |
 | [bi_sql_editor](20.0/bi_sql_editor) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 5 | 5 | none |
@@ -271,7 +275,7 @@
 | [partner_multi_relation](20.0/partner_multi_relation) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 48 | 49 | reviewed |
 | [partner_ref_unique](20.0/partner_ref_unique) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 5 | 5 | reviewed |
 | [partner_stage](20.0/partner_stage) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 6 | 6 | none |
-| [partner_statement](20.0/partner_statement) | OCA/account-financial-reporting | 19.0 | `94ad458` | AGPL-3 | 35 | 39 | reviewed |
+| [partner_statement](20.0/partner_statement) | OCA/account-financial-reporting | 19.0 | `94ad458` | AGPL-3 | 35 | 39 | reviewed, accepted |
 | [password_security](20.0/password_security) | OCA/server-auth | 19.0 | `ae09869` | LGPL-3 | 40 | 40 | reviewed |
 | [payroll](20.0/payroll) | OCA/payroll | 19.0 | `cbcaace` | LGPL-3 | 27 | 27 | reviewed |
 | [payroll_account](20.0/payroll_account) | OCA/payroll | 18.0 | `d54bf91` | LGPL-3 | 3 | 3 | reviewed |
@@ -333,6 +337,7 @@
 | [purchase_sale_inter_company](20.0/purchase_sale_inter_company) | OCA/multi-company | 19.0 | `2992d5a` | AGPL-3 | 15 | 15 | none |
 | [purchase_stock_analytic](20.0/purchase_stock_analytic) | OCA/account-analytic | 18.0 | `309045a` | AGPL-3 | 1 | 1 | reviewed |
 | [purchase_stock_picking_invoice_link](20.0/purchase_stock_picking_invoice_link) | OCA/stock-logistics-workflow | 19.0 | `3057a91` | AGPL-3 | 7 | 7 | none |
+| [purchase_tier_validation](20.0/purchase_tier_validation) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 4 | 4 | none |
 | [report_py3o](20.0/report_py3o) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 14 | 14 | reviewed |
 | [report_qweb_parameter](20.0/report_qweb_parameter) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 1 | 1 | reviewed |
 | [report_wkhtmltopdf_param](20.0/report_wkhtmltopdf_param) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 2 | 2 | none |
@@ -370,6 +375,7 @@
 | [sale_stock_picking_invoice_link](20.0/sale_stock_picking_invoice_link) | OCA/stock-logistics-workflow | 19.0 | `3057a91` | AGPL-3 | 7 | 7 | reviewed |
 | [sale_stock_picking_note](20.0/sale_stock_picking_note) | OCA/sale-workflow | 19.0 | `e62b0e15` | AGPL-3 | 3 | 3 | reviewed |
 | [sale_stock_prebook](20.0/sale_stock_prebook) | OCA/sale-prebook | 19.0 | `b7aa629` | LGPL-3 | 7 | 7 | reviewed |
+| [sale_tier_validation](20.0/sale_tier_validation) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 6 | 6 | reviewed |
 | [sale_timesheet_invoice_link](20.0/sale_timesheet_invoice_link) | OCA/timesheet | 19.0 | `daaa000` | LGPL-3 | 15 | 15 | reviewed |
 | [sentry](20.0/sentry) | OCA/server-tools | 19.0 | `71de4de` | AGPL-3 | 26 | 26 | reviewed |
 | [sequence_check_digit](20.0/sequence_check_digit) | OCA/server-ux | 18.0 | `c69ed17` | LGPL-3 | 13 | 13 | none |
@@ -383,6 +389,7 @@
 | [social_media_base](20.0/social_media_base) | OCA/social | 18.0 | `75b2203` | AGPL-3 | 328 | 329 | reviewed, accepted |
 | [social_media_linkedin](20.0/social_media_linkedin) | OCA/social | 18.0 | `75b2203` | AGPL-3 | 235 | 235 | reviewed |
 | [spec_driven_model](20.0/spec_driven_model) | OCA/l10n-brazil | 18.0 | `c50420c` | LGPL-3 | 13 | 13 | reviewed |
+| [stay](20.0/stay) | OCA/vertical-abbey | 18.0 | `889b18f` | AGPL-3 | 2 | 2 | none |
 | [stock_analytic](20.0/stock_analytic) | OCA/account-analytic | 19.0 | `502ac4e` | AGPL-3 | 10 | 10 | reviewed |
 | [stock_available](20.0/stock_available) | OCA/stock-logistics-availability | 19.0 | `f6f0272` | AGPL-3 | 2 | 2 | reviewed |
 | [stock_cycle_count](20.0/stock_cycle_count) | OCA/stock-logistics-warehouse | 18.0 | `ee3167c` | AGPL-3 | 14 | 14 | reviewed |
@@ -480,6 +487,6 @@ Some listed modules depend on a community module that is not listed here. The te
 | `web_ir_actions_act_multi` | community 20.0 | `stock_weighing` |
 | `web_m2x_options` | community 20.0 | `web_m2x_options_manager` |
 | `web_quick_start_screen` | community 20.0 | `stock_weighing` |
-| `web_timeline` | community 20.0 | `project_timeline` |
+| `web_timeline` | community 20.0 | `project_timeline`, `stay` |
 | `web_widget_bokeh_chart` | community 20.0 | `ddmrp` |
 | `web_widget_numeric_step` | community 20.0 | `stock_weighing` |
