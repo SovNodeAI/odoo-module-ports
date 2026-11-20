@@ -1,6 +1,0 @@
-- [Gray Matter Logic](https://www.graymatterlogic.com):
-  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
-- Patrick Wilson \<<patrickraymondwilson@gmail.com>\>
-- Freni Patel \<<fpatel@graymatterlogic.com>\>
-- [APSL](https://apsl.tech):
-  - Antoni Marroig   \<<amarroig@apsl.net>\>

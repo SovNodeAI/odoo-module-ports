@@ -1,6 +1,6 @@
 # Ports from Odoo 15.0, 16.0 and 17.0
 
-The same modules exist upstream for newer versions. These ports were made from the OLD version's code on purpose, to show the jump a private module would have to make. 28 ports, each with every one of its own tests running and passing on a clean database of the target version.
+The same modules exist upstream for newer versions. These ports were made from the OLD version's code on purpose, to show the jump a private module would have to make. 27 ports, each with every one of its own tests running and passing on a clean database of the target version.
 
 | From | To | Module | Source repository | Commit | License | Test runs (all pass) | Note |
 |---|---|---|---|---|---|---|---|
@@ -14,7 +14,6 @@ The same modules exist upstream for newer versions. These ports were made from t
 | 16.0 | 19.0 | [purchase_request](from-older-versions/16.0-to-19.0/purchase_request) | OCA/purchase-workflow | `e41f927` | LGPL-3 | 30 | one test adapted: procurement groups are gone, see NOTES.md |
 | 16.0 | 19.0 | [sale_automatic_workflow](from-older-versions/16.0-to-19.0/sale_automatic_workflow) | OCA/sale-workflow | `866d018` | AGPL-3 | 13 |  |
 | 17.0 | 19.0 | [auditlog](from-older-versions/17.0-to-19.0/auditlog) | OCA/server-tools | `ecb2422` | AGPL-3 | 41 |  |
-| 17.0 | 19.0 | [base_tier_validation](from-older-versions/17.0-to-19.0/base_tier_validation) | OCA/server-ux | `d3db411` | AGPL-3 | 38 |  |
 | 17.0 | 19.0 | [helpdesk_mgmt](from-older-versions/17.0-to-19.0/helpdesk_mgmt) | OCA/helpdesk | `27dfbf3` | AGPL-3 | 32 |  |
 | 17.0 | 19.0 | [partner_firstname](from-older-versions/17.0-to-19.0/partner_firstname) | OCA/partner-contact | `7a5ddbd` | AGPL-3 | 61 |  |
 | 17.0 | 19.0 | [purchase_request](from-older-versions/17.0-to-19.0/purchase_request) | OCA/purchase-workflow | `e1103fb` | LGPL-3 | 30 | one test adapted: procurement groups are gone, see NOTES.md |

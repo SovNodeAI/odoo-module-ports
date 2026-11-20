@@ -1,7 +1,0 @@
-id,name,model_id,group_id/id,operation,domain
-access_sale_payment_sheet_salesman,access_sale_payment_sheet_salesman,sale.payment.sheet,sales_team.group_sale_salesman,crud,"[('user_id', '=', user.id)]"
-access_sale_payment_sheet_line_salesman,access_sale_payment_sheet_line_salesman,sale.payment.sheet.line,sales_team.group_sale_salesman,crud,
-access_sale_payment_sheet_accountant,access_sale_payment_sheet_accountant,sale.payment.sheet,account.group_account_invoice,crud,
-access_sale_payment_sheet_line_accountant,access_sale_payment_sheet_line_accountant,sale.payment.sheet.line,account.group_account_invoice,crud,
-access_invoice_payment_wiz,access_invoice_payment_wiz_user,sale.invoice.payment.wiz,base.group_user,crud,
-access_invoice_payment_line_wiz,access_invoice_payment_line_wiz_user,sale.invoice.payment.line.wiz,base.group_user,crud,

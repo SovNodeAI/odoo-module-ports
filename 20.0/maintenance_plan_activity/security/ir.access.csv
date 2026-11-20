@@ -1,3 +1,0 @@
-id,name,model_id,group_id/id,operation,domain
-access_maintenance_planned_activity_user,access_maintenance_planned_activity_user,maintenance.planned.activity,base.group_user,r,
-access_maintenance_planned_activity_manager,access_maintenance_planned_activity_manager,maintenance.planned.activity,maintenance.group_equipment_manager,crud,

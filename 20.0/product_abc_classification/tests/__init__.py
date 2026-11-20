@@ -1,5 +1,0 @@
-from . import test_abc_classification_product_level
-from . import test_abc_classification_profile
-from . import test_abc_classification_manual_profile
-from . import test_product
-from . import test_multi_company

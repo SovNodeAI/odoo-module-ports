@@ -1,6 +1,0 @@
-id,name,model_id,group_id/id,operation,domain
-access_maintenance_kind_user,access_maintenance_kind_user,maintenance.kind,base.group_user,r,
-access_maintenance_kind_manager,access_maintenance_kind_manager,maintenance.kind,maintenance.group_equipment_manager,crud,
-maintenance_plan_rule_user,Users are allowed to access plan from equipments they follow,maintenance.plan,base.group_user,r,"[('equipment_id.message_partner_ids', 'in', [user.partner_id.id])]"
-access_maintenance_plan_manager,access_maintenance_plan_manager,maintenance.plan,maintenance.group_equipment_manager,crud,
-maintenance_plan_comp_rule,Maintenance plan multi-company,maintenance.plan,,crud,"[('company_id', 'in', company_ids + [False])]"

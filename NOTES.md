@@ -4,6 +4,16 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
+### 20 November 2026: icons that Odoo 20 no longer draws
+
+A second reviewer read one of our ports in full and pointed at something none of our checks looked for. Odoo 20 does not load Font Awesome. `web.icons_fonts` in `addons/web/__manifest__.py` is Material Symbols plus Odoo's own icon font, and no bundle includes `font-awesome.css` any more (19.0 loaded it in three). A view button is drawn as `<i class="o_button_icon oi" data-icon="...">` with the `icon` attribute exactly as written (`addons/web/static/src/views/view_button/view_button.js`, `iconFromString`). So `<button icon="fa-bars"/>` shows the letters "fa-bars" where the icon was, and `<i class="fa fa-trash-o"/>` shows nothing: a control that is only an icon cannot be seen.
+
+Nothing fails. No Python test looks at an icon. A browser test that clicks an icon fails only if the test tool checks that the icon can be seen; ours did, in one module, and that port's test had been changed to click it anyway. We accepted the explanation given for that change and should not have.
+
+81 of our ports still named icons the Font Awesome way, 71 of them listed here. Those 71 are off the page, and so are 43 modules that depend on one of them: 114 in all. They return as their icons are converted with Odoo's own script (`odoo/upgrade_code/19.5-00-material-symbols-icons.py`) and their tests pass again. See "Since 20.0: Font Awesome is gone" below.
+
+The same review found a search method that one port had rewritten for a call Odoo no longer makes (see "Since 19.0: a field's search method is called with `in`" below). That module, `stock_weighing`, is off the page for both reasons. One older-version port, `base_tier_validation` from 17.0 to 19.0, is held back for the same check until its search methods have been read.
+
 ### 18 November 2026, evening: a module is not listed while what it depends on has a defect
 
 Until now each module was judged alone: its own tests, its own code. But a module shows the screens and prints the templates of the modules it depends on. `sale_tier_validation` was listed here while `base_tier_validation`, whose review widget it puts on the sale order, still had JavaScript that Odoo 20 cannot load. Its tests passed because none of them opens that form in a browser.
@@ -26,7 +36,7 @@ The rule now: a module is listed only while every community module it depends on
 
 Also this evening: `mail_gateway` and `barcode_stock` came back from their web-code correction with all tests passing, including new ones. `mail_gateway` is listed again, with two visible changes written up under "Behaviour changes". `barcode_stock` waits for `barcode_scanner`, which it depends on.
 
-<!-- state --> State at 1:52 am on 20 November: 435 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `automation_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `ddmrp`, `ddmrp_cron_actions_as_job`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_crm`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_mgmt_sla`, `helpdesk_ticket_partner_response`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_es_mis_report`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `mis_builder`, `mis_template_financial_report`, `partner_statement`, `product_configurator`, `product_configurator_sale`, `purchase_tier_validation`, `rma_sale`, `sale_tier_validation`, `stay`. 15 of the modules listed on the morning of 18 November are still off.
+<!-- state --> State at 2:01 am on 20 November: 321 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `automation_oca`, `barcode_scanner`, `barcode_stock`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_ticket_partner_response`, `partner_statement`, `product_configurator`. 126 of the modules listed on the morning of 18 November are still off.
 
 ### 18 November 2026, late afternoon: values that no longer reach a called template
 
@@ -187,6 +197,33 @@ Two details:
 - An attribute given to an outer `t-call` is not seen by a `t-call` inside its body. Odoo's own portal pages pass `breadcrumbs_searchbar="True"` to `portal.portal_layout` and again to `portal.portal_searchbar`.
 - Odoo's script is a good detector. Applied to a file as it is, it dropped the comment above the root element in our runs, which in community modules is the copyright notice. We use it to find the places and write the change by hand.
 - Browser templates follow the same rule, and Odoo's script does not look at them (it skips everything under `static/`). In Owl 3 the body of a `t-call` is compiled as a block of its own that the called template may or may not render (`addons/web/static/lib/owl/owl.js`, `compileTCall`), so a `t-set` in that body does not reach the called template either. We found one such template in a port, an onboarding panel that hands each step's title and button text to a sub-template, and check for it in every port now: a `t-set` inside a `t-call` whose value the body itself does not use.
+
+### Since 20.0: Font Awesome is gone
+
+Up to 19.0 every backend, website and report bundle loaded Font Awesome (`web/static/src/libs/fontawesome/css/font-awesome.css` in `addons/web/__manifest__.py`). Odoo 20's bundles include `web.icons_fonts` instead: Material Symbols and Odoo's own icon font. An icon is now an element with the class `oi` and the icon's name in `data-icon`; the stylesheet prints that attribute in the icon font (`addons/web/static/src/webclient/icons.scss`).
+
+What a module written for 19.0 shows on 20.0:
+
+- `<button icon="fa-bars" .../>` in a view: the button's icon is the text of the attribute, so the letters "fa-bars" appear.
+- `<i class="fa fa-trash-o" .../>` in a view, a report or a web template: an empty element. If the icon was the whole control (a fold arrow, a delete cross), the control is invisible and cannot be clicked.
+- An icon name in a Python dictionary or a JavaScript string (`"icon": "fa-users"`): the same, wherever it ends up.
+
+Odoo converted its own modules with `odoo/upgrade_code/19.5-00-material-symbols-icons.py`; its mapping table is `material_symbols_icons_mapping.py` beside it. Odoo 20's own views have no `icon="fa-..."` left (19.0 has them in 295 view files). The script is a text rewrite and says of itself that it is best effort: class names built at run time and icons stored in data need a look by hand.
+
+No test fails because of this. We now run the script's transforms in memory on every port and treat any file it would change as a defect.
+
+### Since 19.0: a field's search method is called with `in`
+
+Before a field's `search=` method is called, the condition has been normalised: `('f', '=', v)` arrives as `('f', 'in', {v})` and `('f', '!=', v)` as `('f', 'not in', {v})` (`odoo/orm/domains.py`, `_operator_equal_as_in`). If the method raises `NotImplementedError` or a `UserError`, or returns `NotImplemented`, Odoo tries the opposite operator and then calls the method once per value with `=` or `!=` (`_optimize_field_search_method` in the same file). So a method that refuses what it does not know keeps working.
+
+A method that answers anyway does not. This one, written during a port, returns the opposite of what was asked for, because it never sees `=`:
+
+```python
+def _search_has_weight(self, operator, value):
+    return domain if (operator == "=") == bool(value) else ~domain
+```
+
+`bool({True})` and `bool({False})` are both true, so a search for records with the flag set returns the ones without it. No test of that module searches on the field. We found it by reading, and now flag every search method a port wrote or changed that compares the operator with `=` and never mentions `in`. A method left exactly as the 19.0 author wrote it is not flagged: it behaves on 20.0 as it did on 19.0, right or wrong.
 
 ### Since 20.0: the web client runs on Owl 3
 

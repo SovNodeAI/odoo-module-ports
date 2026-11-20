@@ -1,5 +1,0 @@
-- [Engenere](https://engenere.one):
-  - Antônio S. Pereira Neto \<<neto@engenere.one>\>
-  - Felipe Motter Pereira \<<felipe@engenere.one>\>
-- [KMEE](https://kmee.com.br):
-  - Ygor Carvalho \<<ygcarvalh@gmail.com>\>

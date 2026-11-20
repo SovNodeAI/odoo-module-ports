@@ -1,3 +1,0 @@
-id,name,model_id,group_id/id,operation,domain
-access_account_banking_mandate,Full access on account.banking.mandate,account.banking.mandate,account_payment_order.group_account_payment,crud,
-access_account_banking_mandate_read,Read access on account.banking.mandate,account.banking.mandate,base.group_user,r,

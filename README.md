@@ -2,13 +2,13 @@
 
 SovNode ports Odoo modules to new Odoo versions. This repository is our public track record: community modules we have ported, each one installed on a clean database of the target version and proven by its own test suite.
 
-Figures as of 20 November 2026, 1:52 am (US Central). On 18 November we found that our test machine had been skipping browser tests, and later that some templates handed values to other templates in a way Odoo 20 dropped. That evening we stopped listing a module while a module it depends on has an open defect. 15 of the 428 modules listed on the morning of 18 November are off this page until they are corrected and pass. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
+Figures as of 20 November 2026, 2:01 am (US Central). On 20 November a second review found that Odoo 20 no longer draws Font Awesome icons, which 71 modules listed here still named; they and the 43 modules that depend on them came off this page and return as their icons are converted and their tests pass again. On 18 November we found that our test machine had been skipping browser tests, and later that some templates handed values to other templates in a way Odoo 20 dropped. That evening we stopped listing a module while a module it depends on has an open defect. 126 of the 428 modules listed on the morning of 18 November are off this page until they are corrected and pass. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
 
 ## What is here
 
 | Folder | What it holds | Table |
 |---|---|---|
-| [`20.0/`](20.0) | 435 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 5,627 test runs in all. | [MODULES.md](MODULES.md) |
+| [`20.0/`](20.0) | 321 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 3,143 test runs in all. | [MODULES.md](MODULES.md) |
 | [`from-older-versions/`](from-older-versions) | 28 ports made from the Odoo 15.0, 16.0 and 17.0 versions of well-known modules, to Odoo 19.0 and 20.0. | [OLDER_VERSIONS.md](OLDER_VERSIONS.md) |
 | [NOTES.md](NOTES.md) | Where a port had to change behaviour because Odoo removed something, and what we found in Odoo 18, 19 and 20 that affects any port. | |
 
@@ -36,7 +36,7 @@ Eleven ports are not published. Five are the ports of `contract`: with the brows
 
 ## What a pass does not prove
 
-- Screens are not checked visually. Click through on a staging system.
+- Screens are not checked visually. Click through on a staging system. The one visual fault we check for statically is an icon still named the Font Awesome way, which Odoo 20 does not draw (see [NOTES.md](NOTES.md)).
 - A report or a portal page is proven only where a test renders it. A template can install without an error and print without a value it used to receive. We check statically for the one cause of that we know in Odoo 20 (see "a value set inside a `t-call`" in [NOTES.md](NOTES.md)); print your documents on a staging system.
 - A module's web code is proven only as far as a browser test of that module exercises it. Many modules have none. For those, the web code is only checked statically: every JavaScript import has to resolve to a file of the target version that exports the name, and no component may use something Owl 3 rejects. That is not proof that the screen works.
 - These are code ports. Scripts that convert the data of an existing database are not included.

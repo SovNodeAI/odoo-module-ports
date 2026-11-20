@@ -1,3 +1,0 @@
-id,name,model_id,group_id/id,operation,domain
-access_account_asset_transfer_user,account.asset.transfer,account.asset.transfer,account.group_account_user,crud,
-access_account_asset_transfer_line_user,account.asset.transfer.line,account.asset.transfer.line,account.group_account_user,crud,
