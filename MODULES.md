@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-406 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 4948 test runs in all.
+406 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 4951 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -151,7 +151,7 @@
 | [document_page_access_group](20.0/document_page_access_group) | OCA/knowledge | 19.0 | `3ba8a78` | AGPL-3 | 3 | 3 | none | not yet |
 | [document_page_reference](20.0/document_page_reference) | OCA/knowledge | 18.0 | `b19da27` | AGPL-3 | 8 | 8 | reviewed | not yet |
 | [document_url](20.0/document_url) | OCA/knowledge | 19.0 | `3ba8a78` | AGPL-3 | 2 | 2 | reviewed, accepted | not yet |
-| [helpdesk_mgmt](20.0/helpdesk_mgmt) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 38 | 38 | reviewed, accepted | passed |
+| [helpdesk_mgmt](20.0/helpdesk_mgmt) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 39 | 39 | reviewed, accepted | passed |
 | [helpdesk_mgmt_activity](20.0/helpdesk_mgmt_activity) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 6 | 6 | reviewed | not yet |
 | [helpdesk_mgmt_crm](20.0/helpdesk_mgmt_crm) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 3 | 3 | reviewed | not yet |
 | [helpdesk_mgmt_merge](20.0/helpdesk_mgmt_merge) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 2 | 2 | reviewed | not yet |
@@ -231,7 +231,7 @@
 | [mgmtsystem_action](20.0/mgmtsystem_action) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 7 | 7 | none | not yet |
 | [mgmtsystem_nonconformity](20.0/mgmtsystem_nonconformity) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 11 | 12 | reviewed, accepted | not yet |
 | [mgmtsystem_review](20.0/mgmtsystem_review) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 1 | 1 | reviewed | not yet |
-| [mis_builder](20.0/mis_builder) | OCA/mis-builder | 19.0 | `adbe5c3` | AGPL-3 | 99 | 100 | reviewed, accepted | passed |
+| [mis_builder](20.0/mis_builder) | OCA/mis-builder | 19.0 | `adbe5c3` | AGPL-3 | 101 | 102 | reviewed, accepted | passed |
 | [mis_template_financial_report](20.0/mis_template_financial_report) | OCA/account-financial-reporting | 18.0 | `ae0fff3` | AGPL-3 | 1 | 1 | none | not yet |
 | [module_auto_update](20.0/module_auto_update) | OCA/server-tools | 19.0 | `71de4de` | LGPL-3 | 13 | 13 | reviewed | not yet |
 | [module_change_auto_install](20.0/module_change_auto_install) | OCA/server-tools | 19.0 | `71de4de` | AGPL-3 | 7 | 7 | none | not yet |
