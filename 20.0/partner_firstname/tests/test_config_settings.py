@@ -33,3 +33,20 @@ class TestConfigSettings(TransactionCase):
         self.assertTrue(self.config.partner_names_order_changed)
         self.config.action_recalculate_partners_name()
         self.assertFalse(self.config.partner_names_order_changed)
+
+    def test_recalculation_reaches_the_complete_name(self):
+        """After "Recalculate names" the contact list shows the new order too.
+
+        The list, its search and its sorting use the stored complete_name.
+        """
+        partner = self.env["res.partner"].create(
+            {"firstname": "Ada", "lastname": "Lovelace"}
+        )
+        before = partner.name
+        self.assertEqual(partner.complete_name, before)
+        self._change_partner_names_order()
+        self.config.action_recalculate_partners_name()
+        self.env.flush_all()
+        partner.invalidate_recordset()
+        self.assertNotEqual(partner.name, before)
+        self.assertEqual(partner.complete_name, partner.name)

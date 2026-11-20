@@ -3,6 +3,8 @@
 
 import json
 
+from markupsafe import Markup, escape
+
 from openupgradelib import openupgrade
 from psycopg2 import sql
 
@@ -344,7 +346,7 @@ def _log_migration_choices(env):
 
     def _doi_label(d):
         label = d.get("number") or d.get("protocol") or f"ID {d['id']}"
-        return f"<strong>{label}</strong>"
+        return Markup("<strong>%s</strong>") % label
 
     affected_links = []
     for move_id, move_name, primary_doi_id, declarations_json in rows:
@@ -357,21 +359,25 @@ def _log_migration_choices(env):
         others = [d for d in declarations if d["id"] != primary_doi_id]
 
         primary_label = _doi_label(primary) if primary else f"ID {primary_doi_id}"
-        others_labels = ", ".join(_doi_label(d) for d in others)
+        others_labels = Markup(", ").join(_doi_label(d) for d in others)
 
-        body = (
+        # markup, with every value escaped: a plain string is shown escaped since 17.0
+        body = Markup(
             "<p><strong>Migrazione da Odoo 16:</strong> "
-            f"questa fattura era collegata a {len(declarations)} "
+            "questa fattura era collegata a %s "
             "Dichiarazioni di Intento. "
-            f"La DI impostata come riferimento primario è {primary_label}."
-        )
+            "La DI impostata come riferimento primario è %s."
+        ) % (len(declarations), primary_label)
         if others:
             body += (
-                f" Le altre DI collegate ({others_labels}) sono visibili "
-                "nel tab <em>Dichiarazioni di Intento</em>: "
-                "verificare e correggere gli importi se necessario."
+                Markup(
+                    " Le altre DI collegate (%s) sono visibili "
+                    "nel tab <em>Dichiarazioni di Intento</em>: "
+                    "verificare e correggere gli importi se necessario."
+                )
+                % others_labels
             )
-        body += "</p>"
+        body += Markup("</p>")
 
         env["account.move"].browse(move_id).message_post(
             body=body,
@@ -382,20 +388,23 @@ def _log_migration_choices(env):
         display_name = move_name or f"ID {move_id}"
         if base_url:
             url = f"{base_url}/web#model=account.move&id={move_id}&view_type=form"
-            affected_links.append(f'<a href="{url}">{display_name}</a>')
+            affected_links.append(Markup('<a href="%s">%s</a>') % (url, display_name))
         else:
-            affected_links.append(display_name)
+            affected_links.append(escape(display_name))
 
     admin_partner = env.ref("base.partner_admin", raise_if_not_found=False)
     if admin_partner:
-        body = (
-            f"<p><strong>Migrazione DI – {len(affected_links)} fatture "
+        body = Markup(
+            "<p><strong>Migrazione DI – %s fatture "
             "con più dichiarazioni di intento in Odoo 16:</strong><br/>"
             "Per ciascuna fattura la DI primaria è stata selezionata "
             "automaticamente (quella con ID minore). "
             "Verificare e correggere gli importi nel tab "
             "<em>Dichiarazioni di Intento</em>:</p>"
-            "<ul>" + "".join(f"<li>{link}</li>" for link in affected_links) + "</ul>"
+            "<ul>%s</ul>"
+        ) % (
+            len(affected_links),
+            Markup().join(Markup("<li>%s</li>") % link for link in affected_links),
         )
         admin_partner.message_post(
             body=body,

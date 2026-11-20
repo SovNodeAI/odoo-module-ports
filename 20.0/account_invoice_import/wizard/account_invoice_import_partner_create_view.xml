@@ -45,7 +45,7 @@
                         invisible="create_or_update != 'update'"
                     />
 
-                    <button special="cancel" string="Cancel" class="btn-default" />
+                    <button special="cancel" string="Cancel" class="btn-secondary" />
                 </footer>
             </form>
         </field>

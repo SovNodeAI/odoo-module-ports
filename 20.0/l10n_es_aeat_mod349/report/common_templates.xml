@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template id="l10n_es_aeat_mod349.mod349_summary">
-        <div class="col-xs-12 text-left" id="mod349_summary_div">
+        <div class="col-xs-12 text-start" id="mod349_summary_div">
             <table class="detail_table table table-sm" id="mod349_summary_table">
                 <tbody class="invoice_tbody">
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Fiscal Year:
                       </td>
                         <td class="td_detail_table">
@@ -13,7 +13,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        VAT:
                       </td>
                         <td class="td_detail_table">
@@ -21,7 +21,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Company:
                       </td>
                         <td class="td_detail_table">
@@ -29,7 +29,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Support type:
                       </td>
                         <td class="td_detail_table">
@@ -37,7 +37,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Contact phone:
                       </td>
                         <td class="td_detail_table">
@@ -45,7 +45,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Surnames and name contact:
                       </td>
                         <td class="td_detail_table">
@@ -53,7 +53,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Declaration number:
                       </td>
                         <td class="td_detail_table">
@@ -61,7 +61,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Complementary or substitutive:
                       </td>
                         <td class="td_detail_table">
@@ -69,7 +69,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Previous declaration:
                       </td>
                         <td class="td_detail_table">
@@ -77,7 +77,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Period:
                       </td>
                         <td class="td_detail_table">
@@ -85,7 +85,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Total number of intra-community operators:
                       </td>
                         <td class="td_detail_table">
@@ -93,7 +93,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Total amount of intra-community operations:
                       </td>
                         <td class="td_detail_table">
@@ -101,7 +101,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Total number of intra-community operators with rectifications:
                       </td>
                         <td class="td_detail_table">
@@ -109,7 +109,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Total amount of rectifications:
                       </td>
                         <td class="td_detail_table">
@@ -117,7 +117,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-left td_detail_table">
+                        <td class="text-start td_detail_table">
                        Legal representative VAT:
                       </td>
                         <td class="td_detail_table">
@@ -148,7 +148,7 @@
         <td id="data_operation_key">
             <span t-field="l.operation_key" />
         </td>
-        <td class="text-right" id="data_operation_amount">
+        <td class="text-end" id="data_operation_amount">
             <span t-field="l.total_operation_amount" />
         </td>
     </template>
@@ -181,10 +181,10 @@
         <td id="data_rectifying_period_type">
             <span t-field="l.period_type" />
         </td>
-        <td class="text-right" id="data_operation_amount">
+        <td class="text-end" id="data_operation_amount">
             <span t-field="l.total_operation_amount" />
         </td>
-        <td class="text-right" id="data_operation_amount">
+        <td class="text-end" id="data_operation_amount">
             <span t-field="l.total_origin_amount" />
         </td>
     </template>

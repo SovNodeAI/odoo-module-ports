@@ -3,7 +3,8 @@
 
 from lxml import etree
 
-from odoo.tests.common import TransactionCase
+from odoo import api
+from odoo.tests.common import TransactionCase, tagged
 
 
 class TestAuditlogRuleHardening(TransactionCase):
@@ -73,3 +74,74 @@ class TestAuditlogRuleHardening(TransactionCase):
                 1,
                 model.model,
             )
+
+
+@tagged("post_install", "-at_install")
+class TestAuditlogVirtualRecords(TransactionCase):
+    def test_onchange_in_a_form_logs_no_read(self):
+        """Editing a field in the form of an audited record adds no read log.
+
+        Since 17.0 the web client's onchange reads the form's virtual record
+        through web_read(); that is not a read of stored data.
+        """
+        industry_model = self.env.ref("base.model_res_partner_industry")
+        rule = self.env["auditlog.rule"].create(
+            {
+                "name": "Partner industries, reads",
+                "model_id": industry_model.id,
+                "log_read": True,
+                "log_create": False,
+                "log_write": False,
+                "log_unlink": False,
+                "state": "subscribed",
+            }
+        )
+        self.addCleanup(rule.unlink)
+        industry = self.env["res.partner.industry"].create({"name": "Audited"})
+        domain = [
+            ("model_id", "=", industry_model.id),
+            ("method", "=", "read"),
+            ("res_id", "=", industry.id),
+        ]
+        industry.read(["name"])
+        logged = self.env["auditlog.log"].search_count(domain)
+        self.assertEqual(logged, 1, "a read of the stored record is logged")
+        # the name changes the display name: the client is sent the new one,
+        # which Odoo reads from the form's virtual record
+        result = industry.onchange(
+            {"name": "Audited, renamed", "display_name": "Audited"},
+            ["name"],
+            {"name": {}, "display_name": {}},
+        )
+        self.assertEqual(result["value"], {"display_name": "Audited, renamed"})
+        self.assertEqual(self.env["auditlog.log"].search_count(domain), logged)
+
+
+class TestAuditlogForeignPatches(TransactionCase):
+    def test_removing_a_rule_keeps_patches_of_other_modules(self):
+        """A rule that never hooked a method leaves that method alone.
+
+        base_automation patches create / write / unlink on the model class and
+        gives its patch an "origin", exactly as auditlog does.
+        """
+        industry_model = self.env.ref("base.model_res_partner_industry")
+        model_class = self.env.registry["res.partner.industry"]
+
+        @api.model_create_multi
+        def create(self, vals_list):
+            return create.origin(self, vals_list)
+
+        create.origin = model_class.create
+        model_class.create = create
+
+        def restore():
+            if model_class.__dict__.get("create") is create:
+                del model_class.create
+
+        self.addCleanup(restore)
+        rule = self.env["auditlog.rule"].create(
+            {"name": "Never subscribed", "model_id": industry_model.id}
+        )
+        self.assertTrue(rule.log_create)
+        rule.unlink()
+        self.assertIs(model_class.__dict__.get("create"), create)

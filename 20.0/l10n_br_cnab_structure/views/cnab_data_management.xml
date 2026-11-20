@@ -170,7 +170,7 @@
                                 />
                                 <strong>Structure Files:</strong>
                             </p>
-                            <ul class="list-unstyled ml-3">
+                            <ul class="list-unstyled ms-3">
                                 <li><i
                                     class="oi text-primary" data-icon="arrow_right"
                                     title="Bullet"
@@ -192,7 +192,7 @@
                                 />
                                 <strong>Field Groups:</strong>
                             </p>
-                            <ul class="list-unstyled ml-3">
+                            <ul class="list-unstyled ms-3">
                                 <li><i
                                     class="oi text-primary" data-icon="arrow_right"
                                     title="Bullet"
@@ -210,7 +210,7 @@
                                 />
                                 <strong>Configuration Files:</strong>
                             </p>
-                            <ul class="list-unstyled ml-3">
+                            <ul class="list-unstyled ms-3">
                                 <li><i
                                     class="oi text-primary" data-icon="arrow_right"
                                     title="Bullet"

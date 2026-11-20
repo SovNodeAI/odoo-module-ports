@@ -44,7 +44,13 @@
                     />
                 </div>
             </sheet>
-            <xpath expr="//field[@name='date_order']/.." position="inside">
+            <!-- Into the group that holds the order date. Odoo 20 wraps that date in a
+                 <div> which is hidden on confirmed orders: its direct parent is no longer
+                 the group, and this checkbox shows on confirmed orders only. -->
+            <xpath
+                expr="//field[@name='date_order']/ancestor::group[1]"
+                position="inside"
+            >
                 <field
                     name="ignore_exception"
                     invisible="state != 'purchase'"

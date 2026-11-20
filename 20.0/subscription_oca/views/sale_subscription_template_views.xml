@@ -68,7 +68,7 @@
                                         class="o_row "
                                         invisible="recurring_rule_boundary == 'unlimited'"
                                     >
-                                        <span class="mr-1">For</span>
+                                        <span class="me-1">For</span>
                                         <field
                                         name="recurring_rule_count"
                                         class="oe_inline"

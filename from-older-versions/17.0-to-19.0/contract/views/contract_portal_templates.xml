@@ -55,7 +55,7 @@
                         <th>Contract #</th>
                         <th class='d-none d-md-table-cell'>Date</th>
                         <th class='d-none d-md-table-cell'>Date end</th>
-                        <th class='text-right'>Reference</th>
+                        <th class='text-end'>Reference</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,7 +76,7 @@
                             <td class="d-none d-md-table-cell">
                                 <span t-field="contract.date_end" />
                             </td>
-                            <td class='text-right'>
+                            <td class='text-end'>
                                 <span t-field="contract.code" />
                             </td>
                         </tr>
@@ -115,7 +115,7 @@
                                         <strong>Customer:</strong>
                                     </h6>
                                     <div class="row">
-                                        <div class="col flex-grow-0 pr-3">
+                                        <div class="col flex-grow-0 pe-3">
                                             <img
                                                 t-if="contract.partner_id.image_128"
                                                 class="rounded-circle mt-1 o_portal_contact_img"
@@ -142,7 +142,7 @@
                                         <strong>Responsible:</strong>
                                     </h6>
                                     <div class="row">
-                                        <div class="col flex-grow-0 pr-3">
+                                        <div class="col flex-grow-0 pe-3">
                                             <img
                                                 t-if="contract.user_id.image_128"
                                                 class="rounded-circle mt-1 o_portal_contact_img"
@@ -208,31 +208,31 @@
                                         <tr>
                                             <th
                                                 name="th_name"
-                                                class="text-left"
+                                                class="text-start"
                                             >Description</th>
                                             <th
                                                 name="th_quantity"
-                                                class="text-right"
+                                                class="text-end"
                                             >Quantity</th>
                                             <th
                                                 name="th_price_unit"
-                                                class="text-right"
+                                                class="text-end"
                                             >Price unit</th>
                                             <th
                                                 name="th_discount"
-                                                class="text-right"
+                                                class="text-end"
                                             >Discount (%)</th>
                                             <th
                                                 name="th_price_subtotal"
-                                                class="text-right"
+                                                class="text-end"
                                             >Sub Total</th>
                                             <th
                                                 name="th_recurring_interval"
-                                                class="text-right"
+                                                class="text-end"
                                             >Recurrence</th>
                                             <th
                                                 name="th_recurring_next_date"
-                                                class="text-right"
+                                                class="text-end"
                                             >Date of next invoice</th>
                                         </tr>
                                     </thead>
@@ -250,13 +250,13 @@
                                                     </td>
                                                     <td
                                                         name="td_quantity"
-                                                        class="text-right"
+                                                        class="text-end"
                                                     >
                                                         <span t-field="line.quantity" />
                                                     </td>
                                                     <td
                                                         name="td_price_unit"
-                                                        class="text-right"
+                                                        class="text-end"
                                                     >
                                                         <span
                                                             t-field="line.price_unit"
@@ -265,13 +265,13 @@
                                                     </td>
                                                     <td
                                                         name="td_discount"
-                                                        class="text-right"
+                                                        class="text-end"
                                                     >
                                                         <span t-field="line.discount" />
                                                     </td>
                                                     <td
                                                         name="td_price_subtotal"
-                                                        class="text-right"
+                                                        class="text-end"
                                                     >
                                                         <span
                                                             t-field="line.price_subtotal"
@@ -280,7 +280,7 @@
                                                     </td>
                                                     <td
                                                         name="td_recurring_interval"
-                                                        class="text-right"
+                                                        class="text-end"
                                                     >
                                                         <span
                                                             t-field="line.recurring_interval"
@@ -291,7 +291,7 @@
                                                     </td>
                                                     <td
                                                         name="td_recurring_next_date"
-                                                        class="text-right"
+                                                        class="text-end"
                                                     >
                                                         <span
                                                             t-field="line.recurring_next_date"

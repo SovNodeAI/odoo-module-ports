@@ -10,7 +10,7 @@
                     <h4>Connection test successful</h4>
                 </group>
                 <footer>
-                    <button special="cancel" class="btn-default" string="OK" />
+                    <button special="cancel" class="btn-secondary" string="OK" />
                 </footer>
             </form>
         </field>

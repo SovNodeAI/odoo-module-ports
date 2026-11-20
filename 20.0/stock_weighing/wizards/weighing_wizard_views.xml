@@ -37,7 +37,7 @@
                     >
                         <field
                             name="lot_id"
-                            class="form-control-lg pl-0"
+                            class="form-control-lg ps-0"
                             placeholder="Select lot..."
                             invisible="wizard_state == 'weight' or product_tracking == 'none'"
                             options="{'no_create': True}"

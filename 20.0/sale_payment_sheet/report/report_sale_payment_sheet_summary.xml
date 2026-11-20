@@ -9,7 +9,7 @@
                             <div class="col-10">
                                 <h3>sale payment sheet Summary</h3>
                             </div>
-                            <div class="col-2 text-right">
+                            <div class="col-2 text-end">
                                 <ul class="list-inline">
                                     <span>Page: </span>
                                     <li class="list-inline-item">
@@ -39,7 +39,7 @@
                                     <th>Description</th>
                                     <th>Partner</th>
                                     <th>Invoice</th>
-                                    <th class="text-right">Amount</th>
+                                    <th class="text-end">Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,7 +58,7 @@
                                         <td>
                                             <span t-field="line.invoice_id" />
                                         </td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <span t-field="line.amount" />
                                         </td>
                                     </tr>
@@ -68,10 +68,10 @@
                                     />
                                 </t>
                                 <tr style="padding:0px;">
-                                    <td class="text-right" colspan="4">
+                                    <td class="text-end" colspan="4">
                                         <span>Total: </span>
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         <strong>
                                             <span
                                                 t-out="total_sheet"

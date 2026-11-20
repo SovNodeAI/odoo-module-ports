@@ -38,7 +38,7 @@
                 expr="//div[@t-if='record.maintenance_open_count.raw_value']"
                 position="after"
             >
-                <div class="badge badge-primary" t-if="record.status_id.value">
+                <div class="badge text-bg-primary" t-if="record.status_id.value">
                     <t t-out="record.status_id.value" />
                 </div>
             </xpath>

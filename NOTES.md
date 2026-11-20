@@ -4,6 +4,66 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
+### 20 November 2026, 8:45 am: a batch of new checks, and what they found in ports already on this page
+
+The second reviewer read four more older-version ports this morning (`contract` 16.0 to 19.0, `auditlog` 15.0 to
+18.0, `base_tier_validation` 16.0 to 19.0, `partner_firstname` 17.0 to 19.0). None of the four is on this page;
+one was rejected outright. As before, every finding that a program can look for became a check, and the checks
+ran over everything that is on the page. This is what they found here and what we changed.
+
+**A gap in our own pipeline.** For ports to 18.0 and 19.0 no check ever looked at the JavaScript; that check ran
+for Odoo 20 targets only. The rejected port had kept nine script files on the 16.0 mail framework: nothing
+loaded in the browser, every Python test passed, and our pipeline said PASS. The check now runs for every
+target. The five older-version ports on this page come out clean under it.
+
+**Older-version ports on this page.**
+
+- Bootstrap 4 class names (`text-right`, `ml-auto`, `font-weight-bold` and so on) were still in the report of
+  `purchase_request` 16.0 to 19.0 (4), in the report, portal pages and wizards of `contract` 17.0 to 19.0 (36)
+  and in the portal pages of `helpdesk_mgmt` 17.0 to 19.0 (14). Odoo has defined none of them since Bootstrap 5:
+  right-aligned amounts were left-aligned. Renamed; the tests pass as before (40, 119, 38).
+- `auditlog` 15.0 to 19.0, two corrections. With a rule that logs reads, every change of a field in a form wrote
+  an empty "read" entry, because the web client reads the form's unsaved copy through `read()` since 17.0. And
+  deleting a rule that had never been subscribed removed another module's patch of the same method (automation
+  rules patch `create`, `write` and `unlink` too) and then raised an error; that one is as old as the 15.0
+  original. Both are shown by tests that failed before the correction. 42 test runs pass. Not changed, and the
+  same in the maintainers' own version: `search_read()` no longer goes through `read()`, so a read made through
+  that method is not logged.
+- `partner_firstname` 17.0 to 18.0: after "Recalculate names" in the settings, the contact list kept showing
+  the old order, because the stored complete name was not told that the name had changed. The 17.0 original has
+  the same gap. One line, and a test that failed before it. 67 test runs pass.
+
+**The Odoo 20 list.**
+
+- The same Bootstrap 4 names are in the maintainers' own 19.0 code of 48 of the 392 modules we checked. We
+  renamed them in 46 modules here and ran each module's tests again. Modules still held for other
+  reasons get the same when they return.
+- Three modules posted chatter messages built as plain HTML strings, which Odoo has shown with their tags since
+  17.0: `contract_sale_generation`, `hr_course`, `l10n_it_edi_doi_extension`. They build markup now, with
+  every value escaped. The 19.0 originals do the same as before.
+- `contract`: the portal's fallback avatar pointed at a file that moved (`/web/static/img/...`).
+- `partner_firstname`: on the user form, the first-name and last-name fields were hidden for every user whose
+  login is their e-mail address, while the name itself is read-only. The module adds them "after the email
+  field", and Odoo 20 put that field into a container with a condition of its own. They now follow the heading
+  that holds the name. A test reads the form and fails on the old placement. The settings action described
+  above is corrected here too. 43 test runs pass.
+- `purchase_exception`: the "Ignore Exceptions" checkbox, meant for confirmed orders, was inside a container
+  that Odoo 20 hides on confirmed orders, so nobody ever saw it. It now sits in the group that holds the order
+  date, with a test.
+- The check that found the last two compares, for every view extension, where its anchor sits in Odoo 19's
+  form and in Odoo 20's. It reported nine modules whose additions now sit under a new condition. Two are the
+  ones above. Seven were read and left as they are, because the new condition suits what the module adds
+  (`ddmrp`, `stock_move_common_dest`, `hr_timesheet_time_control`, `l10n_es_verifactu_oca`,
+  `partner_contact_job_position`, `product_simple_seasonality`, `stay`).
+- Open, not yet corrected: the same check shows nine modules whose added fields used to sit in a group, where
+  a field gets its label, and no longer do in Odoo 20's rebuilt forms: `delivery_sendcloud_oca`,
+  `fieldservice_project`, `l10n_br_account`, `l10n_br_base`, `l10n_es_partner`, `mail_activity_board`,
+  `mail_activity_team`, `project_forecast_line`, `sale_stock_picking_invoicing`. The fields are there and work;
+  some may show without a label. We are going through them.
+- Fourteen modules build their settings screen from the old `<div class="o_setting_box">` blocks, as their
+  19.0 originals do. The options show and work; the search box of the Settings screen does not find them.
+  Not changed yet.
+
 ### 20 November 2026, 7:20 am: `contract` for Odoo 20 is back
 
 Rejected at 5:15 am (below), fixed, read again. All five faults of the first read are dealt with: the pricelist dropdown gets a valid domain in every case, and the test checks what the screen receives; section and note rows on contract lines show and can be edited, written the way Odoo 20's own invoice lines are; each access right exists once; the portal card is no longer overwritten on update; and the module's tests run as an accounting user instead of the superuser, which is what found the next two points in the modules that build on it.
@@ -181,7 +241,7 @@ The rule now: a module is listed only while every community module it depends on
 
 Also this evening: `mail_gateway` and `barcode_stock` came back from their web-code correction with all tests passing, including new ones. `mail_gateway` is listed again, with two visible changes written up under "Behaviour changes". `barcode_stock` waits for `barcode_scanner`, which it depends on.
 
-<!-- state --> State at 7:23 am on 20 November: 402 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_crm`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_mgmt_sla`, `helpdesk_ticket_partner_response`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_es_mis_report`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `mis_builder`, `mis_template_financial_report`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 49 of the modules listed on the morning of 18 November are still off.
+<!-- state --> State at 9:05 am on 20 November: 404 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_crm`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_mgmt_sla`, `helpdesk_ticket_partner_response`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_es_mis_report`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `mis_builder`, `mis_template_financial_report`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 47 of the modules listed on the morning of 18 November are still off.
 
 ### 18 November 2026, late afternoon: values that no longer reach a called template
 

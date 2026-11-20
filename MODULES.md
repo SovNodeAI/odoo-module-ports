@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-402 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 4846 test runs in all.
+404 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 4898 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -128,7 +128,9 @@
 | [connector_importer](20.0/connector_importer) | OCA/connector-interfaces | 19.0 | `a885b07` | AGPL-3 | 50 | 55 | reviewed, accepted | not yet |
 | [connector_mercadolibre](20.0/connector_mercadolibre) | OCA/connector-mercadolibre | 19.0 | `45e0f2e` | AGPL-3 | 49 | 49 | reviewed | not yet |
 | [contract](20.0/contract) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 77 | 77 | reviewed, accepted | passed |
+| [contract_line_successor](20.0/contract_line_successor) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 45 | 45 | reviewed, accepted | not yet |
 | [contract_payment_mode](20.0/contract_payment_mode) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 2 | 2 | none | not yet |
+| [contract_termination](20.0/contract_termination) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 3 | 3 | reviewed, accepted | not yet |
 | [contract_variable_quantity](20.0/contract_variable_quantity) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 5 | 5 | reviewed | not yet |
 | [crm_claim](20.0/crm_claim) | OCA/crm | 19.0 | `16ad7c9` | AGPL-3 | 3 | 3 | reviewed | not yet |
 | [crm_lead_code](20.0/crm_lead_code) | OCA/crm | 19.0 | `16ad7c9` | AGPL-3 | 3 | 3 | none | not yet |
@@ -248,7 +250,7 @@
 | [partner_contact_gender](20.0/partner_contact_gender) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 1 | 1 | none | not yet |
 | [partner_deduplicate_acl](20.0/partner_deduplicate_acl) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 1 | 1 | reviewed | not yet |
 | [partner_email_check](20.0/partner_email_check) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 16 | 16 | none | not yet |
-| [partner_firstname](20.0/partner_firstname) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 36 | 40 | reviewed | not yet |
+| [partner_firstname](20.0/partner_firstname) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 39 | 43 | reviewed, accepted | not yet |
 | [partner_identification](20.0/partner_identification) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 18 | 18 | none | not yet |
 | [partner_industry_secondary](20.0/partner_industry_secondary) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 7 | 7 | reviewed | not yet |
 | [partner_manual_rank](20.0/partner_manual_rank) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 2 | 2 | none | not yet |
@@ -301,7 +303,7 @@
 | [purchase_allowed_product](20.0/purchase_allowed_product) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 2 | 2 | reviewed | not yet |
 | [purchase_blanket_order](20.0/purchase_blanket_order) | OCA/purchase-workflow | 18.0 | `792b144` | AGPL-3 | 7 | 7 | reviewed | not yet |
 | [purchase_delivery_split_date](20.0/purchase_delivery_split_date) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 16 | 16 | reviewed | not yet |
-| [purchase_exception](20.0/purchase_exception) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 3 | 3 | reviewed | not yet |
+| [purchase_exception](20.0/purchase_exception) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 4 | 4 | reviewed, accepted | not yet |
 | [purchase_force_invoiced](20.0/purchase_force_invoiced) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 2 | 2 | reviewed | not yet |
 | [purchase_last_price_info](20.0/purchase_last_price_info) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 2 | 2 | reviewed | not yet |
 | [purchase_order_approved](20.0/purchase_order_approved) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 7 | 7 | reviewed | not yet |
@@ -420,7 +422,6 @@ Some listed modules depend on a community module that is not listed here. The te
 - **community 20.0**: the OCA already publishes the module for Odoo 20.0; use theirs.
 - **no tests of its own**: we ported it, it installs and its dependents' tests pass with it; modules without tests are not in this repository.
 - **not all of its tests run yet**: we ported it and it passes, but some of its own tests do not start on our test machine, so it does not meet the rule for this folder.
-- **change to be written up**: we ported it and it passes; it behaves differently in one documented point and is listed once that is written up in NOTES.md.
 
 | Dependency | Why it is not listed | Needed by |
 |---|---|---|
@@ -434,7 +435,6 @@ Some listed modules depend on a community module that is not listed here. The te
 | `base_user_role` | not all of its tests run yet | `base_user_role_company`, `base_user_role_history` |
 | `base_view_inheritance_extension` | community 20.0 | `account_invoice_transmit_method`, `account_operating_unit`, `purchase_allowed_product`, `purchase_blanket_order`, `stock_inventory_preparation_filter`, `web_m2x_options_manager` |
 | `component_event` | not all of its tests run yet | `connector` |
-| `contract_termination` | change to be written up | `product_contract` |
 | `date_range` | community 20.0 | `account_tax_balance`, `l10n_it_account`, `mis_builder`, `stock_demand_estimate_matrix` |
 | `dms` | community 20.0 | `dms_auto_classification`, `dms_field` |
 | `document_knowledge` | community 20.0 | `document_page_access_group` |

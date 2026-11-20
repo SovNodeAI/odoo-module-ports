@@ -74,12 +74,12 @@
                         <tr
                             t-attf-class="{{'thead-light' if not groupby == 'none' else ''}}"
                         >
-                            <th name="th_partner" class="text-left">By</th>
-                            <th name="th_number" class="text-left">Number</th>
+                            <th name="th_partner" class="text-start">By</th>
+                            <th name="th_number" class="text-start">Number</th>
                             <th name="th_ticket" t-if="groupby == 'none'">Title</th>
                             <th name="th_groupby_category" t-if="groupby == 'category'">
                                 <em
-                                    class="font-weight-normal text-muted"
+                                    class="fw-normal text-muted"
                                 >Tickets in category:</em>
                                 <span
                                     class="text-truncate"
@@ -88,7 +88,7 @@
                             </th>
                             <th name="th_groupby_stage" t-if="groupby == 'stage'">
                                 <em
-                                    class="font-weight-normal text-muted"
+                                    class="fw-normal text-muted"
                                 >Tickets in stage:</em>
                                 <span
                                     class="text-truncate"
@@ -108,10 +108,10 @@
                     <tbody>
                         <t t-foreach="tickets" t-as="ticket">
                             <tr>
-                                <td class="text-left">
+                                <td class="text-start">
                                     <span t-field="ticket.partner_id" />
                                 </td>
-                                <td class="text-left">
+                                <td class="text-start">
                                     <span t-out="ticket.number" />
                                 </td>
                                 <td>
@@ -126,7 +126,7 @@
                                 </td>
                                 <td t-if="groupby != 'stage'">
                                     <span
-                                        class="badge badge-pill bg-info"
+                                        class="badge rounded-pill bg-info"
                                         title="Current stage of the ticket"
                                         t-out="ticket.stage_id.name"
                                     />
@@ -481,7 +481,7 @@
                         for="attachment"
                     >Add Attachments</label>
                     <div class="col-md-7 col-sm-8">
-                        <div class="btn btn-default btn-file col-md-12 px-0">
+                        <div class="btn btn-secondary btn-file col-md-12 px-0">
                             <input
                                 class="form-control o_website_form_input"
                                 name="attachment"

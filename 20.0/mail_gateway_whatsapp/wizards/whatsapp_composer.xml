@@ -34,7 +34,7 @@
                         string="Show Chat"
                         type="object"
                     />
-                    <button string="Cancel" class="btn-default" special="cancel" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
         </field>

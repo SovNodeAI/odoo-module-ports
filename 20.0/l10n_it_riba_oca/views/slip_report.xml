@@ -127,7 +127,7 @@
                                             </td>
                                             <td
                                                 name="td_amount_total"
-                                                class="text-right"
+                                                class="text-end"
                                             >
                                                 <span
                                                     t-out="tot_amount"

@@ -45,9 +45,9 @@
                                                 >Required</th>
                                             </tr>
                                             <tr>
-                                                <th class="text-left">Source key</th>
+                                                <th class="text-start">Source key</th>
                                                 <th
-                                                    class="text-left"
+                                                    class="text-start"
                                                 >Destination key</th>
                                             </tr>
                                         </thead>
@@ -61,7 +61,7 @@
                                                     t-value="required[source_key]"
                                                 />
                                                 <tr>
-                                                    <td class="text-left">
+                                                    <td class="text-start">
                                                         <t
                                                             t-if="source_key.startswith('__')"
                                                         > - </t>
@@ -71,7 +71,7 @@
                                                             <t t-out="source_key" />
                                                         </t>
                                                     </td>
-                                                    <td class="text-left">
+                                                    <td class="text-start">
                                                         <t
                                                             t-out="', '.join([key for key in dest_keys if not key.startswith('__')])"
                                                         />
@@ -94,9 +94,9 @@
                                                 >Translatable</th>
                                             </tr>
                                             <tr>
-                                                <th class="text-left">Source key</th>
+                                                <th class="text-start">Source key</th>
                                                 <th
-                                                    class="text-left"
+                                                    class="text-start"
                                                 >Destination key</th>
                                             </tr>
                                         </thead>
@@ -107,12 +107,12 @@
                                                     t-as="lang"
                                                 >
                                                     <tr>
-                                                        <td class="text-left">
+                                                        <td class="text-start">
                                                             <t
                                                                 t-out="importer.make_translation_key(key, lang)"
                                                             />
                                                         </td>
-                                                        <td class="text-left">
+                                                        <td class="text-start">
                                                             <t t-out="key" />
                                                         </td>
                                                     </tr>
@@ -134,17 +134,17 @@
                                                 >Defaults</th>
                                             </tr>
                                             <tr>
-                                                <th class="text-left">Field</th>
-                                                <th class="text-left">Value</th>
+                                                <th class="text-start">Field</th>
+                                                <th class="text-start">Value</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <t t-foreach="defaults.keys()" t-as="key">
                                                 <tr>
-                                                    <td class="text-left">
+                                                    <td class="text-start">
                                                         <t t-out="key" />
                                                     </td>
-                                                    <td class="text-left">
+                                                    <td class="text-start">
                                                         <t t-out="str(defaults[key])" />
                                                     </td>
                                                 </tr>

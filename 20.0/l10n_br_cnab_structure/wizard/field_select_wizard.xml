@@ -22,7 +22,7 @@
                             string="Add Sub-Field"
                             name="action_add_field"
                             type="object"
-                            class="mr-2 btn-primary"
+                            class="me-2 btn-primary"
                         />
                         <label for="action_add_field" />
                         <button

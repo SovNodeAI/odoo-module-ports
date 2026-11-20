@@ -12,7 +12,7 @@
         >
             <tr>
                 <td>Gross</td>
-                <td class="text-right">
+                <td class="text-end">
                     <span
                         t-field="o.amount_price_gross"
                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <td>Discount</td>
-                <td class="text-right">
+                <td class="text-end">
                     <span
                         t-field="o.amount_discount_value"
                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
@@ -35,7 +35,7 @@
         >
             <tr>
                 <td>Freight</td>
-                <td class="text-right">
+                <td class="text-end">
                     <span
                         t-field="o.amount_freight_value"
                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
@@ -44,7 +44,7 @@
             </tr>
             <tr>
                 <td>Insurance</td>
-                <td class="text-right">
+                <td class="text-end">
                     <span
                         t-field="o.amount_insurance_value"
                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
@@ -53,7 +53,7 @@
             </tr>
             <tr>
                 <td>Other Costs</td>
-                <td class="text-right">
+                <td class="text-end">
                     <span
                         t-field="o.amount_other_value"
                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'

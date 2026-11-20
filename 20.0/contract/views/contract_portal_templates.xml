@@ -127,7 +127,7 @@
                             <strong>Customer:</strong>
                         </h6>
                         <div class="row">
-                            <div class="col flex-grow-0 pr-3">
+                            <div class="col flex-grow-0 pe-3">
                                 <img
                                     t-if="contract.partner_id.image_128"
                                     class="rounded-circle mt-1 o_portal_contact_img"
@@ -137,7 +137,7 @@
                                 <img
                                     t-else=""
                                     class="rounded-circle mt-1 o_portal_contact_img"
-                                    src="/web/static/src/img/user_menu_avatar.png"
+                                    src="/web/static/img/user_menu_avatar.png"
                                     alt="Contact"
                                 />
                             </div>
@@ -154,7 +154,7 @@
                             <strong>Responsible:</strong>
                         </h6>
                         <div class="row">
-                            <div class="col flex-grow-0 pr-3">
+                            <div class="col flex-grow-0 pe-3">
                                 <img
                                     t-if="contract.user_id.image_128"
                                     class="rounded-circle mt-1 o_portal_contact_img"
@@ -164,7 +164,7 @@
                                 <img
                                     t-else=""
                                     class="rounded-circle mt-1 o_portal_contact_img"
-                                    src="/web/static/src/img/user_menu_avatar.png"
+                                    src="/web/static/img/user_menu_avatar.png"
                                     alt="Contact"
                                 />
                             </div>
@@ -226,25 +226,25 @@
                     <table class="table table-sm" id="sales_order_table">
                         <thead class="bg-100">
                             <tr>
-                                <th name="th_name" class="text-left">Description</th>
-                                <th name="th_quantity" class="text-right">Quantity</th>
-                                <th name="th_price_unit" class="text-right">Price unit
+                                <th name="th_name" class="text-start">Description</th>
+                                <th name="th_quantity" class="text-end">Quantity</th>
+                                <th name="th_price_unit" class="text-end">Price unit
                                 </th>
-                                <th name="th_discount" class="text-right">Discount (%)
+                                <th name="th_discount" class="text-end">Discount (%)
                                 </th>
                                 <th
                                     name="th_price_subtotal"
-                                    class="text-right"
+                                    class="text-end"
                                 >Sub Total
                                 </th>
                                 <th
                                     name="th_recurring_interval"
-                                    class="text-right"
+                                    class="text-end"
                                 >Recurrence
                                 </th>
                                 <th
                                     name="th_recurring_next_date"
-                                    class="text-right"
+                                    class="text-end"
                                 >Date of next invoice
                                 </th>
                             </tr>
@@ -258,19 +258,19 @@
                                         <td name="td_name">
                                             <span t-field="line.name" />
                                         </td>
-                                        <td name="td_quantity" class="text-right">
+                                        <td name="td_quantity" class="text-end">
                                             <span t-field="line.quantity" />
                                         </td>
-                                        <td name="td_price_unit" class="text-right">
+                                        <td name="td_price_unit" class="text-end">
                                             <span
                                                 t-field="line.price_unit"
                                                 t-options='{"widget": "monetary", "display_currency": contract.currency_id}'
                                             />
                                         </td>
-                                        <td name="td_discount" class="text-right">
+                                        <td name="td_discount" class="text-end">
                                             <span t-field="line.discount" />
                                         </td>
-                                        <td name="td_price_subtotal" class="text-right">
+                                        <td name="td_price_subtotal" class="text-end">
                                             <span
                                                 t-field="line.price_subtotal"
                                                 t-options='{"widget": "monetary", "display_currency": contract.currency_id}'
@@ -278,14 +278,14 @@
                                         </td>
                                         <td
                                             name="td_recurring_interval"
-                                            class="text-right"
+                                            class="text-end"
                                         >
                                             <span t-field="line.recurring_interval" />
                                             <span t-field="line.recurring_rule_type" />
                                         </td>
                                         <td
                                             name="td_recurring_next_date"
-                                            class="text-right"
+                                            class="text-end"
                                         >
                                             <span
                                                 t-field="line.recurring_next_date"

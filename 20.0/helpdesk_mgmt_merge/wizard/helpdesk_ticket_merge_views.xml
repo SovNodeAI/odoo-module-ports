@@ -46,7 +46,7 @@
                         special="cancel"
                         string="Cancel"
                         type='object'
-                        class="btn btn-default oe_inline"
+                        class="btn btn-secondary oe_inline"
                     />
                 </footer>
             </form>

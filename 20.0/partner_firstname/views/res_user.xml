@@ -8,7 +8,10 @@
                 <attribute name="readonly">True</attribute>
                 <attribute name="required">False</attribute>
             </xpath>
-            <xpath expr="//field[@name='email']" position="after">
+            <!-- After the heading that holds the name, not after the email field: since
+                 19.0 the email sits in a container of its own, which is hidden when the
+                 login is the e-mail address (and, with hr, for users who are employees). -->
+            <xpath expr="//h1[field[@name='name']]" position="after">
                 <group>
                     <field
                         name="lastname"

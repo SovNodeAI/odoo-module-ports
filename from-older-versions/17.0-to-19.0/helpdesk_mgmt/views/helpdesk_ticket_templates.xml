@@ -89,12 +89,12 @@
                         <tr
                             t-attf-class="{{'thead-light' if not groupby == 'none' else ''}}"
                         >
-                            <th class="text-left">By</th>
-                            <th class="text-left">Number</th>
+                            <th class="text-start">By</th>
+                            <th class="text-start">Number</th>
                             <th t-if="groupby == 'none'">Title</th>
                             <th t-if="groupby == 'category'">
                                 <em
-                                    class="font-weight-normal text-muted"
+                                    class="fw-normal text-muted"
                                 >Tickets in category:</em>
                                 <span
                                     class="text-truncate"
@@ -103,7 +103,7 @@
                             </th>
                             <th t-if="groupby == 'stage'">
                                 <em
-                                    class="font-weight-normal text-muted"
+                                    class="fw-normal text-muted"
                                 >Tickets in stage:</em>
                                 <span
                                     class="text-truncate"
@@ -120,10 +120,10 @@
                     <tbody>
                         <t t-foreach="tickets" t-as="ticket">
                             <tr>
-                                <td class="text-left">
+                                <td class="text-start">
                                     <span t-field="ticket.partner_id" />
                                 </td>
-                                <td class="text-left">
+                                <td class="text-start">
                                     <span t-esc="ticket.number" />
                                 </td>
                                 <td>
@@ -197,11 +197,11 @@
                                             t-field="ticket.number"
                                         />)</small>
                                 </div>
-                                <div class="col-3 text-right">
-                                    <small class="text-right">Stage:</small>
+                                <div class="col-3 text-end">
+                                    <small class="text-end">Stage:</small>
                                     <span
                                         t-field="ticket.stage_id.name"
-                                        class=" badge badge-pill bg-info"
+                                        class=" badge rounded-pill bg-info"
                                         title="Current stage of this ticket"
                                     />
                                 </div>
@@ -225,7 +225,7 @@
                             </div>
                         </div>
                         <div
-                            class="col-12 col-md-6 text-right"
+                            class="col-12 col-md-6 text-end"
                             name="portal_ticket_col_1"
                         >
                             <div>
@@ -292,7 +292,7 @@
                             <strong>Assignee</strong>
                             <div class="row">
                                 <div
-                                    class="col d-flex align-items-center flex-grow-0 pr-3"
+                                    class="col d-flex align-items-center flex-grow-0 pe-3"
                                 >
                                     <img
                                         class="o_avatar o_portal_contact_img rounded"
@@ -330,7 +330,7 @@
                             <strong>Customer</strong>
                             <div class="row">
                                 <div
-                                    class="col d-flex align-items-center flex-grow-0 pr-3"
+                                    class="col d-flex align-items-center flex-grow-0 pe-3"
                                 >
                                     <img
                                         class="o_avatar o_portal_contact_img rounded"
@@ -399,7 +399,7 @@
                                             data-no-post-process=""
                                         >
                                             <div
-                                                class='oe_attachment_embedded o_image o_image_small mr-2 mr-lg-3'
+                                                class='oe_attachment_embedded o_image o_image_small me-2 mr-lg-3'
                                                 t-att-title="attachment.name"
                                                 t-att-data-mimetype="attachment.mimetype"
                                                 t-attf-data-src="/web/image/#{attachment.id}/50x40?access_token=#{attachment.access_token}"
@@ -514,7 +514,7 @@
                         for="attachment"
                     >Add Attachments</label>
                     <div class="col-md-7 col-sm-8">
-                        <div class="btn btn-default btn-file col-md-12">
+                        <div class="btn btn-secondary btn-file col-md-12">
                             <input
                                 class="form-control o_website_form_input"
                                 name="attachment"

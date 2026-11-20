@@ -106,7 +106,7 @@
                         class="btn-primary"
                         invisible="not pricelist_id and partner_count == 0"
                     />
-                    <button string="Cancel" class="btn-default" special="cancel" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
         </field>

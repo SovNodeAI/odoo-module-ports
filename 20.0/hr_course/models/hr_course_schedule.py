@@ -1,5 +1,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from markupsafe import Markup
+
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -79,15 +81,19 @@ class HrCourseSchedule(models.Model):
             lambda r: r not in employee_attendants
         ):
             attendants.append((0, 0, self._attendee_values(attendee)))
-        deleted_attendees = ""
+        # markup, with every name escaped: a plain string is shown escaped since 17.0
+        deleted_attendees = Markup()
         for course_attendee in self.course_attendee_ids.filtered(
             lambda r: r.employee_id not in self.attendant_ids
         ):
             attendants += course_attendee._remove_from_course()
-            deleted_attendees += f"- {course_attendee.employee_id.name} <br></br>"
+            deleted_attendees += (
+                Markup("- %s <br></br>") % course_attendee.employee_id.name
+            )
         if deleted_attendees != "":
-            message = self.env._(
-                "Employees removed from this course: <br></br>%s", deleted_attendees
+            message = (
+                Markup(self.env._("Employees removed from this course: <br></br>%s"))
+                % deleted_attendees
             )
             self.message_post(body=message)
         return {"state": "in_progress", "course_attendee_ids": attendants}

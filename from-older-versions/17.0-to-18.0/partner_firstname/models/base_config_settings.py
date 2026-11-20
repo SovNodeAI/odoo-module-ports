@@ -65,6 +65,9 @@ class ResConfigSettings(models.TransientModel):
         # _inverse_name_after_cleaning_whitespace, which can
         # modify a partner's firstname, lastname and lastname2
         self.env.add_to_compute(self.env["res.partner"]._fields["name"], partners)
+        # A recomputation queued this way does not reach the fields that depend on
+        # name: say so, or the stored complete_name keeps the old order.
+        partners.modified(["name"])
         self.partner_names_order_changed = False
         self.execute()
         _logger.info("%d partners updated.", len(partners))

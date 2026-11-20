@@ -25,7 +25,7 @@
                         invisible="not partner_id"
                         type="object"
                     />
-                    <button string="Cancel" class="btn-default" special="cancel" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
         </field>

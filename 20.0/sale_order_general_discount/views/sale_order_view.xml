@@ -13,7 +13,7 @@
                     <field
                         name="general_discount"
                         style="width: 5.5rem;"
-                        class="oe_subtotal_footer_separator mr-0"
+                        class="oe_subtotal_footer_separator me-0"
                         string="Discount (%)"
                     />
                 </div>

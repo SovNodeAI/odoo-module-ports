@@ -220,11 +220,16 @@ class AuditlogRule(models.Model):
         for rule in self:
             model_class = self.env.registry[rule.model_id.model or rule.model_model]
             for method in ["create", "read", "write", "unlink", "export_data"]:
-                if getattr(rule, "log_%s" % method) and hasattr(
-                    getattr(model_class, method), "origin"
+                check_attr = "auditlog_ruled_%s" % method
+                # Only a patch auditlog set itself: other modules (base_automation)
+                # patch the same methods and give them an "origin" as well.
+                if (
+                    getattr(rule, "log_%s" % method)
+                    and hasattr(model_class, check_attr)
+                    and hasattr(getattr(model_class, method), "origin")
                 ):
                     delattr(model_class, method)
-                    delattr(model_class, "auditlog_ruled_%s" % method)
+                    delattr(model_class, check_attr)
                     updated = True
         if updated:
             self._update_registry()
@@ -375,6 +380,10 @@ class AuditlogRule(models.Model):
 
         def read(self, fields=None, load="_classic_read", **kwargs):
             result = read.origin(self, fields, load, **kwargs)
+            # A virtual record is not stored data: since 17.0 the form's onchange
+            # reads one through web_read(), and its .ids are those of its origin.
+            if any(isinstance(id_, api.NewId) for id_ in self._ids):
+                return result
             # Sometimes the result is not a list but a dictionary
             # Also, we can not modify the current result as it will break calls
             result2 = result

@@ -14,7 +14,7 @@
                             <div class="row">
                                 <label
                                     for="country_select"
-                                    class="font-weight-bold"
+                                    class="fw-bold"
                                 >Available countries:</label>
                                 <select
                                     id="country_select"
