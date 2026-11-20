@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-430 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5456 test runs in all.
+435 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5627 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -88,6 +88,7 @@
 | [auth_session_timeout](20.0/auth_session_timeout) | OCA/server-auth | 19.0 | `ae09869` | AGPL-3 | 12 | 12 | reviewed |
 | [auth_signup_verify_email](20.0/auth_signup_verify_email) | OCA/server-auth | 18.0 | `23df47b` | AGPL-3 | 3 | 3 | reviewed |
 | [auth_user_case_insensitive](20.0/auth_user_case_insensitive) | OCA/server-auth | 19.0 | `ae09869` | AGPL-3 | 3 | 3 | none |
+| [automation_oca](20.0/automation_oca) | OCA/automation | 18.0 | `c2d94a9` | AGPL-3 | 67 | 70 | reviewed, accepted |
 | [autovacuum_message_attachment](20.0/autovacuum_message_attachment) | OCA/server-tools | 18.0 | `55308ba` | LGPL-3 | 4 | 4 | reviewed |
 | [barcode_scanner](20.0/barcode_scanner) | OCA/barcode-interface | 18.0 | `b1c4eb8` | AGPL-3 | 1 | 1 | reviewed, accepted |
 | [barcode_stock](20.0/barcode_stock) | OCA/barcode-interface | 18.0 | `b1c4eb8` | AGPL-3 | 59 | 59 | reviewed, accepted |
@@ -146,6 +147,8 @@
 | [delivery_fee](20.0/delivery_fee) | OCA/delivery-carrier | 18.0 | `95c525a` | LGPL-3 | 12 | 12 | reviewed |
 | [delivery_sendcloud_oca](20.0/delivery_sendcloud_oca) | OCA/delivery-carrier | 18.0 | `95c525a` | LGPL-3 | 26 | 26 | reviewed, accepted |
 | [dms_auto_classification](20.0/dms_auto_classification) | OCA/dms | 18.0 | `a083c5b` | AGPL-3 | 7 | 7 | reviewed |
+| [dms_field](20.0/dms_field) | OCA/dms | 18.0 | `a083c5b` | LGPL-3 | 14 | 14 | reviewed, accepted |
+| [dms_field_auto_classification](20.0/dms_field_auto_classification) | OCA/dms | 18.0 | `a083c5b` | AGPL-3 | 4 | 4 | reviewed |
 | [document_page_access_group](20.0/document_page_access_group) | OCA/knowledge | 19.0 | `3ba8a78` | AGPL-3 | 3 | 3 | none |
 | [document_page_reference](20.0/document_page_reference) | OCA/knowledge | 18.0 | `b19da27` | AGPL-3 | 8 | 8 | reviewed |
 | [document_url](20.0/document_url) | OCA/knowledge | 19.0 | `3ba8a78` | AGPL-3 | 2 | 2 | reviewed, accepted |
@@ -287,6 +290,8 @@
 | [product_brand](20.0/product_brand) | OCA/brand | 19.0 | `a89a1c2` | AGPL-3 | 3 | 3 | reviewed, accepted |
 | [product_category_code](20.0/product_category_code) | OCA/product-attribute | 19.0 | `5545a68` | AGPL-3 | 5 | 5 | reviewed |
 | [product_code_unique](20.0/product_code_unique) | OCA/product-attribute | 19.0 | `5545a68` | AGPL-3 | 2 | 2 | reviewed |
+| [product_configurator](20.0/product_configurator) | OCA/product-configurator | 18.0 | `21c97bb` | AGPL-3 | 81 | 81 | reviewed, accepted |
+| [product_configurator_sale](20.0/product_configurator_sale) | OCA/product-configurator | 18.0 | `21c97bb` | AGPL-3 | 2 | 2 | reviewed |
 | [product_contract](20.0/product_contract) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 39 | 42 | none |
 | [product_dimension](20.0/product_dimension) | OCA/product-attribute | 19.0 | `5545a68` | AGPL-3 | 4 | 6 | none |
 | [product_logistics_uom](20.0/product_logistics_uom) | OCA/product-attribute | 19.0 | `5545a68` | AGPL-3 | 12 | 12 | reviewed, accepted |
@@ -461,7 +466,7 @@ Some listed modules depend on a community module that is not listed here. The te
 | `base_view_inheritance_extension` | community 20.0 | `account_invoice_transmit_method`, `account_operating_unit`, `purchase_allowed_product`, `purchase_blanket_order`, `stock_inventory_preparation_filter`, `web_m2x_options_manager` |
 | `component_event` | not all of its tests run yet | `connector` |
 | `date_range` | community 20.0 | `account_financial_report`, `account_tax_balance`, `l10n_it_account`, `mis_builder`, `stock_demand_estimate_matrix` |
-| `dms` | community 20.0 | `dms_auto_classification` |
+| `dms` | community 20.0 | `dms_auto_classification`, `dms_field` |
 | `document_knowledge` | community 20.0 | `document_page_access_group` |
 | `document_page` | community 20.0 | `document_page_access_group`, `document_page_reference` |
 | `document_page_procedure` | no tests of its own | `mgmtsystem_nonconformity` |

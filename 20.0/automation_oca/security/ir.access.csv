@@ -1,0 +1,17 @@
+id,name,model_id,group_id/id,operation,domain
+access_automation_configuration,Access Automation Configuration,automation.configuration,automation_oca.group_automation_user,r,
+manage_automation_configuration,Access Automation Configuration,automation.configuration,automation_oca.group_automation_manager,crud,
+automation_configuration_rule,Automation Configuration Company rule,automation.configuration,,crud,"['|', ('company_id', 'in', company_ids), ('company_id', '=', False)]"
+access_automation_configuration_step,Access Automation Configuration Activity,automation.configuration.step,automation_oca.group_automation_user,r,
+manage_automation_configuration_step,Access Automation Configuration Activity,automation.configuration.step,automation_oca.group_automation_manager,crud,
+automation_configuration_step_rule,Automation Configuration Company Activity rule,automation.configuration.step,,crud,"['|', ('configuration_id.company_id', 'in', company_ids), ('configuration_id.company_id', '=', False)]"
+access_automation_record,Access Automation Record,automation.record,automation_oca.group_automation_user,r,
+manage_automation_record,Access Automation Record,automation.record,automation_oca.group_automation_manager,crud,
+access_automation_filter,Access Automation filter,automation.filter,automation_oca.group_automation_user,r,
+manage_automation_filter,Access Automation filter,automation.filter,automation_oca.group_automation_manager,crud,
+access_automation_tag,Access Automation tag,automation.tag,automation_oca.group_automation_user,r,
+manage_automation_tag,Access Automation tag,automation.tag,automation_oca.group_automation_manager,crud,
+access_automation_record_step,Access Automation Record Activity,automation.record.step,automation_oca.group_automation_user,r,
+manage_automation_record_step,Access Automation Record Activity,automation.record.step,automation_oca.group_automation_manager,crud,
+manage_automation_configuration_test,Access Automation Configuration Test,automation.configuration.test,automation_oca.group_automation_manager,crud,
+manage_automation_configuration_export,Access Automation Configuration Test,automation.configuration.export,automation_oca.group_automation_manager,crud,
