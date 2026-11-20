@@ -4,6 +4,20 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
+### 20 November 2026, later: ports from older versions withdrawn for a second review
+
+Until today this page carried ports made from the 15.0, 16.0 and 17.0 versions of well-known modules to 19.0 and 20.0. Each had passed every one of its own tests. The second reviewer then read three of them against the maintainers' own 19.0 version of the same module.
+
+The first was `helpdesk_mgmt` from 17.0 to 19.0. We checked three of its findings in the Odoo 19 source ourselves, and all three hold:
+
+- The kanban views still had a `kanban-box` template. Odoo 19 reads the card from a template named `card` and stops with `Missing 'card' template.` otherwise (`addons/web/static/src/views/kanban/kanban_arch_parser.js`). The ticket board, the dashboard and the team form would not open.
+- The method that lists the stages when tickets are grouped by stage still took a third argument, `order`. Odoo 19 calls a `group_expand` method with the records and the domain only (`odoo/orm/fields.py`, `determine_group_expand`), so grouping by stage would raise an error.
+- The override of `_message_get_suggested_recipients` kept the old signature and called `_message_add_suggested_recipient`, which no longer exists (`addons/mail/models/models.py`).
+
+None of the module's tests opens a kanban view, groups by stage or loads the recipients of a ticket, so all of them passed. The reviews of `purchase_request` (16.0 to 19.0) and `auditlog` (15.0 to 19.0) list further faults, which we are checking one by one.
+
+A port from an old version crosses several releases at once. Tests written for the old version prove less across that distance than we said they did. All ports from older versions are off the page. Each returns only after it has been read against the maintainers' version for the target, every finding has been fixed or ruled out, and its tests pass again.
+
 ### 20 November 2026: icons that Odoo 20 no longer draws
 
 A second reviewer read one of our ports in full and pointed at something none of our checks looked for. Odoo 20 does not load Font Awesome. `web.icons_fonts` in `addons/web/__manifest__.py` is Material Symbols plus Odoo's own icon font, and no bundle includes `font-awesome.css` any more (19.0 loaded it in three). A view button is drawn as `<i class="o_button_icon oi" data-icon="...">` with the `icon` attribute exactly as written (`addons/web/static/src/views/view_button/view_button.js`, `iconFromString`). So `<button icon="fa-bars"/>` shows the letters "fa-bars" where the icon was, and `<i class="fa fa-trash-o"/>` shows nothing: a control that is only an icon cannot be seen.
@@ -79,7 +93,7 @@ Each kind is described under "Things in Odoo 18, 19 and 20 that affect any port"
 
 ## Behaviour changes in the published ports
 
-These are in [`from-older-versions/`](from-older-versions). In a customer delivery, this is what the change summary would tell you.
+These ports were in `from-older-versions/` and are withdrawn for a second review since 20 November 2026 (see "Corrections to this page"); the rows stay here as a record of what each change was. In a customer delivery, this is what the change summary would tell you.
 
 | Module | Route | What changed | Why |
 |---|---|---|---|

@@ -9,21 +9,10 @@ Figures as of 20 November 2026, 2:01 am (US Central). On 20 November a second re
 | Folder | What it holds | Table |
 |---|---|---|
 | [`20.0/`](20.0) | 321 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 3,143 test runs in all. | [MODULES.md](MODULES.md) |
-| [`from-older-versions/`](from-older-versions) | 28 ports made from the Odoo 15.0, 16.0 and 17.0 versions of well-known modules, to Odoo 19.0 and 20.0. | [OLDER_VERSIONS.md](OLDER_VERSIONS.md) |
+| Ports from Odoo 15.0, 16.0 and 17.0 | Withdrawn on 20 November 2026 for a second review. See below. | [OLDER_VERSIONS.md](OLDER_VERSIONS.md) |
 | [NOTES.md](NOTES.md) | Where a port had to change behaviour because Odoo removed something, and what we found in Odoo 18, 19 and 20 that affects any port. | |
 
-The ports from older versions are there for one reason. Most databases that need upgrading today are on 15, 16 or 17, and the private modules in them have to make that whole jump at once. So we took the old versions of modules everyone knows and ported those, instead of starting from the newest upstream code.
-
-| Route | Ports tried | Published here |
-|---|---|---|
-| 17.0 to 20.0 | 10 | 6 |
-| 16.0 to 20.0 | 7 | 5 |
-| 15.0 to 20.0 | 2 | 2 |
-| 17.0 to 19.0 | 7 | 6 |
-| 16.0 to 19.0 | 7 | 5 |
-| 15.0 to 19.0 | 6 | 4 |
-
-Eleven ports are not published. Five are the ports of `contract`: with the browser tests switched on, its tour fails. Five are ports of `helpdesk_mgmt` and `base_tier_validation` that still contain JavaScript written for the old version, which the target version cannot load; their tests pass because none of them opens those screens. The eleventh (a large bank-reconciliation module, 17.0 to 20.0) passes all 35 of its tests, but two of the changes made to its tests could not be proven correct from the Odoo source, so it stays out.
+**Ports from older versions are withdrawn for now.** Most databases that need upgrading today are on 15, 16 or 17, and the private modules in them have to make that whole jump at once. So until 20 November 2026 this page carried 28 ports made from the 15.0, 16.0 and 17.0 versions of well-known modules to 19.0 and 20.0, each passing every one of its own tests. A second reviewer then read three of them against the maintainers' own 19.0 versions. In the first, `helpdesk_mgmt` from 17.0 to 19.0, the kanban views still used the old card template, which Odoo 19 refuses, so those screens would not open; no test of the module opens them. The other two reviews listed faults as well. A port from an old version crosses several releases at once, and passing tests proved less there than this page said. Each of these ports comes back only after it has been read against the maintainers' version, every finding has been fixed or ruled out, and its tests pass again. [NOTES.md](NOTES.md) has the details under "Corrections to this page".
 
 ## How a port is checked
 
