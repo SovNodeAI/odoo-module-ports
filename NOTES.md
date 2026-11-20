@@ -4,6 +4,20 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
+### 20 November 2026, 6 am: `contract` 17.0 to 19.0 is listed (not to be confused with the Odoo 20 one)
+
+Two ports of `contract` are in play and they stand differently. The port from 19.0 to 20.0 was rejected an hour ago and is off the page (5:15 am, below). The port from 17.0 to 19.0 has now been read twice and is listed under older versions.
+
+Its first read accepted it with six changes: choosing a product on a contract line could raise an error or keep a unit the line does not allow; the supplier line list was never selected because the code still asked for a view of type `tree`; searches through the contract no longer skipped the contract's record rules as the 17.0 module made them do; a fallback picture pointed at a file Odoo moved; and three calls were deprecated. All six are fixed and the second read confirmed five outright.
+
+What the second read added, and what we did with it:
+
+- The supplier line list hid one column with `invisible`, which since 17.0 leaves an empty column. Corrected to `column_invisible`.
+- A new test of ours ran at the wrong moment of the installation. Corrected.
+- Not changed, and listed below as an inherited limitation: the module picks a special form and list for supplier contract lines by looking at a value in the action's context. The web client sends only the language and view references when it loads a view, so that value never arrives and the special views are not used from the screen. The 17.0 module has the same mechanism and so has the maintainers' 19.0 version. Making it work would mean designing it anew, which is not a port.
+
+119 test runs pass.
+
 ### 20 November 2026, 5:30 am: `purchase_request` is off the Odoo 20 list; two icon forms our check did not see
 
 **`purchase_request`, 19.0 to 20.0, rejected by the second reviewer.** Two of its findings we have checked in the source, and both hold.
@@ -144,7 +158,7 @@ The rule now: a module is listed only while every community module it depends on
 
 Also this evening: `mail_gateway` and `barcode_stock` came back from their web-code correction with all tests passing, including new ones. `mail_gateway` is listed again, with two visible changes written up under "Behaviour changes". `barcode_stock` waits for `barcode_scanner`, which it depends on.
 
-<!-- state --> State at 5:29 am on 20 November: 428 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `automation_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `ddmrp`, `ddmrp_cron_actions_as_job`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_crm`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_mgmt_sla`, `helpdesk_ticket_partner_response`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_es_mis_report`, `l10n_it_delivery_note`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `mis_builder`, `mis_template_financial_report`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `rma_sale`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 23 of the modules listed on the morning of 18 November are still off.
+<!-- state --> State at 5:59 am on 20 November: 428 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `automation_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `ddmrp`, `ddmrp_cron_actions_as_job`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_crm`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_mgmt_sla`, `helpdesk_ticket_partner_response`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_es_mis_report`, `l10n_it_delivery_note`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `mis_builder`, `mis_template_financial_report`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `rma_sale`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 23 of the modules listed on the morning of 18 November are still off.
 
 ### 18 November 2026, late afternoon: values that no longer reach a called template
 
@@ -192,6 +206,8 @@ These ports were in `from-older-versions/` and were withdrawn for a second revie
 | Module | Route | What changed | Why |
 |---|---|---|---|
 | `helpdesk_mgmt` | 17.0 to 19.0 | A ticket created from an incoming email gets its number from the sequence, like any other ticket. In 17.0 it got the email's subject as its number. | `number` is the model's name field, and the mail gateway fills the name field with the subject unless the module says otherwise (`addons/mail/models/mail_thread.py`, `message_new`). The module now does. |
+| `contract` | 17.0 to 19.0 | Not changed, and worth knowing: the special form and list for supplier contract lines are not used when the lines are opened from the screen. | The module chooses them in `get_view` by the context key `default_contract_type`. The web client sends only `lang` and keys ending in `_view_ref` when it loads a view (`addons/web/static/src/views/view_service.js`), so the key never arrives. The 17.0 original works the same way. |
+| `contract` | 17.0 to 19.0 | Choosing another product on a contract line always sets the line's unit to that product's unit. In 17.0 the unit was kept when both units were of the same category. | Odoo 19 has no unit categories; its own invoice lines take the product's unit (`addons/account/models/account_move_line.py`). Keeping the old unit could leave one the line does not allow. |
 | `purchase_request` | 16.0 to 19.0 | Request lines can no longer be grouped by analytic distribution; the option is gone from the search view. Filtering and showing the distribution are unchanged. | Odoo 19's analytic mixin offers that grouping for four of its own models and with the record count only (`addons/analytic/models/analytic_mixin.py`). A list of request lines also asks for sums, which the mixin refuses. |
 | `purchase_request` | 16.0 to 19.0 | A vendor's minimum quantity is converted from the vendor price's unit to the unit of the purchase line before the two are compared. | In 16.0 both were always in the product's purchase unit. In 19.0 a vendor price has a unit of its own (`product_uom_id` on `product.supplierinfo`) and there is no purchase unit on the product. |
 | `auditlog` | 15.0 to 19.0 | A subscribed rule is read-only through the form view (`readonly="state == 'subscribed'"` on each field). In 15.0 the same rule sat on the fields in Python. Code that writes to a subscribed rule directly is no longer stopped by the field definition; in 15.0 it was not stopped either, `states` only ever acted in the form. | `states=` on a field no longer exists (checked in 18.0 and 19.0). |
@@ -239,6 +255,10 @@ An override kept from 17.0 still works from the form, where one record is duplic
 In a list view, a column leaves the table only when its `column_invisible` is true (`addons/web/static/src/views/list/list_renderer.js`, `getActiveColumns`; the same in 18.0, 19.0 and 20.0). `invisible` is looked at per row and only empties the cell (`list_renderer.xml`, `isInvisible`). Old modules hid technical columns with `invisible="1"`, which worked while a constant there hid the whole column. Carried over as it is, the list shows the column's title above a column of blanks. Nothing fails.
 
 A second reviewer pointed at it in a module from 17.0. We then found it in older-version ports of ours (up to 50 columns in one of them) and in 24 of our Odoo 20 ports, 17 of them listed here, where it comes unchanged from the 19.0 originals. A constant `invisible` on a list column is now reported for every port, and corrected to `column_invisible`.
+
+### A view chosen by a value in the context is never chosen
+
+Old modules pick a different form or list in `fields_view_get` (later `get_view`) by looking at a key of the action's context, for example a default type. When the web client loads a view it sends only the language and the keys that end in `_view_ref` (`addons/web/static/src/views/view_service.js`, `filteredContext`; the same in 18.0, 19.0 and 20.0). Every other key stays in the browser. The override still runs and never sees its key, so the user always gets the default view. A test that calls `get_view` with the context itself passes, which is how such code survives a port. Where the old version already behaved like this we leave it and say so; a working version needs a view reference in the action or separate actions.
 
 ### `states=` on a field is gone, and the rule goes with it
 
