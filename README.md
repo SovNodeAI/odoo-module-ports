@@ -2,7 +2,7 @@
 
 SovNode ports Odoo modules to new Odoo versions. This repository is our public track record: community modules we have ported, each one installed on a clean database of the target version and proven by its own test suite.
 
-Figures as of 18 November 2026, 1:51 am (US Central). That afternoon we found that our test machine had been skipping browser tests, and later that some templates handed values to other templates in a way Odoo 20 dropped. In the evening we stopped listing a module while a module it depends on has an open defect. 15 modules that were listed in the morning are off this page until they are corrected and pass. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
+Figures as of 20 November 2026, 1:52 am (US Central). On 18 November we found that our test machine had been skipping browser tests, and later that some templates handed values to other templates in a way Odoo 20 dropped. That evening we stopped listing a module while a module it depends on has an open defect. 15 of the 428 modules listed on the morning of 18 November are off this page until they are corrected and pass. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
 
 ## What is here
 
