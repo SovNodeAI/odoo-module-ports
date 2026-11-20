@@ -51,7 +51,7 @@ class StockDeliveryNoteLine(models.Model):
     product_id = fields.Many2one("product.product", string="Product")
     product_description = fields.Text(related="product_id.description_sale")
     product_qty = fields.Float(
-        string="Quantity", digits="Product Unit of Measure", default=1.0
+        string="Quantity", digits="Product Unit", default=1.0
     )
     product_uom_id = fields.Many2one("uom.uom", string="UoM", default=_default_unit_uom)
     price_unit = fields.Float(string="Unit price", digits="Product Price")

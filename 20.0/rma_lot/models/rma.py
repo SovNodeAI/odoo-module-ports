@@ -56,7 +56,7 @@ class Rma(models.Model):
         "state",
     )
     def _compute_domain_lot_id(self):
-        dp = self.env["decimal.precision"].precision_get("Product Unit of Measure")
+        dp = self.env["decimal.precision"].precision_get("Product Unit")
         for rec in self:
             domain = []
             if (

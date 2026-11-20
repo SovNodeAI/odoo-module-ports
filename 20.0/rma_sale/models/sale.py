@@ -80,7 +80,7 @@ class SaleOrder(models.Model):
 
     def get_delivery_rma_data(self):
         self.ensure_one()
-        qty_dp = self.env["decimal.precision"].precision_get("Product Unit of Measure")
+        qty_dp = self.env["decimal.precision"].precision_get("Product Unit")
         data = []
         for line in self.order_line:
             for data_line in line.prepare_sale_rma_data():

@@ -50,7 +50,7 @@ class SaleOrderLine(models.Model):
         compute="_compute_qty_delivered",
         compute_sudo=True,
         store=True,
-        digits="Product Unit of Measure",
+        digits="Product Unit",
     )
 
     uom_id = fields.Many2one(

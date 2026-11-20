@@ -8,7 +8,7 @@ class StockMoveLine(models.Model):
     _inherit = ["stock.move.line", "weighing.mixin"]
 
     has_recorded_weight = fields.Boolean(help="The weight was set from the wizard")
-    recorded_weight = fields.Float(digits="Product Unit of Measure")
+    recorded_weight = fields.Float(digits="Product Unit")
     weighing_user_id = fields.Many2one(comodel_name="res.users")
     weighing_date = fields.Datetime()
 

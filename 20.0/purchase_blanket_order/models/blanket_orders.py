@@ -170,7 +170,7 @@ class BlanketOrder(models.Model):
     def _compute_state(self):
         today = fields.Date.today()
         precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
+            "Product Unit"
         )
         for order in self:
             if not order.confirmed and not order.cancelled:
@@ -424,37 +424,37 @@ class BlanketOrderLine(models.Model):
         string="Original quantity",
         required=True,
         default=1.0,
-        digits=("Product Unit of Measure"),
+        digits=("Product Unit"),
     )
     ordered_uom_qty = fields.Float(
         string="Ordered quantity",
         compute="_compute_quantities",
         store=True,
-        digits=("Product Unit of Measure"),
+        digits=("Product Unit"),
     )
     invoiced_uom_qty = fields.Float(
         string="Invoiced quantity",
         compute="_compute_quantities",
         store=True,
-        digits=("Product Unit of Measure"),
+        digits=("Product Unit"),
     )
     remaining_uom_qty = fields.Float(
         string="Remaining quantity",
         compute="_compute_quantities",
         store=True,
-        digits=("Product Unit of Measure"),
+        digits=("Product Unit"),
     )
     remaining_qty = fields.Float(
         string="Remaining quantity in base UoM",
         compute="_compute_quantities",
         store=True,
-        digits=("Product Unit of Measure"),
+        digits=("Product Unit"),
     )
     received_uom_qty = fields.Float(
         string="Received quantity",
         compute="_compute_quantities",
         store=True,
-        digits=("Product Unit of Measure"),
+        digits=("Product Unit"),
     )
     purchase_lines = fields.One2many(
         comodel_name="purchase.order.line",
@@ -553,7 +553,7 @@ class BlanketOrderLine(models.Model):
     @api.onchange("product_id", "original_uom_qty")
     def onchange_product(self):
         precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
+            "Product Unit"
         )
         if self.product_id:
             name = self.product_id.name

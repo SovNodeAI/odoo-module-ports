@@ -47,7 +47,7 @@ class StockMoveWeightWizard(models.TransientModel):
     product_tracking = fields.Selection(related="product_id.tracking")
     selected_move_line_id = fields.Many2one(comodel_name="stock.move.line")
     move_line_ids = fields.Many2many(comodel_name="stock.move.line")
-    weight = fields.Float(digits="Product Unit of Measure")
+    weight = fields.Float(digits="Product Unit")
     print_label = fields.Boolean(help="Print label after the weight record")
     label_report_id = fields.Many2one(comodel_name="ir.actions.report")
     has_weight = fields.Boolean(compute="_compute_has_weight", readonly=False)

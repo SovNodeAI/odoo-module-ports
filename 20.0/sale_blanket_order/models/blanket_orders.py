@@ -192,7 +192,7 @@ class BlanketOrder(models.Model):
     def _compute_state(self):
         today = fields.Date.today()
         precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
+            "Product Unit"
         )
         for order in self:
             if not order.confirmed:
@@ -427,7 +427,7 @@ class BlanketOrderLine(models.Model):
     )
     date_schedule = fields.Date(string="Scheduled Date")
     original_uom_qty = fields.Float(
-        string="Original quantity", default=1, digits="Product Unit of Measure"
+        string="Original quantity", default=1, digits="Product Unit"
     )
     ordered_uom_qty = fields.Float(
         string="Ordered quantity", compute="_compute_quantities", store=True
@@ -538,7 +538,7 @@ class BlanketOrderLine(models.Model):
     @api.onchange("product_id", "original_uom_qty")
     def onchange_product(self):
         precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
+            "Product Unit"
         )
         if self.product_id:
             name = self.product_id.name

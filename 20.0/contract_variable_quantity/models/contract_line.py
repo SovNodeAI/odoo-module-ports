@@ -48,7 +48,7 @@ class ContractLine(models.Model):
             and self.contract_id.skip_zero_qty
             and float_is_zero(
                 vals["quantity"],
-                self.env["decimal.precision"].precision_get("Product Unit of Measure"),
+                self.env["decimal.precision"].precision_get("Product Unit"),
             )
         ):
             vals = {}

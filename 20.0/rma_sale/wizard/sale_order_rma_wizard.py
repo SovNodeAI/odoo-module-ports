@@ -142,13 +142,13 @@ class SaleOrderLineRmaWizard(models.TransientModel):
         compute="_compute_allowed_uom_ids",
     )
     quantity = fields.Float(
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         required=True,
         compute="_compute_quantity",
         store=True,
         readonly=False,
     )
-    allowed_quantity = fields.Float(digits="Product Unit of Measure", readonly=True)
+    allowed_quantity = fields.Float(digits="Product Unit", readonly=True)
     uom_id = fields.Many2one(
         comodel_name="uom.uom",
         string="Unit of Measure",
@@ -249,7 +249,7 @@ class SaleOrderLineRmaWizard(models.TransientModel):
     @api.constrains("quantity", "allowed_quantity")
     def _check_quantity(self):
         precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
+            "Product Unit"
         )
         for rec in self:
             if (

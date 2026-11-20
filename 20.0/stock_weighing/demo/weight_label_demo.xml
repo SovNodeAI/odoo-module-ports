@@ -13,7 +13,7 @@
                         <div class="h5 pt-2">
                             <span
                                 t-out="sml.qty_picked"
-                                t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+                                t-options="{'widget': 'float', 'decimal_precision': 'Product Unit'}"
                             />
                             <span t-out="sml.uom_id.name" />
                         </div>

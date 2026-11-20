@@ -13,7 +13,7 @@ class StockMove(models.Model):
     _inherit = ["stock.move", "weighing.mixin"]
 
     recorded_weight = fields.Float(
-        compute="_compute_recorded_weight", digits="Product Unit of Measure"
+        compute="_compute_recorded_weight", digits="Product Unit"
     )
     move_lines_weighed = fields.Boolean(compute="_compute_recorded_weight")
     weighing_state = fields.Selection(
@@ -80,7 +80,7 @@ class StockMove(models.Model):
                     move.quantity,
                     move.product_uom_qty,
                     precision_digits=self.env["decimal.precision"].precision_get(
-                        "Product Unit of Measure"
+                        "Product Unit"
                     ),
                 )
                 >= 0
