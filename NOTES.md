@@ -4,7 +4,7 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
-### 20 November 2026, 7 am: nine more modules read in full; six rejected, and a class of access fault
+### 20 November 2026, 6:30 am: nine more modules read in full; six rejected, and a class of access fault
 
 The second reviewer read the complete 19.0 to 20.0 change of nine more of the larger modules on this list. One came back without a finding (`account_asset_management`, now marked `passed`). Two were accepted with changes (`fieldservice`, `ddmrp`). Six were rejected: `rma`, `account_reconcile_oca`, `automation_oca`, `payroll`, `account_credit_control`, `edi_core_oca`. All eight with findings are off the page, with the modules that depend on them, until the findings are fixed and the module has been read again. What we have checked ourselves so far:
 
