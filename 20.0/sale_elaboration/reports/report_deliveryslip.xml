@@ -37,9 +37,8 @@
                 t-if="move.picking_code != 'incoming'"
                 t-call="sale_elaboration.elaboration_notes"
                 groups="sale_elaboration.group_elaboration_note_on_delivery_slip"
-            >
-                <t t-set="record" t-value="move" />
-            </t>
+                record="move"
+            />
         </xpath>
     </template>
 
@@ -52,9 +51,8 @@
                 t-if="move_line.picking_code != 'incoming'"
                 t-call="sale_elaboration.elaboration_notes"
                 groups="sale_elaboration.group_elaboration_note_on_delivery_slip"
-            >
-                <t t-set="record" t-value="move_line" />
-            </t>
+                record="move_line"
+            />
         </xpath>
     </template>
 </odoo>

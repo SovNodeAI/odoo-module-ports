@@ -4,6 +4,20 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
+### 20 November 2026, 3:30 am: a blind spot in our template check, and the first older-version port back
+
+**The blind spot.** The second review of `helpdesk_mgmt` said the portal ticket page still set values inside a `t-call` body, and our check had called the module clean. Both were true. Our check is built on Odoo's own conversion script, and that script leaves alone any `t-call` that carries an attribute not starting with `t-` (`odoo/upgrade_code/19.1-00-t-call.py`, the first test in `change`): in Odoo 20 such an attribute is a value for the called template, so the script takes the call for converted. A 19.0 template could carry an ordinary attribute there, an `id` for inheriting views or a `groups` rule, and then nobody looked at its body. Our check now judges those calls like any other.
+
+Run over every port, it found two modules: `helpdesk_mgmt`, already off the page, and `sale_elaboration`, which was listed. Its delivery slip and picking report called the module's notes template with `groups=...` on the call and the record set in the body, three times; on Odoo 20 the template did not receive the record. The three calls now pass it as an attribute and the module's tests pass again. None of its tests prints those reports, so the tests could not have told us.
+
+**The first older-version port back: `auditlog`, 15.0 to 19.0.** It was read twice.
+
+- First read, three findings to act on. The 15.0 fields of a rule were read-only once the rule was subscribed, through `states=` on each field; that parameter is gone and the port had not moved the rule to the form view, so a subscribed rule could be edited. Fixed, with a test on the view. Creating several subscribed rules in one call hooked only the first, because `any()` stops a generator at the first true value. Fixed, with a test that creates two rules together and checks that both models are logged.
+- The third finding was that the module reads the logged values through `sudo()` into the cache every other user's code shares. The fix that came back wrapped those reads in a helper that swaps the transaction's cache dictionaries for the duration, modelled on what the maintainers' 19.0 version does. The second read called that helper unsafe on Odoo 19. We checked two of its reasons and both hold: environments keep their own cached references to two of those dictionaries (`odoo/orm/environments.py`, `_field_dirty` and `_protected` are cached properties), and one of the dictionaries is a `StackMap` (`odoo/tools/misc.py`), where emptying a shallow copy empties the original too; we ran that one. We took the helper out. The port reads the values exactly as the 15.0 module does. The shared cache the finding describes is therefore the original's own behaviour on 15.0 as well, carried over and not changed by us.
+- Six tests that had come with the helper tested its internals. They are replaced by the two behaviour tests named above.
+
+40 test runs pass. It is one port, and the only one on this page that has been through a second review.
+
 ### 20 November 2026, night: a second review of the Odoo 20 list has begun, and its first three results are bad
 
 After the older-version ports, the second reviewer read the complete code change (19.0 to 20.0) of three of the larger modules on the Odoo 20 list. All three have faults that none of their tests touches.
@@ -60,7 +74,7 @@ The rule now: a module is listed only while every community module it depends on
 
 Also this evening: `mail_gateway` and `barcode_stock` came back from their web-code correction with all tests passing, including new ones. `mail_gateway` is listed again, with two visible changes written up under "Behaviour changes". `barcode_stock` waits for `barcode_scanner`, which it depends on.
 
-<!-- state --> State at 2:56 am on 20 November: 427 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `automation_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `ddmrp`, `ddmrp_cron_actions_as_job`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `partner_statement`, `purchase_tier_validation`, `rma_sale`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 24 of the modules listed on the morning of 18 November are still off.
+<!-- state --> State at 3:28 am on 20 November: 429 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `automation_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `ddmrp`, `ddmrp_cron_actions_as_job`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_it_delivery_note`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `rma_sale`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 22 of the modules listed on the morning of 18 November are still off.
 
 ### 18 November 2026, late afternoon: values that no longer reach a called template
 
@@ -103,10 +117,12 @@ Each kind is described under "Things in Odoo 18, 19 and 20 that affect any port"
 
 ## Behaviour changes in the published ports
 
-These ports were in `from-older-versions/` and are withdrawn for a second review since 20 November 2026 (see "Corrections to this page"); the rows stay here as a record of what each change was. In a customer delivery, this is what the change summary would tell you.
+These ports were in `from-older-versions/` and were withdrawn for a second review on 20 November 2026 (see "Corrections to this page"); the rows stay here as a record of what each change was. Only `auditlog` 15.0 to 19.0 has returned so far. In a customer delivery, this is what the change summary would tell you.
 
 | Module | Route | What changed | Why |
 |---|---|---|---|
+| `auditlog` | 15.0 to 19.0 | A subscribed rule is read-only through the form view (`readonly="state == 'subscribed'"` on each field). In 15.0 the same rule sat on the fields in Python. Code that writes to a subscribed rule directly is no longer stopped by the field definition; in 15.0 it was not stopped either, `states` only ever acted in the form. | `states=` on a field does not exist since 17.0. |
+| `auditlog` | 15.0 to 19.0 | Not changed, and worth knowing: the module reads the values it logs as superuser into the cache that the rest of the request shares, as it did on 15.0. | The maintainers' 19.0 version isolates those reads with a helper that replaces the transaction's cache dictionaries. We are not confident that approach is safe on Odoo 19 (see "Corrections to this page", 3:30 am) and kept the original's way; whoever needs the isolation should have it tested under their own load. |
 | `helpdesk_mgmt` | 16.0 to 20.0 and 16.0 to 19.0 | A new ticket without an assignee goes to the team leader. In 16.0 it went to the "Assign to" user of the team's email alias. | `mail.alias` no longer has `alias_user_id` (it is gone in both 19.0 and 20.0). The upstream module later dropped the automatic assignment altogether; our port keeps it and uses the nearest field that still exists. |
 | `helpdesk_mgmt` | 16.0 to 20.0 and 17.0 to 20.0 | The ticket no longer keeps a CC list (`email_cc`). | Odoo 20 has no `mail.thread.cc` model. Odoo 19 still has it, so the ports to 19.0 keep the CC list. |
 | `helpdesk_mgmt` | 15.0 to 19.0 | The alias owner field is gone from the team form and data. | Same removal of `alias_user_id`. |
@@ -137,6 +153,16 @@ Some ports in [`20.0/`](20.0) have a visible change as well:
 `odoo/tests/loader.py` (`get_module_test_cases`) runs only the test methods written in a class's own body. A test method inherited from a parent class runs only if the class, or a parent, sets `allow_inherited_tests_method = True`. Odoo 16 and 17 ran inherited tests.
 
 A module ported from 16 or 17 can therefore pass on 18, 19 or 20 with a large share of its tests no longer running, and nothing reports it. In `partner_firstname`, 26 of 61 test runs disappeared this way until we switched them back on.
+
+### Since 18.0: `copy()` is called with several records
+
+Up to 17.0 `copy()` duplicated one record, and modules overrode it with `self.ensure_one()` at the top. Since 18.0 `BaseModel.copy` works on a whole recordset: it asks `copy_data()` for one dictionary per record and creates them together (`odoo/models.py` in 18.0, `odoo/orm/models.py` in 19.0). The list view's Duplicate action sends every selected id in one call (`addons/web/static/src/model/relational_model/dynamic_list.js`, `_duplicateRecords`).
+
+An override kept from 17.0 still works from the form, where one record is duplicated, so the module's tests pass. Select two rows in the list and choose Duplicate, and it raises "Expected singleton". The per-record defaults belong in `copy_data()`, as Odoo's own `res.partner` has them. We found this in a port of `partner_firstname` to 18.0 and then in ten more of our older-version ports; the maintainers' own versions of two of those modules still have it.
+
+### Since 17.0: `states=` on a field is gone, and the rule goes with it
+
+Until 16.0 a field could be made read-only or required per state in Python: `states={"done": [("readonly", True)]}`. The parameter no longer exists. A port that only deletes it installs and passes its tests, and the field is now editable in every state. The rule has to be written into each view that shows the field (`readonly="state == 'done'"`). Tests that write through the ORM never see the difference; a user does.
 
 ### Since 20.0: one access model, and Odoo's upgrade script can drop record rules
 
@@ -220,6 +246,7 @@ Two details:
 
 - An attribute given to an outer `t-call` is not seen by a `t-call` inside its body. Odoo's own portal pages pass `breadcrumbs_searchbar="True"` to `portal.portal_layout` and again to `portal.portal_searchbar`.
 - Odoo's script is a good detector. Applied to a file as it is, it dropped the comment above the root element in our runs, which in community modules is the copyright notice. We use it to find the places and write the change by hand.
+- Odoo's script skips a `t-call` that already has an attribute not starting with `t-`. On 19.0 that could be an `id` or a `groups` rule (`groups` is itself a QWeb directive, an alias of `t-groups`), with the values still set in the body. A check built on the script has to look at those calls separately; ours did not until 20 November 2026.
 - Browser templates follow the same rule, and Odoo's script does not look at them (it skips everything under `static/`). In Owl 3 the body of a `t-call` is compiled as a block of its own that the called template may or may not render (`addons/web/static/lib/owl/owl.js`, `compileTCall`), so a `t-set` in that body does not reach the called template either. We found one such template in a port, an onboarding panel that hands each step's title and button text to a sub-template, and check for it in every port now: a `t-set` inside a `t-call` whose value the body itself does not use.
 
 ### Since 20.0: Font Awesome is gone

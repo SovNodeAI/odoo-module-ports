@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-427 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5406 test runs in all.
+429 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5472 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -216,6 +216,7 @@
 | [l10n_fr_siret](20.0/l10n_fr_siret) | OCA/l10n-france | 19.0 | `5647885` | AGPL-3 | 7 | 7 | reviewed | not yet |
 | [l10n_it_abicab](20.0/l10n_it_abicab) | OCA/l10n-italy | 19.0 | `bf1f300` | AGPL-3 | 1 | 1 | reviewed | not yet |
 | [l10n_it_account](20.0/l10n_it_account) | OCA/l10n-italy | 19.0 | `bf1f300` | AGPL-3 | 3 | 3 | none | not yet |
+| [l10n_it_delivery_note](20.0/l10n_it_delivery_note) | OCA/l10n-italy | 18.0 | `207b3f2` | AGPL-3 | 27 | 27 | reviewed, accepted | not yet |
 | [l10n_it_edi_doi_extension](20.0/l10n_it_edi_doi_extension) | OCA/l10n-italy | 18.0 | `207b3f2` | AGPL-3 | 18 | 18 | reviewed | not yet |
 | [l10n_it_edi_pec](20.0/l10n_it_edi_pec) | OCA/l10n-italy | 18.0 | `207b3f2` | AGPL-3 | 25 | 25 | reviewed | not yet |
 | [l10n_it_edi_related_document](20.0/l10n_it_edi_related_document) | OCA/l10n-italy | 19.0 | `bf1f300` | AGPL-3 | 5 | 5 | reviewed | not yet |
@@ -330,7 +331,7 @@
 | [purchase_order_line_sequence](20.0/purchase_order_line_sequence) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 3 | 3 | reviewed | not yet |
 | [purchase_order_type](20.0/purchase_order_type) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 24 | 24 | reviewed | not yet |
 | [purchase_reception_status](20.0/purchase_reception_status) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 3 | 3 | reviewed | not yet |
-| [purchase_request](20.0/purchase_request) | OCA/purchase-workflow | 19.0 | `f9031f1` | LGPL-3 | 28 | 36 | reviewed | not yet |
+| [purchase_request](20.0/purchase_request) | OCA/purchase-workflow | 19.0 | `f9031f1` | LGPL-3 | 28 | 30 | reviewed | not yet |
 | [purchase_requisition_line_description](20.0/purchase_requisition_line_description) | OCA/purchase-workflow | 18.0 | `792b144` | AGPL-3 | 1 | 1 | none | not yet |
 | [purchase_sale_inter_company](20.0/purchase_sale_inter_company) | OCA/multi-company | 19.0 | `2992d5a` | AGPL-3 | 15 | 15 | none | not yet |
 | [purchase_stock_analytic](20.0/purchase_stock_analytic) | OCA/account-analytic | 18.0 | `309045a` | AGPL-3 | 1 | 1 | reviewed | not yet |
@@ -341,6 +342,7 @@
 | [report_wkhtmltopdf_param](20.0/report_wkhtmltopdf_param) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 2 | 2 | none | not yet |
 | [report_xlsx_helper](20.0/report_xlsx_helper) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 1 | 1 | none | not yet |
 | [report_xml](20.0/report_xml) | OCA/reporting-engine | 19.0 | `ba46b0d` | AGPL-3 | 3 | 3 | reviewed | not yet |
+| [resource_booking](20.0/resource_booking) | OCA/calendar | 19.0 | `1d6bd36` | AGPL-3 | 45 | 45 | reviewed, accepted | not yet |
 | [rma](20.0/rma) | OCA/rma | 19.0 | `4774c03` | AGPL-3 | 74 | 75 | reviewed | not yet |
 | [rma_lot](20.0/rma_lot) | OCA/rma | 18.0 | `4e5260d` | AGPL-3 | 11 | 11 | reviewed | not yet |
 | [rma_reason](20.0/rma_reason) | OCA/rma | 18.0 | `4e5260d` | AGPL-3 | 3 | 3 | reviewed | not yet |
@@ -482,6 +484,7 @@ Some listed modules depend on a community module that is not listed here. The te
 | `stock_restrict_lot` | community 20.0 | `sale_order_lot_selection`, `stock_picking_return_lot` |
 | `stock_warehouse_calendar` | community 20.0 | `ddmrp` |
 | `uom_unece` | no tests of its own | `base_business_document_import` |
+| `web_calendar_slot_duration` | no tests of its own | `resource_booking` |
 | `web_filter_header_button` | community 20.0 | `stock_weighing` |
 | `web_ir_actions_act_multi` | community 20.0 | `stock_weighing` |
 | `web_m2x_options` | community 20.0 | `web_m2x_options_manager` |

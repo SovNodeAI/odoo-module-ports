@@ -11,9 +11,8 @@
                 t-if="move.picking_type_id.code != 'incoming'"
                 t-call="sale_elaboration.elaboration_notes"
                 groups="sale_elaboration.group_elaboration_note_on_picking_operations"
-            >
-                <t t-set="record" t-value="move" />
-            </t>
+                record="move"
+            />
         </xpath>
     </template>
 </data>
