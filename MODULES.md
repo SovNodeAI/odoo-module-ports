@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-439 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5666 test runs in all.
+428 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5442 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -116,7 +116,7 @@
 | [base_technical_features](20.0/base_technical_features) | OCA/server-ux | 19.0 | `ecb65d1` | AGPL-3 | 9 | 9 | reviewed, accepted | not yet |
 | [base_technical_user](20.0/base_technical_user) | OCA/server-tools | 19.0 | `71de4de` | AGPL-3 | 6 | 6 | none | not yet |
 | [base_territory](20.0/base_territory) | OCA/field-service | 19.0 | `650561d` | AGPL-3 | 19 | 19 | none | not yet |
-| [base_tier_validation](20.0/base_tier_validation) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 68 | 72 | reviewed, accepted | not yet |
+| [base_tier_validation](20.0/base_tier_validation) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 68 | 72 | reviewed, accepted | passed |
 | [base_tier_validation_formula](20.0/base_tier_validation_formula) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 5 | 5 | none | not yet |
 | [base_tier_validation_forward](20.0/base_tier_validation_forward) | OCA/tier-validation | 19.0 | `fcc77f0` | AGPL-3 | 3 | 3 | none | not yet |
 | [base_user_role_company](20.0/base_user_role_company) | OCA/server-backend | 19.0 | `d6b0897` | AGPL-3 | 7 | 7 | none | not yet |
@@ -131,13 +131,6 @@
 | [connector](20.0/connector) | OCA/connector | 19.0 | `cce7654` | LGPL-3 | 31 | 31 | none | not yet |
 | [connector_importer](20.0/connector_importer) | OCA/connector-interfaces | 19.0 | `a885b07` | AGPL-3 | 50 | 55 | reviewed, accepted | not yet |
 | [connector_mercadolibre](20.0/connector_mercadolibre) | OCA/connector-mercadolibre | 19.0 | `45e0f2e` | AGPL-3 | 49 | 49 | reviewed | not yet |
-| [contract](20.0/contract) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 77 | 77 | reviewed, accepted | not yet |
-| [contract_line_successor](20.0/contract_line_successor) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 45 | 45 | none | not yet |
-| [contract_payment_mode](20.0/contract_payment_mode) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 2 | 2 | none | not yet |
-| [contract_sale](20.0/contract_sale) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 4 | 4 | none | not yet |
-| [contract_sale_generation](20.0/contract_sale_generation) | OCA/contract | 18.0 | `aa96753` | AGPL-3 | 13 | 13 | reviewed | not yet |
-| [contract_termination](20.0/contract_termination) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 3 | 3 | none | not yet |
-| [contract_variable_quantity](20.0/contract_variable_quantity) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 5 | 5 | reviewed | not yet |
 | [crm_claim](20.0/crm_claim) | OCA/crm | 19.0 | `16ad7c9` | AGPL-3 | 3 | 3 | reviewed | not yet |
 | [crm_lead_code](20.0/crm_lead_code) | OCA/crm | 19.0 | `16ad7c9` | AGPL-3 | 3 | 3 | none | not yet |
 | [crm_phonecall](20.0/crm_phonecall) | OCA/crm | 19.0 | `16ad7c9` | AGPL-3 | 9 | 9 | none | not yet |
@@ -198,7 +191,6 @@
 | [l10n_br_cnab_structure](20.0/l10n_br_cnab_structure) | OCA/l10n-brazil | 18.0 | `c50420c` | AGPL-3 | 35 | 35 | reviewed | not yet |
 | [l10n_br_coa_generic](20.0/l10n_br_coa_generic) | OCA/l10n-brazil | 19.0 | `d6b9f0d` | AGPL-3 | 1 | 1 | none | not yet |
 | [l10n_br_coa_simple](20.0/l10n_br_coa_simple) | OCA/l10n-brazil | 19.0 | `d6b9f0d` | AGPL-3 | 1 | 1 | none | not yet |
-| [l10n_br_contract](20.0/l10n_br_contract) | OCA/l10n-brazil | 18.0 | `c50420c` | AGPL-3 | 3 | 3 | reviewed | not yet |
 | [l10n_br_currency_rate_update](20.0/l10n_br_currency_rate_update) | OCA/l10n-brazil | 19.0 | `d6b9f0d` | AGPL-3 | 7 | 7 | none | not yet |
 | [l10n_br_fiscal_certificate](20.0/l10n_br_fiscal_certificate) | OCA/l10n-brazil | 19.0 | `d6b9f0d` | AGPL-3 | 9 | 9 | reviewed | not yet |
 | [l10n_br_fiscal_dfe](20.0/l10n_br_fiscal_dfe) | OCA/l10n-brazil | 18.0 | `c50420c` | AGPL-3 | 11 | 11 | reviewed, accepted | not yet |
@@ -241,7 +233,6 @@
 | [mail_restrict_follower_selection](20.0/mail_restrict_follower_selection) | OCA/mail | 19.0 | `849f3ce` | AGPL-3 | 5 | 5 | reviewed | not yet |
 | [mail_template_substitute](20.0/mail_template_substitute) | OCA/mail | 19.0 | `849f3ce` | AGPL-3 | 6 | 6 | reviewed | not yet |
 | [maintenance_equipment_certification](20.0/maintenance_equipment_certification) | OCA/maintenance | 19.0 | `7fe288e` | AGPL-3 | 3 | 3 | reviewed | not yet |
-| [maintenance_equipment_contract](20.0/maintenance_equipment_contract) | OCA/maintenance | 18.0 | `5321ea3` | AGPL-3 | 2 | 2 | none | not yet |
 | [maintenance_equipment_status](20.0/maintenance_equipment_status) | OCA/maintenance | 19.0 | `7fe288e` | LGPL-3 | 1 | 1 | reviewed | not yet |
 | [maintenance_equipment_tags](20.0/maintenance_equipment_tags) | OCA/maintenance | 19.0 | `7fe288e` | AGPL-3 | 2 | 2 | none | not yet |
 | [maintenance_plan](20.0/maintenance_plan) | OCA/maintenance | 19.0 | `7fe288e` | AGPL-3 | 14 | 14 | reviewed | not yet |
@@ -296,7 +287,6 @@
 | [product_brand](20.0/product_brand) | OCA/brand | 19.0 | `a89a1c2` | AGPL-3 | 3 | 3 | reviewed, accepted | not yet |
 | [product_category_code](20.0/product_category_code) | OCA/product-attribute | 19.0 | `5545a68` | AGPL-3 | 5 | 5 | reviewed | not yet |
 | [product_code_unique](20.0/product_code_unique) | OCA/product-attribute | 19.0 | `5545a68` | AGPL-3 | 2 | 2 | reviewed | not yet |
-| [product_contract](20.0/product_contract) | OCA/contract | 19.0 | `882afdf` | AGPL-3 | 39 | 42 | none | not yet |
 | [product_dimension](20.0/product_dimension) | OCA/product-attribute | 19.0 | `5545a68` | AGPL-3 | 4 | 6 | none | not yet |
 | [product_logistics_uom](20.0/product_logistics_uom) | OCA/product-attribute | 19.0 | `5545a68` | AGPL-3 | 12 | 12 | reviewed, accepted | not yet |
 | [product_lot_sequence](20.0/product_lot_sequence) | OCA/product-attribute | 18.0 | `aeb1f19` | AGPL-3 | 7 | 7 | reviewed | not yet |
@@ -341,7 +331,6 @@
 | [purchase_order_line_sequence](20.0/purchase_order_line_sequence) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 3 | 3 | reviewed | not yet |
 | [purchase_order_type](20.0/purchase_order_type) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 24 | 24 | reviewed | not yet |
 | [purchase_reception_status](20.0/purchase_reception_status) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 3 | 3 | reviewed | not yet |
-| [purchase_request](20.0/purchase_request) | OCA/purchase-workflow | 19.0 | `f9031f1` | LGPL-3 | 28 | 28 | reviewed | not yet |
 | [purchase_requisition_line_description](20.0/purchase_requisition_line_description) | OCA/purchase-workflow | 18.0 | `792b144` | AGPL-3 | 1 | 1 | none | not yet |
 | [purchase_sale_inter_company](20.0/purchase_sale_inter_company) | OCA/multi-company | 19.0 | `2992d5a` | AGPL-3 | 15 | 15 | none | not yet |
 | [purchase_stock_analytic](20.0/purchase_stock_analytic) | OCA/account-analytic | 18.0 | `309045a` | AGPL-3 | 1 | 1 | reviewed | not yet |
@@ -466,7 +455,7 @@ Some listed modules depend on a community module that is not listed here. The te
 | `account_statement_import_base` | no tests of its own | `account_statement_import_file`, `account_statement_import_generate_unique_id`, `account_statement_import_online` |
 | `analytic_operating_unit` | no tests of its own | `account_operating_unit` |
 | `base_cron_exclusion` | community 20.0 | `ddmrp` |
-| `base_maintenance` | no tests of its own | `maintenance_equipment_contract`, `maintenance_equipment_status`, `maintenance_plan` |
+| `base_maintenance` | no tests of its own | `maintenance_equipment_status`, `maintenance_plan` |
 | `base_unece` | no tests of its own | `account_tax_unece` |
 | `base_user_role` | not all of its tests run yet | `base_user_role_company`, `base_user_role_history` |
 | `base_view_inheritance_extension` | community 20.0 | `account_invoice_transmit_method`, `account_operating_unit`, `purchase_allowed_product`, `purchase_blanket_order`, `stock_inventory_preparation_filter`, `web_m2x_options_manager` |
@@ -476,7 +465,7 @@ Some listed modules depend on a community module that is not listed here. The te
 | `document_knowledge` | community 20.0 | `document_page_access_group` |
 | `document_page` | community 20.0 | `document_page_access_group`, `document_page_reference` |
 | `document_page_procedure` | no tests of its own | `mgmtsystem_nonconformity` |
-| `l10n_br_account` | not all of its tests run yet | `l10n_br_contract`, `l10n_br_purchase`, `l10n_br_sale` |
+| `l10n_br_account` | not all of its tests run yet | `l10n_br_purchase`, `l10n_br_sale` |
 | `l10n_br_coa` | not all of its tests run yet | `l10n_br_coa_generic`, `l10n_br_coa_simple` |
 | `l10n_br_fiscal` | not all of its tests run yet | `l10n_br_fiscal_certificate`, `l10n_br_fiscal_dfe`, `l10n_br_fiscal_edi` |
 | `l10n_fr_state` | community 20.0 | `l10n_fr_department` |

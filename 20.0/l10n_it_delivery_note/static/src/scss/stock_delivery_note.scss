@@ -109,10 +109,6 @@
 
 .btn,
 .o_icon_button {
-    &.oi {
-        font-family: FontAwesome, Roboto, sans-serif;
-    }
-
     & > .oi:not(:last-child):before {
         margin-right: 0.5em;
     }
