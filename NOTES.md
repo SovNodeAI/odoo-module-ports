@@ -4,7 +4,7 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
-### 20 November 2026, 11 am: a row of our own checklist that we had not applied to the Odoo 20 list
+### 20 November 2026, 10:35 am: a row of our own checklist that we had not applied to the Odoo 20 list
 
 The checklist says: since 18.0, Duplicate in a list view copies every selected record in one call, so a
 `copy()` that begins with `ensure_one()` works from the form and raises "Expected singleton" from the list.
