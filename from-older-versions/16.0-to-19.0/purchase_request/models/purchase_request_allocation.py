@@ -108,14 +108,14 @@ class PurchaseRequestAllocation(models.Model):
         ) % {
             "product_name": html_escape(message_data["product_name"]),
             "product_qty": message_data["product_qty"],
-            "product_uom": message_data["product_uom"],
+            "product_uom": html_escape(message_data["product_uom"]),
         }
         message += "</ul>"
         return Markup(message)
 
     def _prepare_message_data(self, po_line, request, allocated_qty):
         return {
-            "request_name": request.name,
+            "request_name": html_escape(request.name),
             "po_name": po_line.order_id.name,
             "product_name": po_line.product_id.display_name,
             "product_qty": allocated_qty,

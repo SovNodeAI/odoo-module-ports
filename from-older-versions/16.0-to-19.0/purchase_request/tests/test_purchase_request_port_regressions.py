@@ -98,6 +98,29 @@ class TestPurchaseRequestPortRegressions(common.TransactionCase):
         self.assertEqual(single.state, "draft")
         self.assertNotIn(single.name, names)
 
+    def test_chatter_messages_escape_every_name(self):
+        """A name with markup in it is shown as text in the chatter messages."""
+        data = {
+            "request_name": "PR<b>1</b>",
+            "picking_name": "WH/IN/<i>1</i>",
+            "product_name": "Bolt <script>x</script>",
+            "product_qty": 2.0,
+            "product_uom": "Unit<u>s</u>",
+            "location_name": "WH/<b>Stock</b>",
+            "requestor": "Ann <a href='x'>B</a>",
+        }
+        move_line = self.env["stock.move.line"]
+        for message in (
+            move_line._purchase_request_confirm_done_message_content(data),
+            move_line._picking_confirm_done_message_content(data),
+            self.env["purchase.order.line"]._purchase_request_confirm_done_message_content(
+                data
+            ),
+        ):
+            for raw in ("<b>1</b>", "<i>1</i>", "<script>", "<u>s</u>", "<b>Stock</b>", "<a href"):
+                self.assertNotIn(raw, str(message))
+            self.assertIn("PR&lt;b&gt;1&lt;/b&gt;", str(message))
+
     def test_procurement_allows_false_destination_moves(self):
         request = self._create_request()
         procurement = SimpleNamespace(

@@ -15,16 +15,16 @@ class PurchaseOrder(models.Model):
         if not request_dict:
             request_dict = {}
         title = _("Order confirmation %(po_name)s for your Request %(pr_name)s") % {
-            "po_name": self.name,
-            "pr_name": request.name,
+            "po_name": html_escape(self.name),
+            "pr_name": html_escape(request.name),
         }
         message = "<h3>%s</h3><ul>" % title
         message += _(
             "The following requested items from Purchase Request %(pr_name)s "
             "have now been confirmed in Purchase Order %(po_name)s:"
         ) % {
-            "po_name": self.name,
-            "pr_name": request.name,
+            "po_name": html_escape(self.name),
+            "pr_name": html_escape(request.name),
         }
 
         for line in request_dict.values():
@@ -34,7 +34,7 @@ class PurchaseOrder(models.Model):
             ) % {
                 "prl_name": html_escape(line["name"]),
                 "prl_qty": line["product_qty"],
-                "prl_uom": line["product_uom"],
+                "prl_uom": html_escape(line["product_uom"]),
                 "prl_date_planned": line["date_planned"],
             }
         message += "</ul>"
@@ -197,7 +197,7 @@ class PurchaseOrderLine(models.Model):
     @api.model
     def _purchase_request_confirm_done_message_content(self, message_data):
         title = (
-            _("Service confirmation for Request %s") % (message_data["request_name"])
+            _("Service confirmation for Request %s") % html_escape(message_data["request_name"])
         )
         message = "<h3>%s</h3>" % title
         message += _(
@@ -205,8 +205,8 @@ class PurchaseOrderLine(models.Model):
             " Request %(request_name)s requested by %(requestor)s "
             "have now been received:"
         ) % {
-            "request_name": message_data["request_name"],
-            "requestor": message_data["requestor"],
+            "request_name": html_escape(message_data["request_name"]),
+            "requestor": html_escape(message_data["requestor"]),
         }
         message += "<ul>"
         message += _(
@@ -215,7 +215,7 @@ class PurchaseOrderLine(models.Model):
         ) % {
             "product_name": html_escape(message_data["product_name"]),
             "product_qty": message_data["product_qty"],
-            "product_uom": message_data["product_uom"],
+            "product_uom": html_escape(message_data["product_uom"]),
         }
         message += "</ul>"
         return Markup(message)

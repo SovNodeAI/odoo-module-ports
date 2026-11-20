@@ -15,8 +15,8 @@ class StockMoveLine(models.Model):
         title = _(
             "Receipt confirmation %(picking_name)s for your Request %(request_name)s"
         ) % {
-            "picking_name": message_data["picking_name"],
-            "request_name": message_data["request_name"],
+            "picking_name": html_escape(message_data["picking_name"]),
+            "request_name": html_escape(message_data["request_name"]),
         }
         message = "<h3>%s</h3>" % title
         message += _(
@@ -24,9 +24,9 @@ class StockMoveLine(models.Model):
             "have now been received in %(location_name)s using Picking "
             "%(picking_name)s:"
         ) % {
-            "request_name": message_data["request_name"],
-            "location_name": message_data["location_name"],
-            "picking_name": message_data["picking_name"],
+            "request_name": html_escape(message_data["request_name"]),
+            "location_name": html_escape(message_data["location_name"]),
+            "picking_name": html_escape(message_data["picking_name"]),
         }
         message += "<ul>"
         message += _(
@@ -35,7 +35,7 @@ class StockMoveLine(models.Model):
         ) % {
             "product_name": html_escape(message_data["product_name"]),
             "product_qty": message_data["product_qty"],
-            "product_uom": message_data["product_uom"],
+            "product_uom": html_escape(message_data["product_uom"]),
         }
         message += "</ul>"
         return Markup(message)
@@ -43,7 +43,7 @@ class StockMoveLine(models.Model):
     @api.model
     def _picking_confirm_done_message_content(self, message_data):
         title = (
-            _("Receipt confirmation for Request %s") % (message_data["request_name"])
+            _("Receipt confirmation for Request %s") % html_escape(message_data["request_name"])
         )
         message = "<h3>%s</h3>" % title
         message += _(
@@ -51,9 +51,9 @@ class StockMoveLine(models.Model):
             "requested by %(requestor)s "
             "have now been received in %(location_name)s:"
         ) % {
-            "request_name": message_data["request_name"],
-            "requestor": message_data["requestor"],
-            "location_name": message_data["location_name"],
+            "request_name": html_escape(message_data["request_name"]),
+            "requestor": html_escape(message_data["requestor"]),
+            "location_name": html_escape(message_data["location_name"]),
         }
         message += "<ul>"
         message += _(
@@ -62,14 +62,14 @@ class StockMoveLine(models.Model):
         ) % {
             "product_name": html_escape(message_data["product_name"]),
             "product_qty": message_data["product_qty"],
-            "product_uom": message_data["product_uom"],
+            "product_uom": html_escape(message_data["product_uom"]),
         }
         message += "</ul>"
         return Markup(message)
 
     def _prepare_message_data(self, ml, request, allocated_qty):
         return {
-            "request_name": request.name,
+            "request_name": html_escape(request.name),
             "picking_name": ml.picking_id.name,
             "product_name": ml.product_id.display_name,
             "product_qty": allocated_qty,

@@ -10,6 +10,6 @@ On 20 November 2026 all ports listed here were withdrawn for a second review: ea
 |---|---|---|---|---|---|---|---|
 | 17.0 | 18.0 | [partner_firstname](from-older-versions/17.0-to-18.0/partner_firstname) | OCA/partner-contact | `7a5ddbd` | AGPL-3 | 66 | second review passed after 2 reads |
 | 15.0 | 19.0 | [auditlog](from-older-versions/15.0-to-19.0/auditlog) | OCA/server-tools | `85b4112` | AGPL-3 | 40 | second review passed after 2 reads; one point is the original's own behaviour, see NOTES.md |
-| 16.0 | 19.0 | [purchase_request](from-older-versions/16.0-to-19.0/purchase_request) | OCA/purchase-workflow | `e41f927` | LGPL-3 | 39 | second review passed after 3 reads; two behaviour changes, see NOTES.md |
+| 16.0 | 19.0 | [purchase_request](from-older-versions/16.0-to-19.0/purchase_request) | OCA/purchase-workflow | `e41f927` | LGPL-3 | 40 | second review passed after 3 reads; two behaviour changes, see NOTES.md |
 | 17.0 | 19.0 | [contract](from-older-versions/17.0-to-19.0/contract) | OCA/contract | `7a86582` | AGPL-3 | 119 | second review passed after 2 reads; one inherited limitation, see NOTES.md |
 | 17.0 | 19.0 | [helpdesk_mgmt](from-older-versions/17.0-to-19.0/helpdesk_mgmt) | OCA/helpdesk | `27dfbf3` | AGPL-3 | 38 | second review passed after 3 reads; one behaviour change, see NOTES.md |
