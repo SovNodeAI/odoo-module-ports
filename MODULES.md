@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-406 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 4951 test runs in all.
+409 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5055 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -91,6 +91,7 @@
 | [auth_session_timeout](20.0/auth_session_timeout) | OCA/server-auth | 19.0 | `ae09869` | AGPL-3 | 12 | 12 | reviewed | not yet |
 | [auth_signup_verify_email](20.0/auth_signup_verify_email) | OCA/server-auth | 18.0 | `23df47b` | AGPL-3 | 3 | 3 | reviewed | not yet |
 | [auth_user_case_insensitive](20.0/auth_user_case_insensitive) | OCA/server-auth | 19.0 | `ae09869` | AGPL-3 | 3 | 3 | none | not yet |
+| [automation_oca](20.0/automation_oca) | OCA/automation | 18.0 | `c2d94a9` | AGPL-3 | 70 | 73 | reviewed, accepted | passed |
 | [autovacuum_message_attachment](20.0/autovacuum_message_attachment) | OCA/server-tools | 18.0 | `55308ba` | LGPL-3 | 4 | 4 | reviewed | not yet |
 | [barcode_scanner](20.0/barcode_scanner) | OCA/barcode-interface | 18.0 | `b1c4eb8` | AGPL-3 | 1 | 1 | reviewed, accepted | not yet |
 | [barcode_stock](20.0/barcode_stock) | OCA/barcode-interface | 18.0 | `b1c4eb8` | AGPL-3 | 59 | 59 | reviewed, accepted | not yet |
@@ -261,6 +262,8 @@
 | [partner_stage](20.0/partner_stage) | OCA/partner-contact | 19.0 | `26e80e9` | AGPL-3 | 6 | 6 | none | not yet |
 | [partner_statement](20.0/partner_statement) | OCA/account-financial-reporting | 19.0 | `94ad458` | AGPL-3 | 35 | 39 | reviewed, accepted | not yet |
 | [password_security](20.0/password_security) | OCA/server-auth | 19.0 | `ae09869` | LGPL-3 | 40 | 40 | reviewed | not yet |
+| [payroll](20.0/payroll) | OCA/payroll | 19.0 | `cbcaace` | LGPL-3 | 28 | 28 | reviewed, accepted | passed |
+| [payroll_account](20.0/payroll_account) | OCA/payroll | 18.0 | `d54bf91` | LGPL-3 | 3 | 3 | reviewed | not yet |
 | [pdf_xml_attachment](20.0/pdf_xml_attachment) | OCA/reporting-engine | 19.0 | `ba46b0d` | LGPL-3 | 4 | 4 | reviewed | not yet |
 | [portal_debranding](20.0/portal_debranding) | OCA/server-brand | 19.0 | `dacfe91` | LGPL-3 | 2 | 2 | none | not yet |
 | [portal_odoo_debranding](20.0/portal_odoo_debranding) | OCA/server-brand | 18.0 | `4f378e5` | LGPL-3 | 1 | 1 | none | not yet |

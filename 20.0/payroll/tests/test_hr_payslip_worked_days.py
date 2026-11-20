@@ -1,0 +1,180 @@
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
+import time
+from datetime import date, datetime
+
+from odoo.tests import Form
+
+from .common import TestPayslipBase
+
+
+class TestWorkedDays(TestPayslipBase):
+    def setUp(self):
+        super().setUp()
+
+        self.LeaveRequest = self.env["hr.leave"]
+        self.LeaveType = self.env["hr.work.entry.type"]
+
+        # create holiday type, with a code of its own so that the test tells it
+        # apart from the "GLOBAL" fallback used for global leaves
+        self.holiday_type = self.LeaveType.create(
+            {
+                "name": "TestLeaveType",
+                "code": "TESTLEAVE",
+                "count_as": "absence",
+                "allocation_validation_type": "no_validation",
+                "leave_validation_type": "no_validation",
+            }
+        )
+
+        # Create a full 7-day week so our tests don't fail on Sat. and Sun.
+        attendances = [
+            (0, 0, {
+                "dayofweek": day,
+                "hour_from": hour_from,
+                "hour_to": hour_to,
+            })
+            for day in ["0", "1", "2", "3", "4", "5", "6"]
+            for hour_from, hour_to in [(8, 12), (13, 17)]
+        ]
+        self.full_calendar = self.ResourceCalendar.create({
+            "name": "56 Hrs a week",
+            "attendance_ids": [(5, 0, 0)] + attendances,
+        })
+
+    def _common_contract_setup(self):
+        self.richard_emp.resource_id.calendar_id = self.full_calendar
+        self.richard_emp.version_ids.resource_calendar_id = self.full_calendar
+
+        # I put all eligible contracts (including Richard's) in an "open" state
+        self.apply_contract_cron()
+
+        self.env["hr.leave.allocation"].create(
+            {
+                "name": "Annual Time Off",
+                "employee_id": self.richard_emp.id,
+                "work_entry_type_id": self.holiday_type.id,
+                "number_of_days": 20,
+                "date_from": time.strftime("%Y-01-01"),
+                "date_to": time.strftime("%Y-12-31"),
+            }
+        )
+
+    def _common_contract_leave_setup(self):
+        self._common_contract_setup()
+
+        # Create and approve the leave
+        leave = self.LeaveRequest.create(
+            {
+                "name": "Hol11",
+                "employee_id": self.richard_emp.id,
+                "work_entry_type_id": self.holiday_type.id,
+                "request_date_from": date.today(),
+                "request_date_to": date.today(),
+            }
+        )
+        if leave.state != "validate":
+            leave.action_approve()
+
+    def test_worked_days_negative(self):
+        self._common_contract_leave_setup()
+
+        # Set system parameter
+        self.env["ir.config_parameter"].sudo().set_bool(
+            "payroll.leaves_positive", False
+        )
+
+        # I create an employee Payslip
+        frm = Form(self.Payslip)
+        frm.employee_id = self.richard_emp
+        richard_payslip = frm.save()
+
+        worked_days_codes = richard_payslip.worked_days_line_ids.mapped("code")
+        self.assertIn(
+            "TESTLEAVE", worked_days_codes, "The leave is in the 'Worked Days' list"
+        )
+        wdl_ids = richard_payslip.worked_days_line_ids.filtered(
+            lambda x: x.code == "TESTLEAVE"
+        )
+        self.assertEqual(len(wdl_ids), 1, "There is only one line matching the leave")
+        self.assertEqual(
+            wdl_ids[0].number_of_days,
+            -1.0,
+            "The days worked value is a NEGATIVE number",
+        )
+        self.assertEqual(
+            wdl_ids[0].number_of_hours,
+            -8.0,
+            "The hours worked value is a NEGATIVE number",
+        )
+
+    def test_leaves_positive(self):
+        self._common_contract_leave_setup()
+
+        # Set system parameter
+        self.env["ir.config_parameter"].sudo().set_bool(
+            "payroll.leaves_positive", True
+        )
+
+        # I create an employee Payslip
+        frm = Form(self.Payslip)
+        frm.employee_id = self.richard_emp
+        richard_payslip = frm.save()
+
+        worked_days_codes = richard_payslip.worked_days_line_ids.mapped("code")
+        self.assertIn(
+            "TESTLEAVE", worked_days_codes, "The leave is in the 'Worked Days' list"
+        )
+        wdl_ids = richard_payslip.worked_days_line_ids.filtered(
+            lambda x: x.code == "TESTLEAVE"
+        )
+        self.assertEqual(len(wdl_ids), 1, "There is only one line matching the leave")
+        self.assertEqual(
+            wdl_ids[0].number_of_days, 1.0, "The days worked value is a POSITIVE number"
+        )
+        self.assertEqual(
+            wdl_ids[0].number_of_hours,
+            8.0,
+            "The hours worked value is a POSITIVE number",
+        )
+
+    def test_global_leave_worked_days(self):
+        """A public holiday is a global leave: it has no time off request, hence no
+        time type. It must still produce a 'GLOBAL' worked days line instead of
+        crashing on the required 'code' field."""
+        self._common_contract_setup()
+
+        # Set system parameter
+        self.env["ir.config_parameter"].sudo().set_bool(
+            "payroll.leaves_positive", True
+        )
+
+        # A public holiday: a global leave, without resource nor time off request
+        self.env["resource.calendar.leaves"].create(
+            {
+                "name": "Public Holiday",
+                "calendar_id": self.full_calendar.id,
+                "date_from": datetime.combine(date.today(), datetime.min.time()),
+                "date_to": datetime.combine(date.today(), datetime.max.time()),
+            }
+        )
+
+        # I create an employee Payslip
+        frm = Form(self.Payslip)
+        frm.employee_id = self.richard_emp
+        richard_payslip = frm.save()
+
+        worked_days_codes = richard_payslip.worked_days_line_ids.mapped("code")
+        self.assertIn(
+            "GLOBAL", worked_days_codes, "The public holiday is in the 'Worked Days' list"
+        )
+        wdl_ids = richard_payslip.worked_days_line_ids.filtered(
+            lambda x: x.code == "GLOBAL"
+        )
+        self.assertEqual(len(wdl_ids), 1, "There is only one line for the holiday")
+        self.assertEqual(
+            wdl_ids[0].number_of_days, 1.0, "The holiday counts as one day"
+        )
+        self.assertEqual(
+            wdl_ids[0].number_of_hours, 8.0, "The holiday counts as eight hours"
+        )

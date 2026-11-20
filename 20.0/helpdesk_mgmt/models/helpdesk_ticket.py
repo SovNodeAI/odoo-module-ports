@@ -282,9 +282,10 @@ class HelpdeskTicket(models.Model):
         if len(self) != 1:
             # Since 18.0 Duplicate in a list view copies every selected record in one
             # call. One record at a time, each with its own copy of the defaults.
-            return self.browse().union(
-                *[record.copy(dict(default) if default else default) for record in self]
-            )
+            copies = self.browse()
+            for record in self:
+                copies |= record.copy(dict(default) if default else default)
+            return copies
         if default is None:
             default = {}
         if "number" not in default:

@@ -4,6 +4,28 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
+### 20 November 2026, 11:24 am: `automation_oca` and `payroll` are back, and a correction to our own correction
+
+Both were rejected on the first full read and have been through a fix round and a second read.
+
+`automation_oca`: the eight faults of the first read are dealt with. The second read left five points; we
+corrected the four that a user can meet. The one worth describing: a record whose target had been deleted
+disappeared from every list once that state was saved, even for administrators, who are meant to see such
+records. A test that failed first now covers it. 73 test runs pass. Still open is a remark on the tests:
+the browser test class also runs under other modules' test tags.
+
+`payroll`: public holidays have their own payslip line again, working days are computed in the employee's
+time zone without the `pytz` package, and the test that had hidden the first fault now creates a real public
+holiday. The second read found that the manifest still asked for `pytz`, which a clean Odoo 20 does not
+have, so the module would not have installed there; removed. 28 test runs pass. The modules that build on
+`payroll` return with it.
+
+The second point of that read was about us. At 10:35 am we changed seven `copy()` overrides so that
+duplicating several records works. We wrote the result as `self.browse().union(*[...])`. Odoo 20 accepts
+that and prints a warning: since 20.0 `union()` takes one iterable. The reviewer saw it within the hour.
+All of them now build the result with a plain loop, the tests of the seven modules were run again, and
+the warning is gone from the logs.
+
 ### 20 November 2026, 10:45 am: `partner_firstname` 15.0 to 18.0 is listed
 
 Two full reads. The first found seven points, among them one that damaged data: "Recalculate names" in the
@@ -313,7 +335,7 @@ The rule now: a module is listed only while every community module it depends on
 
 Also this evening: `mail_gateway` and `barcode_stock` came back from their web-code correction with all tests passing, including new ones. `mail_gateway` is listed again, with two visible changes written up under "Behaviour changes". `barcode_stock` waits for `barcode_scanner`, which it depends on.
 
-<!-- state --> State at 10:45 am on 20 November: 406 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_crm`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_mgmt_sla`, `helpdesk_ticket_partner_response`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_es_mis_report`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `mis_builder`, `mis_template_financial_report`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 45 of the modules listed on the morning of 18 November are still off.
+<!-- state --> State at 11:24 am on 20 November: 409 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `automation_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_crm`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_mgmt_sla`, `helpdesk_ticket_partner_response`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_es_mis_report`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `mis_builder`, `mis_template_financial_report`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 42 of the modules listed on the morning of 18 November are still off.
 
 ### 18 November 2026, late afternoon: values that no longer reach a called template
 
