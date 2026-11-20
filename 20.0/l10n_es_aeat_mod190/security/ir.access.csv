@@ -1,0 +1,10 @@
+id,name,model_id,group_id/id,operation,domain
+access_l10n_es_aeat_mod190_manager,l10n_es_aeat_mod190 manager,l10n.es.aeat.mod190.report,group_aeat_mod190,crud,
+access_res_partner_aeat_sensitive_data,res.partner AEAT sensitive data,res.partner,group_aeat_mod190,r,
+access_l10n_es_aeat_mod190_line_manager,l10n_es_aeat_mod190_line manager,l10n.es.aeat.mod190.report.line,group_aeat_mod190,crud,
+access_l10n_es_aeat_report_perception_key_invoice,l10n_es_aeat_report_perception_key_manager,l10n.es.aeat.report.perception.key,account.group_account_invoice,r,
+access_l10n_es_aeat_report_perception_key_readonly,l10n.es.aeat.report.perception.key readonly,l10n.es.aeat.report.perception.key,account.group_account_readonly,r,
+access_l10n_es_aeat_report_perception_subkey_invoice,l10n_es_aeat_report_perception_subkey_manager,l10n.es.aeat.report.perception.subkey,account.group_account_invoice,r,
+access_l10n_es_aeat_report_perception_subkey_readonly,l10n.es.aeat.report.perception.subkey readonly,l10n.es.aeat.report.perception.subkey,account.group_account_readonly,r,
+access_l10n_es_aeat_report_perception_key_manager,l10n_es_aeat_report_perception_key_manager,l10n.es.aeat.report.perception.key,group_aeat_mod190,r,
+access_l10n_es_aeat_report_perception_subkey_manager,l10n_es_aeat_report_perception_subkey_manager,l10n.es.aeat.report.perception.subkey,group_aeat_mod190,r,

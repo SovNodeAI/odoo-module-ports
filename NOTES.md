@@ -4,6 +4,16 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
+### 20 November 2026, night: a second review of the Odoo 20 list has begun, and its first three results are bad
+
+After the older-version ports, the second reviewer read the complete code change (19.0 to 20.0) of three of the larger modules on the Odoo 20 list. All three have faults that none of their tests touches.
+
+- `mis_builder`. Two findings checked by us in the source. In `models/aep.py` the 19.0 code combined the date conditions of the accounting modes with OR; the port combines them with AND, so a KPI that mixes modes drills down to nothing. In `models/mis_report.py` the port still calls `read_group(domain, fields, [])`; in Odoo 20 the second argument of `read_group` is the list to group by (`odoo/orm/models.py`), so a query that sums stored fields does not get what it asked for. The only query the tests run sums a field that is not stored and takes another path.
+- `account_financial_report`. One finding checked: the port relaxed a guard in `wizard/trial_balance_wizard.py` from exactly one unaffected-earnings account to at least one. The review lists more, about accounts without a code (Odoo 20's US chart has none), which we have not verified yet.
+- `helpdesk_mgmt`. The review lists portal values still set inside a `t-call` body in a form our own check did not catch, arguments of `portal.portal_my_contact` that Odoo 20 renamed, and more. Not verified yet.
+
+The three are off the list, with the modules that depend on them. What this means for the rest: until 20 November nobody had read the complete code change of any module on this list. Tests, a review of every changed test, and our static checks were the whole proof. For small modules that may be enough. For large ones it was not. [MODULES.md](MODULES.md) now has a column that says whether a module's second review is done, and the README says plainly what the list does and does not claim.
+
 ### 20 November 2026, later: ports from older versions withdrawn for a second review
 
 Until today this page carried ports made from the 15.0, 16.0 and 17.0 versions of well-known modules to 19.0 and 20.0. Each had passed every one of its own tests. The second reviewer then read three of them against the maintainers' own 19.0 version of the same module.
@@ -50,7 +60,7 @@ The rule now: a module is listed only while every community module it depends on
 
 Also this evening: `mail_gateway` and `barcode_stock` came back from their web-code correction with all tests passing, including new ones. `mail_gateway` is listed again, with two visible changes written up under "Behaviour changes". `barcode_stock` waits for `barcode_scanner`, which it depends on.
 
-<!-- state --> State at 2:01 am on 20 November: 321 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `automation_oca`, `barcode_scanner`, `barcode_stock`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_ticket_partner_response`, `partner_statement`, `product_configurator`. 126 of the modules listed on the morning of 18 November are still off.
+<!-- state --> State at 2:56 am on 20 November: 427 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `automation_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `ddmrp`, `ddmrp_cron_actions_as_job`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `partner_statement`, `purchase_tier_validation`, `rma_sale`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 24 of the modules listed on the morning of 18 November are still off.
 
 ### 18 November 2026, late afternoon: values that no longer reach a called template
 

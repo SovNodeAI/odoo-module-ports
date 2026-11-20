@@ -1,0 +1,26 @@
+id,name,model_id,group_id/id,operation,domain
+access_riba_slip_uinvoice,riba_slip,riba.slip,account.group_account_invoice,crud,
+access_riba_slip_group_invoice,riba_slip group invoice,riba.slip,account.group_account_invoice,crud,
+access_riba_slip_user,riba_slip user,riba.slip,base.group_user,r,
+access_riba_slip_accountant,riba_slip accountant,riba.slip,account.group_account_user,r,
+access_riba_slip_line_uinvoice,riba_slip_line,riba.slip.line,account.group_account_invoice,crud,
+access_riba_slip_line_group_invoice,riba_slip_line group invoice,riba.slip.line,account.group_account_invoice,crud,
+access_riba_slip_line_user,riba_slip_line user,riba.slip.line,base.group_user,r,
+access_riba_slip_line_accountant,riba_slip_line accountant,riba.slip.line,account.group_account_user,r,
+access_riba_slip_move_line_uinvoice,riba_slip_move_line,riba.slip.move.line,account.group_account_invoice,crud,
+access_riba_slip_move_line_group_invoice,riba_slip_move_line group invoice,riba.slip.move.line,account.group_account_invoice,crud,
+access_riba_slip_move_line_user,riba_slip_move_line user,riba.slip.move.line,base.group_user,r,
+access_riba_slip_move_line_accountant,riba_slip_move_line accountant,riba.slip.move.line,account.group_account_user,r,
+access_riba_configuration_manager,riba_configuration,riba.configuration,account.group_account_manager,crud,
+access_riba_configuration_invoice,riba_configuration invoice,riba.configuration,account.group_account_invoice,r,
+access_riba_issue,riba_issue,riba.issue,account.group_account_invoice,crud,
+access_riba_past_due,riba_past_due,riba.past_due,account.group_account_invoice,crud,
+access_riba_credit,riba_credit,riba.credit,account.group_account_invoice,crud,
+access_riba_file_export,riba_file_export,riba.file.export,account.group_account_invoice,crud,
+access_presentation_riba_issue,access_presentation_riba_issue,presentation.riba.issue,account.group_account_invoice,crud,
+access_riba_due_date_settlement,riba_due_date_settlement,riba.due.date.settlement,account.group_account_invoice,crud,
+access_riba_payment_date,riba_payment_date,riba.payment.date,account.group_account_invoice,crud,
+access_riba_multiple_payment_date,Full access to Pay multiple RiBa lines,riba.payment.multiple,account.group_account_invoice,crud,
+riba_slip_company_rule,RiBa slip multi-company,riba.slip,,crud,"['|',('company_id','=',False),('company_id','in',company_ids)]"
+riba_slip_line_company_rule,RiBa slip line multi-company,riba.slip.line,,crud,"['|',('company_id','=',False),('company_id','in',company_ids)]"
+riba_configuration_company_rule,Ri.Ba. configuration multi-company,riba.configuration,,crud,"['|',('company_id','=',False),('company_id','in',company_ids)]"

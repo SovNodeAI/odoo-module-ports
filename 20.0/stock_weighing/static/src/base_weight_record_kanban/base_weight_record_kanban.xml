@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t
+        t-name="stock_weighing.KanbanHeader"
+        t-inherit="web.KanbanHeader"
+        t-inherit-mode="primary"
+    >
+        <xpath expr="//t[@t-out='this.odoomark(this.group.displayName)']" position="before">
+            <span class="me-2">
+                <i
+                    class="oi oi-filled text-warning" data-icon="folder"
+                    role="button"
+                    aria-label="Fold"
+                    title="Fold"
+                    t-on-click.stop="this.toggleGroup"
+                />
+            </span>
+        </xpath>
+        <xpath expr="//span[@t-out='this.odoomark(this.group.displayName)']" position="before">
+            <span class="me-2">
+                <i
+                    class="oi oi-filled text-warning" data-icon="folder_open"
+                    role="button"
+                    aria-label="Unfold"
+                    title="Unfold"
+                    t-on-click.stop.prevent="this.toggleGroup"
+                />
+            </span>
+            <button
+                t-if="this.show_weighing_print_button"
+                class="btn btn-secondary me-2"
+                title="Print labels"
+                t-on-click.prevent="this.onPrintLabels"
+            >
+                <i class="oi" data-icon="print" role="image" />
+            </button>
+        </xpath>
+        <xpath expr="//span[@t-out='this.odoomark(this.group.displayName)']" position="after">
+            <button
+                t-if="!this.group.isFolded and this.group.groupByField.relation"
+                class="btn btn-link"
+                title="Open record"
+                t-on-click.prevent="this.onOpenColumn"
+            >
+                <i class="oi" data-icon="open_in_new" role="image" />
+            </button>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,2 @@
+id,name,model_id,group_id/id,operation,domain
+access_online_bank_statement_provider_existing,access_online_bank_statement_provider_existing,online.bank.statement.provider.existing,account.group_account_user,cru,

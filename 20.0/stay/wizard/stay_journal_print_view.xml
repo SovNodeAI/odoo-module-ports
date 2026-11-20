@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2014-2021 Barroux Abbey (www.barroux.org)
+  Copyright 2014-2021 Akretion France (www.akretion.com)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  @author: Brother Bernard <informatique@barroux.org>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="stay_journal_print_form" model="ir.ui.view">
+        <field name="name">stay_journal_print.form</field>
+        <field name="model">stay.journal.print</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="main">
+                    <field name="report_type" invisible="1" />
+                    <field name="date" />
+                    <field name="date_label" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                </group>
+                <footer>
+                    <button
+                        type="object"
+                        name="print_journal"
+                        string="Get Report"
+                        class="btn-primary"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="stay_fire_journal_print_action" model="ir.actions.act_window">
+        <field name="name">Fire Report</field>
+        <field name="res_model">stay.journal.print</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_report_type': 'fire'}</field>
+    </record>
+
+    <record id="stay_general_journal_print_action" model="ir.actions.act_window">
+        <field name="name">General Report</field>
+        <field name="res_model">stay.journal.print</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_report_type': 'general'}</field>
+    </record>
+
+    <record id="stay_meal_journal_print_action" model="ir.actions.act_window">
+        <field name="name">Meals Report</field>
+        <field name="res_model">stay.journal.print</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_report_type': 'meal'}</field>
+    </record>
+
+    <record id="stay_arrival_journal_print_action" model="ir.actions.act_window">
+        <field name="name">Arrival Report</field>
+        <field name="res_model">stay.journal.print</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_report_type': 'arrival'}</field>
+    </record>
+
+    <menuitem
+        id="stay_fire_journal_print_menu"
+        action="stay_fire_journal_print_action"
+        parent="stay_report_menu"
+        sequence="20"
+    />
+
+    <menuitem
+        id="stay_general_journal_print_menu"
+        action="stay_general_journal_print_action"
+        parent="stay_report_menu"
+        sequence="30"
+    />
+
+    <menuitem
+        id="stay_meal_journal_print_menu"
+        action="stay_meal_journal_print_action"
+        parent="stay_report_menu"
+        sequence="40"
+    />
+
+    <menuitem
+        id="stay_arrival_journal_print_menu"
+        action="stay_arrival_journal_print_action"
+        parent="stay_report_menu"
+        sequence="50"
+    />
+</odoo>

@@ -1,0 +1,19 @@
+id,name,model_id,group_id/id,operation,domain
+access_social_media_user,social.media user,social.media,social_media_base.group_social_media_user,r,
+access_social_media_manager,social.media manager,social.media,social_media_base.group_social_media_manager,crud,
+access_social_account_manager,social.account manager,social.account,social_media_base.group_social_media_manager,crud,
+social_account_rule_user,Social media accounts: only the ones the user is responsible for,social.account,social_media_base.group_social_media_user,ru,"[('user_id', '=', user.id)]"
+access_social_account_create_user,social.account create user,social.account,social_media_base.group_social_media_user,c,
+social_account_rule_company,Social media accounts: multi-company,social.account,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_social_account_statistics_manager,social.account.statistics manager,social.account.statistics,social_media_base.group_social_media_manager,crud,
+social_account_statistics_rule_user,Social media account statistics: only the ones of the accounts the user is responsible for,social.account.statistics,social_media_base.group_social_media_user,r,"[('user_id', '=', user.id)]"
+social_account_statistics_rule_company,Social media account statistics: multi-company,social.account.statistics,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_social_post_manager,social.post manager,social.post,social_media_base.group_social_media_manager,crud,
+social_post_rule_user,Social media posts: only the ones the user is responsible for,social.post,social_media_base.group_social_media_user,r,"[('user_id', '=', user.id)]"
+access_social_post_write_user,social.post write user,social.post,social_media_base.group_social_media_user,cud,
+access_social_post_account_manager,social.post.account manager,social.post.account,social_media_base.group_social_media_manager,crud,
+social_post_account_rule_user,Social media post accounts: only the ones of his own accounts,social.post.account,social_media_base.group_social_media_user,r,"[('user_id', '=', user.id)]"
+access_social_post_account_write_user,social.post.account write user,social.post.account,social_media_base.group_social_media_user,cud,
+wizard_social_account_rule_own,Social media account wizard: own records only,wizard.social.account,,crud,"[('create_uid', '=', user.id)]"
+access_wizard_social_account_user,wizard.social.account user,wizard.social.account,social_media_base.group_social_media_user,crud,
+access_link_tracker_social_media_user,link.tracker social media user,link.tracker,social_media_base.group_social_media_user,cru,

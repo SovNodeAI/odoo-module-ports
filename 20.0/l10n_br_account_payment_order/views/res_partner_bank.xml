@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright (C) 2024-Today - Akretion (<http://www.akretion.com>).
+  @author Magno Costa <magno.costa@akretion.com.br>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_res_partner_bank_form" model="ir.ui.view">
+        <field name="name">res.partner.bank.form (in l10n_br_account_payment_order)</field>
+        <field name="model">res.partner.bank</field>
+        <field name="priority">999</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form" />
+        <field name="arch" type="xml">
+            <!-- Odoo 20 removed ``bank_id`` from the bank account: the CNAB
+            logic restores it to point to the Brazilian bank directory. -->
+            <field name="account_number" position="after">
+                <field name="bank_id" />
+            </field>
+        </field>
+    </record>
+</odoo>

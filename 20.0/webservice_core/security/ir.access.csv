@@ -1,0 +1,7 @@
+id,name,model_id,group_id/id,operation,domain
+access_webservice_backend_edit,webservice_backend edit,webservice.backend,base.group_system,crud,
+access_webservice_endpoint_edit,webservice_endpoint edit,webservice.endpoint,base.group_system,crud,
+access_webservice_header_edit,webservice_header edit,webservice.header,base.group_system,crud,
+access_webservice_querystring_param_edit,webservice_querystring_param edit,webservice.querystring.param,base.group_system,crud,
+rule_webservice_backend_multi_company,webservice_backend multi-company,webservice.backend,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+rule_webservice_endpoint_multi_company,webservice_endpoint multi-company,webservice.endpoint,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"

@@ -1,0 +1,11 @@
+id,name,model_id,group_id/id,operation,domain
+access_account_loan,account.loan,account.loan,account.group_account_user,r,
+access_account_loan_manager,account.loan,account.loan,account.group_account_manager,crud,
+access_account_loan_line,account.loan.line,account.loan.line,account.group_account_user,r,
+access_account_loan_line_manager,account.loan.line,account.loan.line,account.group_account_manager,crud,
+access_account_loan_generate_wizard,access_account_loan_generate_wizard,account.loan.generate.wizard,account.group_account_manager,crud,
+access_account_loan_pay_amount,access_account_loan_pay_amount,account.loan.pay.amount,account.group_account_manager,crud,
+access_account_loan_increase_amount,access_account_loan_increase_amount,account.loan.increase.amount,account.group_account_manager,crud,
+access_account_loan_post,access_account_loan_post,account.loan.post,account.group_account_manager,crud,
+account_loan_multi_company_rule,Account loan multi-company,account.loan,,crud,"[('company_id', 'in', company_ids + [False])]"
+account_loan_line_multi_company_rule,Account loan line multi-company,account.loan.line,,crud,"[('company_id', 'in', company_ids + [False])]"

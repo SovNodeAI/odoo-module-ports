@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- In Odoo 20, record rules (ir.rule) have been merged into ir.access:
+    a record with a group and a domain is a permission restricted to that
+    domain. The former ir.model.access for contract.contract on the salesman
+    group is merged here, as permissions are OR-ed together. -->
+    <record id="contract_contract_own_salesman" model="ir.access">
+        <field name="name">See Own Contracts</field>
+        <field name="model_id" ref="contract.model_contract_contract" />
+        <field name="group_id" ref="sales_team.group_sale_salesman" />
+        <field name="operation">cru</field>
+        <field
+            name="domain"
+        >['|', ('user_id','=',user.id), ('user_id','=',False)]</field>
+    </record>
+    <record id="contract_contract_see_all" model="ir.access">
+        <field name="name">See All Contracts</field>
+        <field name="model_id" ref="contract.model_contract_contract" />
+        <field name="group_id" ref="sales_team.group_sale_salesman_all_leads" />
+        <field name="operation">cru</field>
+    </record>
+</odoo>

@@ -1,14 +1,16 @@
 # Odoo modules ported to Odoo 19 and 20, with test evidence
 
-SovNode ports Odoo modules to new Odoo versions. This repository is our public track record: community modules we have ported, each one installed on a clean database of the target version and proven by its own test suite.
+SovNode ports Odoo modules to new Odoo versions. This repository is our public track record: community modules we have ported, each one installed on a clean database of the target version and passing its own test suite.
 
-Figures as of 20 November 2026, 2:01 am (US Central). On 20 November a second review found that Odoo 20 no longer draws Font Awesome icons, which 71 modules listed here still named; they and the 43 modules that depend on them came off this page and return as their icons are converted and their tests pass again. On 18 November we found that our test machine had been skipping browser tests, and later that some templates handed values to other templates in a way Odoo 20 dropped. That evening we stopped listing a module while a module it depends on has an open defect. 126 of the 428 modules listed on the morning of 18 November are off this page until they are corrected and pass. [NOTES.md](NOTES.md) says what happened under "Corrections to this page".
+Figures as of 20 November 2026, 2:56 am (US Central). 24 of the 428 modules listed on the morning of 18 November are off this page until they are corrected and pass. Why, and every other correction we have had to make to this page (skipped browser tests, a template change in Odoo 20, icons Odoo 20 no longer draws, the ports from older versions), is in [NOTES.md](NOTES.md) under "Corrections to this page".
+
+**What this list is, and what it is not (20 November 2026).** Every module in [`20.0/`](20.0) installs on Odoo 20, passes every test it defines and passes our static checks. That is all the list claims. On 20 November a second reviewer read the complete code change of three of the larger ports that were on it: `mis_builder`, `helpdesk_mgmt` and `account_financial_report`. It found faults in all three that none of their tests touches. We confirmed the ones we have checked so far in the Odoo source: in `mis_builder`, a date condition the port had changed and a call to `read_group` with arguments Odoo 20 no longer takes; in `account_financial_report`, a guard the port had relaxed. Those three are off the list until corrected. The other modules have not had that review yet, so expect faults of the same kind among the larger ones. We are working through the list, and [MODULES.md](MODULES.md) says for each module whether its second review is done.
 
 ## What is here
 
 | Folder | What it holds | Table |
 |---|---|---|
-| [`20.0/`](20.0) | 321 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 3,143 test runs in all. | [MODULES.md](MODULES.md) |
+| [`20.0/`](20.0) | 427 community modules ported to Odoo 20.0. In every one, each test the module defines runs and passes, browser tests included: 5,406 test runs in all. | [MODULES.md](MODULES.md) |
 | Ports from Odoo 15.0, 16.0 and 17.0 | Withdrawn on 20 November 2026 for a second review. See below. | [OLDER_VERSIONS.md](OLDER_VERSIONS.md) |
 | [NOTES.md](NOTES.md) | Where a port had to change behaviour because Odoo removed something, and what we found in Odoo 18, 19 and 20 that affects any port. | |
 

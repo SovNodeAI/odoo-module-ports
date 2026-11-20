@@ -1,0 +1,4 @@
+id,name,model_id,group_id/id,operation,domain
+access_equipment_contract,equipment.contract.user,contract.contract,maintenance.group_equipment_manager,r,
+access_equipment_contract_modification,equipment.contract.modification.user,contract.modification,maintenance.group_equipment_manager,r,
+access_equipment_contract_line,equipment.contract.line.user,contract.line,maintenance.group_equipment_manager,r,

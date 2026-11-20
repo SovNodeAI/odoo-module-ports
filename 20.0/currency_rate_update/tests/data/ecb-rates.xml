@@ -1,0 +1,1342 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Envelope>
+  <subject>Reference rates</subject>
+  <Sender>
+    <name />
+  </Sender>
+  <Cube />
+  <Cube>
+    <Cube time="2026-11-13">
+      <Cube currency="USD" rate="1.1052" />
+      <Cube currency="CHF" rate="0.9266" />
+    </Cube>
+    <Cube time="2026-11-12">
+      <Cube currency="USD" rate="1.1081" />
+      <Cube currency="CHF" rate="0.9232" />
+    </Cube>
+    <Cube time="2026-11-11">
+      <Cube currency="USD" rate="1.1127" />
+      <Cube currency="CHF" rate="0.9234" />
+    </Cube>
+    <Cube time="2026-11-10">
+      <Cube currency="USD" rate="1.1214" />
+      <Cube currency="CHF" rate="0.9203" />
+    </Cube>
+    <Cube time="2026-11-09">
+      <Cube currency="USD" rate="1.1193" />
+      <Cube currency="CHF" rate="0.9164" />
+    </Cube>
+    <Cube time="2026-11-06">
+      <Cube currency="USD" rate="1.1165" />
+      <Cube currency="CHF" rate="0.9143" />
+    </Cube>
+    <Cube time="2026-11-05">
+      <Cube currency="USD" rate="1.1224" />
+      <Cube currency="CHF" rate="0.918" />
+    </Cube>
+    <Cube time="2026-11-04">
+      <Cube currency="USD" rate="1.1267" />
+      <Cube currency="CHF" rate="0.9188" />
+    </Cube>
+    <Cube time="2026-11-03">
+      <Cube currency="USD" rate="1.1179" />
+      <Cube currency="CHF" rate="0.9166" />
+    </Cube>
+    <Cube time="2026-11-02">
+      <Cube currency="USD" rate="1.1216" />
+      <Cube currency="CHF" rate="0.9193" />
+    </Cube>
+    <Cube time="2026-10-30">
+      <Cube currency="USD" rate="1.1172" />
+      <Cube currency="CHF" rate="0.9194" />
+    </Cube>
+    <Cube time="2026-10-29">
+      <Cube currency="USD" rate="1.113" />
+      <Cube currency="CHF" rate="0.9222" />
+    </Cube>
+    <Cube time="2026-10-28">
+      <Cube currency="USD" rate="1.1133" />
+      <Cube currency="CHF" rate="0.9247" />
+    </Cube>
+    <Cube time="2026-10-27">
+      <Cube currency="USD" rate="1.115" />
+      <Cube currency="CHF" rate="0.9239" />
+    </Cube>
+    <Cube time="2026-10-26">
+      <Cube currency="USD" rate="1.1188" />
+      <Cube currency="CHF" rate="0.9243" />
+    </Cube>
+    <Cube time="2026-10-23">
+      <Cube currency="USD" rate="1.1193" />
+      <Cube currency="CHF" rate="0.9227" />
+    </Cube>
+    <Cube time="2026-10-22">
+      <Cube currency="USD" rate="1.1205" />
+      <Cube currency="CHF" rate="0.9211" />
+    </Cube>
+    <Cube time="2026-10-21">
+      <Cube currency="USD" rate="1.1234" />
+      <Cube currency="CHF" rate="0.9256" />
+    </Cube>
+    <Cube time="2026-10-20">
+      <Cube currency="USD" rate="1.1215" />
+      <Cube currency="CHF" rate="0.9237" />
+    </Cube>
+    <Cube time="2026-10-19">
+      <Cube currency="USD" rate="1.1225" />
+      <Cube currency="CHF" rate="0.9261" />
+    </Cube>
+    <Cube time="2026-10-16">
+      <Cube currency="USD" rate="1.1253" />
+      <Cube currency="CHF" rate="0.9272" />
+    </Cube>
+    <Cube time="2026-10-15">
+      <Cube currency="USD" rate="1.1208" />
+      <Cube currency="CHF" rate="0.9305" />
+    </Cube>
+    <Cube time="2026-10-14">
+      <Cube currency="USD" rate="1.1195" />
+      <Cube currency="CHF" rate="0.933" />
+    </Cube>
+    <Cube time="2026-10-13">
+      <Cube currency="USD" rate="1.1188" />
+      <Cube currency="CHF" rate="0.9312" />
+    </Cube>
+    <Cube time="2026-10-12">
+      <Cube currency="USD" rate="1.1181" />
+      <Cube currency="CHF" rate="0.9312" />
+    </Cube>
+    <Cube time="2026-10-09">
+      <Cube currency="USD" rate="1.1206" />
+      <Cube currency="CHF" rate="0.9313" />
+    </Cube>
+    <Cube time="2026-10-08">
+      <Cube currency="USD" rate="1.1186" />
+      <Cube currency="CHF" rate="0.9326" />
+    </Cube>
+    <Cube time="2026-10-07">
+      <Cube currency="USD" rate="1.1177" />
+      <Cube currency="CHF" rate="0.9309" />
+    </Cube>
+    <Cube time="2026-10-06">
+      <Cube currency="USD" rate="1.1269" />
+      <Cube currency="CHF" rate="0.9359" />
+    </Cube>
+    <Cube time="2026-10-05">
+      <Cube currency="USD" rate="1.1204" />
+      <Cube currency="CHF" rate="0.9311" />
+    </Cube>
+    <Cube time="2026-10-02">
+      <Cube currency="USD" rate="1.1225" />
+      <Cube currency="CHF" rate="0.9279" />
+    </Cube>
+    <Cube time="2026-10-01">
+      <Cube currency="USD" rate="1.1298" />
+      <Cube currency="CHF" rate="0.9437" />
+    </Cube>
+    <Cube time="2026-09-30">
+      <Cube currency="USD" rate="1.1355" />
+      <Cube currency="CHF" rate="0.9478" />
+    </Cube>
+    <Cube time="2026-09-29">
+      <Cube currency="USD" rate="1.1355" />
+      <Cube currency="CHF" rate="0.9461" />
+    </Cube>
+    <Cube time="2026-09-28">
+      <Cube currency="USD" rate="1.1378" />
+      <Cube currency="CHF" rate="0.9464" />
+    </Cube>
+    <Cube time="2026-09-25">
+      <Cube currency="USD" rate="1.1403" />
+      <Cube currency="CHF" rate="0.9445" />
+    </Cube>
+    <Cube time="2026-09-24">
+      <Cube currency="USD" rate="1.1367" />
+      <Cube currency="CHF" rate="0.9409" />
+    </Cube>
+    <Cube time="2026-09-23">
+      <Cube currency="USD" rate="1.1411" />
+      <Cube currency="CHF" rate="0.939" />
+    </Cube>
+    <Cube time="2026-09-22">
+      <Cube currency="USD" rate="1.1463" />
+      <Cube currency="CHF" rate="0.9393" />
+    </Cube>
+    <Cube time="2026-09-21">
+      <Cube currency="USD" rate="1.149" />
+      <Cube currency="CHF" rate="0.9438" />
+    </Cube>
+    <Cube time="2026-09-18">
+      <Cube currency="USD" rate="1.146" />
+      <Cube currency="CHF" rate="0.9462" />
+    </Cube>
+    <Cube time="2026-09-17">
+      <Cube currency="USD" rate="1.1481" />
+      <Cube currency="CHF" rate="0.9466" />
+    </Cube>
+    <Cube time="2026-09-16">
+      <Cube currency="USD" rate="1.1537" />
+      <Cube currency="CHF" rate="0.9449" />
+    </Cube>
+    <Cube time="2026-09-15">
+      <Cube currency="USD" rate="1.1539" />
+      <Cube currency="CHF" rate="0.9441" />
+    </Cube>
+    <Cube time="2026-09-14">
+      <Cube currency="USD" rate="1.1551" />
+      <Cube currency="CHF" rate="0.9431" />
+    </Cube>
+    <Cube time="2026-09-11">
+      <Cube currency="USD" rate="1.1592" />
+      <Cube currency="CHF" rate="0.9451" />
+    </Cube>
+    <Cube time="2026-09-10">
+      <Cube currency="USD" rate="1.1616" />
+      <Cube currency="CHF" rate="0.9432" />
+    </Cube>
+    <Cube time="2026-09-09">
+      <Cube currency="USD" rate="1.1652" />
+      <Cube currency="CHF" rate="0.9404" />
+    </Cube>
+    <Cube time="2026-09-08">
+      <Cube currency="USD" rate="1.1614" />
+      <Cube currency="CHF" rate="0.9425" />
+    </Cube>
+    <Cube time="2026-09-07">
+      <Cube currency="USD" rate="1.1622" />
+      <Cube currency="CHF" rate="0.9405" />
+    </Cube>
+    <Cube time="2026-09-04">
+      <Cube currency="USD" rate="1.1622" />
+      <Cube currency="CHF" rate="0.9405" />
+    </Cube>
+    <Cube time="2026-09-03">
+      <Cube currency="USD" rate="1.1615" />
+      <Cube currency="CHF" rate="0.939" />
+    </Cube>
+    <Cube time="2026-09-02">
+      <Cube currency="USD" rate="1.1578" />
+      <Cube currency="CHF" rate="0.9424" />
+    </Cube>
+    <Cube time="2026-09-01">
+      <Cube currency="USD" rate="1.159" />
+      <Cube currency="CHF" rate="0.9394" />
+    </Cube>
+    <Cube time="2026-08-31">
+      <Cube currency="USD" rate="1.1596" />
+      <Cube currency="CHF" rate="0.9376" />
+    </Cube>
+    <Cube time="2026-08-28">
+      <Cube currency="USD" rate="1.1643" />
+      <Cube currency="CHF" rate="0.9364" />
+    </Cube>
+    <Cube time="2026-08-27">
+      <Cube currency="USD" rate="1.1645" />
+      <Cube currency="CHF" rate="0.9376" />
+    </Cube>
+    <Cube time="2026-08-26">
+      <Cube currency="USD" rate="1.1669" />
+      <Cube currency="CHF" rate="0.938" />
+    </Cube>
+    <Cube time="2026-08-25">
+      <Cube currency="USD" rate="1.1662" />
+      <Cube currency="CHF" rate="0.9361" />
+    </Cube>
+    <Cube time="2026-08-24">
+      <Cube currency="USD" rate="1.1664" />
+      <Cube currency="CHF" rate="0.9362" />
+    </Cube>
+    <Cube time="2026-08-21">
+      <Cube currency="USD" rate="1.1699" />
+      <Cube currency="CHF" rate="0.9353" />
+    </Cube>
+    <Cube time="2026-08-20">
+      <Cube currency="USD" rate="1.1681" />
+      <Cube currency="CHF" rate="0.9333" />
+    </Cube>
+    <Cube time="2026-08-19">
+      <Cube currency="USD" rate="1.1605" />
+      <Cube currency="CHF" rate="0.9402" />
+    </Cube>
+    <Cube time="2026-08-18">
+      <Cube currency="USD" rate="1.1576" />
+      <Cube currency="CHF" rate="0.9406" />
+    </Cube>
+    <Cube time="2026-08-17">
+      <Cube currency="USD" rate="1.1593" />
+      <Cube currency="CHF" rate="0.9389" />
+    </Cube>
+    <Cube time="2026-08-14">
+      <Cube currency="USD" rate="1.1567" />
+      <Cube currency="CHF" rate="0.939" />
+    </Cube>
+    <Cube time="2026-08-13">
+      <Cube currency="USD" rate="1.1534" />
+      <Cube currency="CHF" rate="0.9373" />
+    </Cube>
+    <Cube time="2026-08-12">
+      <Cube currency="USD" rate="1.1545" />
+      <Cube currency="CHF" rate="0.9366" />
+    </Cube>
+    <Cube time="2026-08-11">
+      <Cube currency="USD" rate="1.154" />
+      <Cube currency="CHF" rate="0.9351" />
+    </Cube>
+    <Cube time="2026-08-10">
+      <Cube currency="USD" rate="1.1555" />
+      <Cube currency="CHF" rate="0.934" />
+    </Cube>
+    <Cube time="2026-08-07">
+      <Cube currency="USD" rate="1.1535" />
+      <Cube currency="CHF" rate="0.9347" />
+    </Cube>
+    <Cube time="2026-08-06">
+      <Cube currency="USD" rate="1.1542" />
+      <Cube currency="CHF" rate="0.9346" />
+    </Cube>
+    <Cube time="2026-08-05">
+      <Cube currency="USD" rate="1.1554" />
+      <Cube currency="CHF" rate="0.9345" />
+    </Cube>
+    <Cube time="2026-08-04">
+      <Cube currency="USD" rate="1.1515" />
+      <Cube currency="CHF" rate="0.9319" />
+    </Cube>
+    <Cube time="2026-08-03">
+      <Cube currency="USD" rate="1.1535" />
+      <Cube currency="CHF" rate="0.932" />
+    </Cube>
+    <Cube time="2026-07-31">
+      <Cube currency="USD" rate="1.1485" />
+      <Cube currency="CHF" rate="0.9304" />
+    </Cube>
+    <Cube time="2026-07-30">
+      <Cube currency="USD" rate="1.1476" />
+      <Cube currency="CHF" rate="0.9324" />
+    </Cube>
+    <Cube time="2026-07-29">
+      <Cube currency="USD" rate="1.138" />
+      <Cube currency="CHF" rate="0.9332" />
+    </Cube>
+    <Cube time="2026-07-28">
+      <Cube currency="USD" rate="1.1367" />
+      <Cube currency="CHF" rate="0.9319" />
+    </Cube>
+    <Cube time="2026-07-27">
+      <Cube currency="USD" rate="1.1389" />
+      <Cube currency="CHF" rate="0.9284" />
+    </Cube>
+    <Cube time="2026-07-24">
+      <Cube currency="USD" rate="1.1377" />
+      <Cube currency="CHF" rate="0.9302" />
+    </Cube>
+    <Cube time="2026-07-23">
+      <Cube currency="USD" rate="1.1392" />
+      <Cube currency="CHF" rate="0.9295" />
+    </Cube>
+    <Cube time="2026-07-22">
+      <Cube currency="USD" rate="1.1408" />
+      <Cube currency="CHF" rate="0.9268" />
+    </Cube>
+    <Cube time="2026-07-21">
+      <Cube currency="USD" rate="1.1418" />
+      <Cube currency="CHF" rate="0.9259" />
+    </Cube>
+    <Cube time="2026-07-20">
+      <Cube currency="USD" rate="1.1426" />
+      <Cube currency="CHF" rate="0.9236" />
+    </Cube>
+    <Cube time="2026-07-17">
+      <Cube currency="USD" rate="1.1435" />
+      <Cube currency="CHF" rate="0.9228" />
+    </Cube>
+    <Cube time="2026-07-16">
+      <Cube currency="USD" rate="1.1467" />
+      <Cube currency="CHF" rate="0.925" />
+    </Cube>
+    <Cube time="2026-07-15">
+      <Cube currency="USD" rate="1.1406" />
+      <Cube currency="CHF" rate="0.9256" />
+    </Cube>
+    <Cube time="2026-07-14">
+      <Cube currency="USD" rate="1.1405" />
+      <Cube currency="CHF" rate="0.9257" />
+    </Cube>
+    <Cube time="2026-07-13">
+      <Cube currency="USD" rate="1.1424" />
+      <Cube currency="CHF" rate="0.9253" />
+    </Cube>
+    <Cube time="2026-07-10">
+      <Cube currency="USD" rate="1.143" />
+      <Cube currency="CHF" rate="0.9223" />
+    </Cube>
+    <Cube time="2026-07-09">
+      <Cube currency="USD" rate="1.1435" />
+      <Cube currency="CHF" rate="0.9227" />
+    </Cube>
+    <Cube time="2026-07-08">
+      <Cube currency="USD" rate="1.1404" />
+      <Cube currency="CHF" rate="0.9222" />
+    </Cube>
+    <Cube time="2026-07-07">
+      <Cube currency="USD" rate="1.1433" />
+      <Cube currency="CHF" rate="0.9218" />
+    </Cube>
+    <Cube time="2026-07-06">
+      <Cube currency="USD" rate="1.1415" />
+      <Cube currency="CHF" rate="0.9201" />
+    </Cube>
+    <Cube time="2026-07-03">
+      <Cube currency="USD" rate="1.1448" />
+      <Cube currency="CHF" rate="0.919" />
+    </Cube>
+    <Cube time="2026-07-02">
+      <Cube currency="USD" rate="1.1399" />
+      <Cube currency="CHF" rate="0.92" />
+    </Cube>
+    <Cube time="2026-07-01">
+      <Cube currency="USD" rate="1.1383" />
+      <Cube currency="CHF" rate="0.9234" />
+    </Cube>
+    <Cube time="2026-06-30">
+      <Cube currency="USD" rate="1.1394" />
+      <Cube currency="CHF" rate="0.9224" />
+    </Cube>
+    <Cube time="2026-06-29">
+      <Cube currency="USD" rate="1.1406" />
+      <Cube currency="CHF" rate="0.9222" />
+    </Cube>
+    <Cube time="2026-06-26">
+      <Cube currency="USD" rate="1.1401" />
+      <Cube currency="CHF" rate="0.9218" />
+    </Cube>
+    <Cube time="2026-06-25">
+      <Cube currency="USD" rate="1.1342" />
+      <Cube currency="CHF" rate="0.9223" />
+    </Cube>
+    <Cube time="2026-06-24">
+      <Cube currency="USD" rate="1.134" />
+      <Cube currency="CHF" rate="0.9216" />
+    </Cube>
+    <Cube time="2026-06-23">
+      <Cube currency="USD" rate="1.1392" />
+      <Cube currency="CHF" rate="0.9225" />
+    </Cube>
+    <Cube time="2026-06-22">
+      <Cube currency="USD" rate="1.1456" />
+      <Cube currency="CHF" rate="0.9257" />
+    </Cube>
+    <Cube time="2026-06-19">
+      <Cube currency="USD" rate="1.1467" />
+      <Cube currency="CHF" rate="0.9248" />
+    </Cube>
+    <Cube time="2026-06-18">
+      <Cube currency="USD" rate="1.1461" />
+      <Cube currency="CHF" rate="0.9218" />
+    </Cube>
+    <Cube time="2026-06-17">
+      <Cube currency="USD" rate="1.1591" />
+      <Cube currency="CHF" rate="0.9193" />
+    </Cube>
+    <Cube time="2026-06-16">
+      <Cube currency="USD" rate="1.1594" />
+      <Cube currency="CHF" rate="0.9224" />
+    </Cube>
+    <Cube time="2026-06-15">
+      <Cube currency="USD" rate="1.1607" />
+      <Cube currency="CHF" rate="0.9212" />
+    </Cube>
+    <Cube time="2026-06-12">
+      <Cube currency="USD" rate="1.1567" />
+      <Cube currency="CHF" rate="0.9217" />
+    </Cube>
+    <Cube time="2026-06-11">
+      <Cube currency="USD" rate="1.1537" />
+      <Cube currency="CHF" rate="0.9221" />
+    </Cube>
+    <Cube time="2026-06-10">
+      <Cube currency="USD" rate="1.1539" />
+      <Cube currency="CHF" rate="0.9222" />
+    </Cube>
+    <Cube time="2026-06-09">
+      <Cube currency="USD" rate="1.1573" />
+      <Cube currency="CHF" rate="0.9206" />
+    </Cube>
+    <Cube time="2026-06-08">
+      <Cube currency="USD" rate="1.154" />
+      <Cube currency="CHF" rate="0.9187" />
+    </Cube>
+    <Cube time="2026-06-05">
+      <Cube currency="USD" rate="1.164" />
+      <Cube currency="CHF" rate="0.9175" />
+    </Cube>
+    <Cube time="2026-06-04">
+      <Cube currency="USD" rate="1.164" />
+      <Cube currency="CHF" rate="0.9168" />
+    </Cube>
+    <Cube time="2026-06-03">
+      <Cube currency="USD" rate="1.1614" />
+      <Cube currency="CHF" rate="0.9167" />
+    </Cube>
+    <Cube time="2026-06-02">
+      <Cube currency="USD" rate="1.1649" />
+      <Cube currency="CHF" rate="0.9149" />
+    </Cube>
+    <Cube time="2026-06-01">
+      <Cube currency="USD" rate="1.1646" />
+      <Cube currency="CHF" rate="0.9128" />
+    </Cube>
+    <Cube time="2026-05-29">
+      <Cube currency="USD" rate="1.1644" />
+      <Cube currency="CHF" rate="0.9111" />
+    </Cube>
+    <Cube time="2026-05-28">
+      <Cube currency="USD" rate="1.1617" />
+      <Cube currency="CHF" rate="0.9167" />
+    </Cube>
+    <Cube time="2026-05-27">
+      <Cube currency="USD" rate="1.1637" />
+      <Cube currency="CHF" rate="0.9153" />
+    </Cube>
+    <Cube time="2026-05-26">
+      <Cube currency="USD" rate="1.1634" />
+      <Cube currency="CHF" rate="0.9136" />
+    </Cube>
+    <Cube time="2026-05-25">
+      <Cube currency="USD" rate="1.1643" />
+      <Cube currency="CHF" rate="0.9099" />
+    </Cube>
+    <Cube time="2026-05-22">
+      <Cube currency="USD" rate="1.1595" />
+      <Cube currency="CHF" rate="0.9119" />
+    </Cube>
+    <Cube time="2026-05-21">
+      <Cube currency="USD" rate="1.1599" />
+      <Cube currency="CHF" rate="0.9145" />
+    </Cube>
+    <Cube time="2026-05-20">
+      <Cube currency="USD" rate="1.16" />
+      <Cube currency="CHF" rate="0.9165" />
+    </Cube>
+    <Cube time="2026-05-19">
+      <Cube currency="USD" rate="1.162" />
+      <Cube currency="CHF" rate="0.915" />
+    </Cube>
+    <Cube time="2026-05-18">
+      <Cube currency="USD" rate="1.1648" />
+      <Cube currency="CHF" rate="0.9144" />
+    </Cube>
+    <Cube time="2026-05-15">
+      <Cube currency="USD" rate="1.1628" />
+      <Cube currency="CHF" rate="0.9144" />
+    </Cube>
+    <Cube time="2026-05-14">
+      <Cube currency="USD" rate="1.1702" />
+      <Cube currency="CHF" rate="0.915" />
+    </Cube>
+    <Cube time="2026-05-13">
+      <Cube currency="USD" rate="1.1715" />
+      <Cube currency="CHF" rate="0.9155" />
+    </Cube>
+    <Cube time="2026-05-12">
+      <Cube currency="USD" rate="1.1738" />
+      <Cube currency="CHF" rate="0.9172" />
+    </Cube>
+    <Cube time="2026-05-11">
+      <Cube currency="USD" rate="1.1765" />
+      <Cube currency="CHF" rate="0.9163" />
+    </Cube>
+    <Cube time="2026-05-08">
+      <Cube currency="USD" rate="1.1761" />
+      <Cube currency="CHF" rate="0.9156" />
+    </Cube>
+    <Cube time="2026-05-07">
+      <Cube currency="USD" rate="1.177" />
+      <Cube currency="CHF" rate="0.9157" />
+    </Cube>
+    <Cube time="2026-05-06">
+      <Cube currency="USD" rate="1.1762" />
+      <Cube currency="CHF" rate="0.9165" />
+    </Cube>
+    <Cube time="2026-05-05">
+      <Cube currency="USD" rate="1.1686" />
+      <Cube currency="CHF" rate="0.9165" />
+    </Cube>
+    <Cube time="2026-05-04">
+      <Cube currency="USD" rate="1.17" />
+      <Cube currency="CHF" rate="0.9173" />
+    </Cube>
+    <Cube time="2026-04-30">
+      <Cube currency="USD" rate="1.1702" />
+      <Cube currency="CHF" rate="0.919" />
+    </Cube>
+    <Cube time="2026-04-29">
+      <Cube currency="USD" rate="1.1706" />
+      <Cube currency="CHF" rate="0.9236" />
+    </Cube>
+    <Cube time="2026-04-28">
+      <Cube currency="USD" rate="1.168" />
+      <Cube currency="CHF" rate="0.9238" />
+    </Cube>
+    <Cube time="2026-04-27">
+      <Cube currency="USD" rate="1.1749" />
+      <Cube currency="CHF" rate="0.921" />
+    </Cube>
+    <Cube time="2026-04-24">
+      <Cube currency="USD" rate="1.1712" />
+      <Cube currency="CHF" rate="0.9199" />
+    </Cube>
+    <Cube time="2026-04-23">
+      <Cube currency="USD" rate="1.1694" />
+      <Cube currency="CHF" rate="0.9177" />
+    </Cube>
+    <Cube time="2026-04-22">
+      <Cube currency="USD" rate="1.1733" />
+      <Cube currency="CHF" rate="0.9175" />
+    </Cube>
+    <Cube time="2026-04-21">
+      <Cube currency="USD" rate="1.1767" />
+      <Cube currency="CHF" rate="0.9172" />
+    </Cube>
+    <Cube time="2026-04-20">
+      <Cube currency="USD" rate="1.176" />
+      <Cube currency="CHF" rate="0.9189" />
+    </Cube>
+    <Cube time="2026-04-17">
+      <Cube currency="USD" rate="1.1797" />
+      <Cube currency="CHF" rate="0.9231" />
+    </Cube>
+    <Cube time="2026-04-16">
+      <Cube currency="USD" rate="1.1782" />
+      <Cube currency="CHF" rate="0.923" />
+    </Cube>
+    <Cube time="2026-04-15">
+      <Cube currency="USD" rate="1.178" />
+      <Cube currency="CHF" rate="0.922" />
+    </Cube>
+    <Cube time="2026-04-14">
+      <Cube currency="USD" rate="1.1793" />
+      <Cube currency="CHF" rate="0.921" />
+    </Cube>
+    <Cube time="2026-04-13">
+      <Cube currency="USD" rate="1.1684" />
+      <Cube currency="CHF" rate="0.9242" />
+    </Cube>
+    <Cube time="2026-04-10">
+      <Cube currency="USD" rate="1.1711" />
+      <Cube currency="CHF" rate="0.9241" />
+    </Cube>
+    <Cube time="2026-04-09">
+      <Cube currency="USD" rate="1.1685" />
+      <Cube currency="CHF" rate="0.924" />
+    </Cube>
+    <Cube time="2026-04-08">
+      <Cube currency="USD" rate="1.1706" />
+      <Cube currency="CHF" rate="0.9223" />
+    </Cube>
+    <Cube time="2026-04-07">
+      <Cube currency="USD" rate="1.1557" />
+      <Cube currency="CHF" rate="0.9242" />
+    </Cube>
+    <Cube time="2026-04-02">
+      <Cube currency="USD" rate="1.1525" />
+      <Cube currency="CHF" rate="0.9213" />
+    </Cube>
+    <Cube time="2026-04-01">
+      <Cube currency="USD" rate="1.1605" />
+      <Cube currency="CHF" rate="0.9191" />
+    </Cube>
+    <Cube time="2026-03-31">
+      <Cube currency="USD" rate="1.1498" />
+      <Cube currency="CHF" rate="0.9194" />
+    </Cube>
+    <Cube time="2026-03-30">
+      <Cube currency="USD" rate="1.1484" />
+      <Cube currency="CHF" rate="0.9187" />
+    </Cube>
+    <Cube time="2026-03-27">
+      <Cube currency="USD" rate="1.1517" />
+      <Cube currency="CHF" rate="0.9178" />
+    </Cube>
+    <Cube time="2026-03-26">
+      <Cube currency="USD" rate="1.1539" />
+      <Cube currency="CHF" rate="0.9151" />
+    </Cube>
+    <Cube time="2026-03-25">
+      <Cube currency="USD" rate="1.1592" />
+      <Cube currency="CHF" rate="0.9153" />
+    </Cube>
+    <Cube time="2026-03-24">
+      <Cube currency="USD" rate="1.1572" />
+      <Cube currency="CHF" rate="0.9145" />
+    </Cube>
+    <Cube time="2026-03-23">
+      <Cube currency="USD" rate="1.1596" />
+      <Cube currency="CHF" rate="0.9124" />
+    </Cube>
+    <Cube time="2026-03-20">
+      <Cube currency="USD" rate="1.1555" />
+      <Cube currency="CHF" rate="0.9096" />
+    </Cube>
+    <Cube time="2026-03-19">
+      <Cube currency="USD" rate="1.1489" />
+      <Cube currency="CHF" rate="0.9121" />
+    </Cube>
+    <Cube time="2026-03-18">
+      <Cube currency="USD" rate="1.15" />
+      <Cube currency="CHF" rate="0.9073" />
+    </Cube>
+    <Cube time="2026-03-17">
+      <Cube currency="USD" rate="1.1531" />
+      <Cube currency="CHF" rate="0.9068" />
+    </Cube>
+    <Cube time="2026-03-16">
+      <Cube currency="USD" rate="1.1478" />
+      <Cube currency="CHF" rate="0.9041" />
+    </Cube>
+    <Cube time="2026-03-13">
+      <Cube currency="USD" rate="1.1476" />
+      <Cube currency="CHF" rate="0.9034" />
+    </Cube>
+    <Cube time="2026-03-12">
+      <Cube currency="USD" rate="1.1547" />
+      <Cube currency="CHF" rate="0.9028" />
+    </Cube>
+    <Cube time="2026-03-11">
+      <Cube currency="USD" rate="1.1581" />
+      <Cube currency="CHF" rate="0.9031" />
+    </Cube>
+    <Cube time="2026-03-10">
+      <Cube currency="USD" rate="1.1641" />
+      <Cube currency="CHF" rate="0.9027" />
+    </Cube>
+    <Cube time="2026-03-09">
+      <Cube currency="USD" rate="1.1555" />
+      <Cube currency="CHF" rate="0.9008" />
+    </Cube>
+    <Cube time="2026-03-06">
+      <Cube currency="USD" rate="1.1561" />
+      <Cube currency="CHF" rate="0.9045" />
+    </Cube>
+    <Cube time="2026-03-05">
+      <Cube currency="USD" rate="1.1618" />
+      <Cube currency="CHF" rate="0.9064" />
+    </Cube>
+    <Cube time="2026-03-04">
+      <Cube currency="USD" rate="1.1649" />
+      <Cube currency="CHF" rate="0.9082" />
+    </Cube>
+    <Cube time="2026-03-03">
+      <Cube currency="USD" rate="1.1606" />
+      <Cube currency="CHF" rate="0.9107" />
+    </Cube>
+    <Cube time="2026-03-02">
+      <Cube currency="USD" rate="1.1698" />
+      <Cube currency="CHF" rate="0.9117" />
+    </Cube>
+    <Cube time="2026-02-27">
+      <Cube currency="USD" rate="1.1805" />
+      <Cube currency="CHF" rate="0.9104" />
+    </Cube>
+    <Cube time="2026-02-26">
+      <Cube currency="USD" rate="1.1814" />
+      <Cube currency="CHF" rate="0.914" />
+    </Cube>
+    <Cube time="2026-02-25">
+      <Cube currency="USD" rate="1.1784" />
+      <Cube currency="CHF" rate="0.913" />
+    </Cube>
+    <Cube time="2026-02-24">
+      <Cube currency="USD" rate="1.1777" />
+      <Cube currency="CHF" rate="0.912" />
+    </Cube>
+    <Cube time="2026-02-23">
+      <Cube currency="USD" rate="1.1784" />
+      <Cube currency="CHF" rate="0.9145" />
+    </Cube>
+    <Cube time="2026-02-20">
+      <Cube currency="USD" rate="1.1767" />
+      <Cube currency="CHF" rate="0.9132" />
+    </Cube>
+    <Cube time="2026-02-19">
+      <Cube currency="USD" rate="1.1753" />
+      <Cube currency="CHF" rate="0.9119" />
+    </Cube>
+    <Cube time="2026-02-18">
+      <Cube currency="USD" rate="1.1845" />
+      <Cube currency="CHF" rate="0.9124" />
+    </Cube>
+    <Cube time="2026-02-17">
+      <Cube currency="USD" rate="1.1826" />
+      <Cube currency="CHF" rate="0.9116" />
+    </Cube>
+    <Cube time="2026-02-16">
+      <Cube currency="USD" rate="1.1855" />
+      <Cube currency="CHF" rate="0.9129" />
+    </Cube>
+    <Cube time="2026-02-13">
+      <Cube currency="USD" rate="1.1862" />
+      <Cube currency="CHF" rate="0.9121" />
+    </Cube>
+    <Cube time="2026-02-12">
+      <Cube currency="USD" rate="1.1874" />
+      <Cube currency="CHF" rate="0.9142" />
+    </Cube>
+    <Cube time="2026-02-11">
+      <Cube currency="USD" rate="1.19" />
+      <Cube currency="CHF" rate="0.9136" />
+    </Cube>
+    <Cube time="2026-02-10">
+      <Cube currency="USD" rate="1.1894" />
+      <Cube currency="CHF" rate="0.9123" />
+    </Cube>
+    <Cube time="2026-02-09">
+      <Cube currency="USD" rate="1.1886" />
+      <Cube currency="CHF" rate="0.915" />
+    </Cube>
+    <Cube time="2026-02-06">
+      <Cube currency="USD" rate="1.1794" />
+      <Cube currency="CHF" rate="0.9175" />
+    </Cube>
+    <Cube time="2026-02-05">
+      <Cube currency="USD" rate="1.1798" />
+      <Cube currency="CHF" rate="0.9161" />
+    </Cube>
+    <Cube time="2026-02-04">
+      <Cube currency="USD" rate="1.182" />
+      <Cube currency="CHF" rate="0.9168" />
+    </Cube>
+    <Cube time="2026-02-03">
+      <Cube currency="USD" rate="1.1801" />
+      <Cube currency="CHF" rate="0.9173" />
+    </Cube>
+    <Cube time="2026-02-02">
+      <Cube currency="USD" rate="1.184" />
+      <Cube currency="CHF" rate="0.9199" />
+    </Cube>
+    <Cube time="2026-01-30">
+      <Cube currency="USD" rate="1.1919" />
+      <Cube currency="CHF" rate="0.9157" />
+    </Cube>
+    <Cube time="2026-01-29">
+      <Cube currency="USD" rate="1.1968" />
+      <Cube currency="CHF" rate="0.9182" />
+    </Cube>
+    <Cube time="2026-01-28">
+      <Cube currency="USD" rate="1.1974" />
+      <Cube currency="CHF" rate="0.9188" />
+    </Cube>
+    <Cube time="2026-01-27">
+      <Cube currency="USD" rate="1.1929" />
+      <Cube currency="CHF" rate="0.9197" />
+    </Cube>
+    <Cube time="2026-01-26">
+      <Cube currency="USD" rate="1.1836" />
+      <Cube currency="CHF" rate="0.9223" />
+    </Cube>
+    <Cube time="2026-01-23">
+      <Cube currency="USD" rate="1.1742" />
+      <Cube currency="CHF" rate="0.9277" />
+    </Cube>
+    <Cube time="2026-01-22">
+      <Cube currency="USD" rate="1.1706" />
+      <Cube currency="CHF" rate="0.9283" />
+    </Cube>
+    <Cube time="2026-01-21">
+      <Cube currency="USD" rate="1.1739" />
+      <Cube currency="CHF" rate="0.9268" />
+    </Cube>
+    <Cube time="2026-01-20">
+      <Cube currency="USD" rate="1.1728" />
+      <Cube currency="CHF" rate="0.9268" />
+    </Cube>
+    <Cube time="2026-01-19">
+      <Cube currency="USD" rate="1.1631" />
+      <Cube currency="CHF" rate="0.9282" />
+    </Cube>
+    <Cube time="2026-01-16">
+      <Cube currency="USD" rate="1.1617" />
+      <Cube currency="CHF" rate="0.9313" />
+    </Cube>
+    <Cube time="2026-01-15">
+      <Cube currency="USD" rate="1.1624" />
+      <Cube currency="CHF" rate="0.9314" />
+    </Cube>
+    <Cube time="2026-01-14">
+      <Cube currency="USD" rate="1.1651" />
+      <Cube currency="CHF" rate="0.9333" />
+    </Cube>
+    <Cube time="2026-01-13">
+      <Cube currency="USD" rate="1.1654" />
+      <Cube currency="CHF" rate="0.9311" />
+    </Cube>
+    <Cube time="2026-01-12">
+      <Cube currency="USD" rate="1.1692" />
+      <Cube currency="CHF" rate="0.9313" />
+    </Cube>
+    <Cube time="2026-01-09">
+      <Cube currency="USD" rate="1.1642" />
+      <Cube currency="CHF" rate="0.9314" />
+    </Cube>
+    <Cube time="2026-01-08">
+      <Cube currency="USD" rate="1.1675" />
+      <Cube currency="CHF" rate="0.9312" />
+    </Cube>
+    <Cube time="2026-01-07">
+      <Cube currency="USD" rate="1.1684" />
+      <Cube currency="CHF" rate="0.9304" />
+    </Cube>
+    <Cube time="2026-01-06">
+      <Cube currency="USD" rate="1.1707" />
+      <Cube currency="CHF" rate="0.9287" />
+    </Cube>
+    <Cube time="2026-01-05">
+      <Cube currency="USD" rate="1.1664" />
+      <Cube currency="CHF" rate="0.9289" />
+    </Cube>
+    <Cube time="2026-01-02">
+      <Cube currency="USD" rate="1.1721" />
+      <Cube currency="CHF" rate="0.9296" />
+    </Cube>
+    <Cube time="2025-12-31">
+      <Cube currency="USD" rate="1.175" />
+      <Cube currency="CHF" rate="0.9314" />
+    </Cube>
+    <Cube time="2025-12-30">
+      <Cube currency="USD" rate="1.1757" />
+      <Cube currency="CHF" rate="0.9293" />
+    </Cube>
+    <Cube time="2025-12-29">
+      <Cube currency="USD" rate="1.1766" />
+      <Cube currency="CHF" rate="0.9293" />
+    </Cube>
+    <Cube time="2025-12-24">
+      <Cube currency="USD" rate="1.1787" />
+      <Cube currency="CHF" rate="0.9284" />
+    </Cube>
+    <Cube time="2025-12-23">
+      <Cube currency="USD" rate="1.1786" />
+      <Cube currency="CHF" rate="0.9287" />
+    </Cube>
+    <Cube time="2025-12-22">
+      <Cube currency="USD" rate="1.1745" />
+      <Cube currency="CHF" rate="0.9316" />
+    </Cube>
+    <Cube time="2025-12-19">
+      <Cube currency="USD" rate="1.1712" />
+      <Cube currency="CHF" rate="0.9318" />
+    </Cube>
+    <Cube time="2025-12-18">
+      <Cube currency="USD" rate="1.1719" />
+      <Cube currency="CHF" rate="0.9316" />
+    </Cube>
+    <Cube time="2025-12-17">
+      <Cube currency="USD" rate="1.1722" />
+      <Cube currency="CHF" rate="0.9332" />
+    </Cube>
+    <Cube time="2025-12-16">
+      <Cube currency="USD" rate="1.1776" />
+      <Cube currency="CHF" rate="0.9351" />
+    </Cube>
+    <Cube time="2025-12-15">
+      <Cube currency="USD" rate="1.1753" />
+      <Cube currency="CHF" rate="0.9355" />
+    </Cube>
+    <Cube time="2025-12-12">
+      <Cube currency="USD" rate="1.1731" />
+      <Cube currency="CHF" rate="0.9333" />
+    </Cube>
+    <Cube time="2025-12-11">
+      <Cube currency="USD" rate="1.1714" />
+      <Cube currency="CHF" rate="0.9333" />
+    </Cube>
+    <Cube time="2025-12-10">
+      <Cube currency="USD" rate="1.1634" />
+      <Cube currency="CHF" rate="0.9356" />
+    </Cube>
+    <Cube time="2025-12-09">
+      <Cube currency="USD" rate="1.1637" />
+      <Cube currency="CHF" rate="0.9385" />
+    </Cube>
+    <Cube time="2025-12-08">
+      <Cube currency="USD" rate="1.1655" />
+      <Cube currency="CHF" rate="0.9388" />
+    </Cube>
+    <Cube time="2025-12-05">
+      <Cube currency="USD" rate="1.1645" />
+      <Cube currency="CHF" rate="0.9365" />
+    </Cube>
+    <Cube time="2025-12-04">
+      <Cube currency="USD" rate="1.1666" />
+      <Cube currency="CHF" rate="0.934" />
+    </Cube>
+    <Cube time="2025-12-03">
+      <Cube currency="USD" rate="1.1668" />
+      <Cube currency="CHF" rate="0.9336" />
+    </Cube>
+    <Cube time="2025-12-02">
+      <Cube currency="USD" rate="1.1614" />
+      <Cube currency="CHF" rate="0.9346" />
+    </Cube>
+    <Cube time="2025-12-01">
+      <Cube currency="USD" rate="1.1646" />
+      <Cube currency="CHF" rate="0.9323" />
+    </Cube>
+    <Cube time="2025-11-28">
+      <Cube currency="USD" rate="1.1566" />
+      <Cube currency="CHF" rate="0.9318" />
+    </Cube>
+    <Cube time="2025-11-27">
+      <Cube currency="USD" rate="1.1586" />
+      <Cube currency="CHF" rate="0.9337" />
+    </Cube>
+    <Cube time="2025-11-26">
+      <Cube currency="USD" rate="1.1577" />
+      <Cube currency="CHF" rate="0.9341" />
+    </Cube>
+    <Cube time="2025-11-25">
+      <Cube currency="USD" rate="1.1551" />
+      <Cube currency="CHF" rate="0.9345" />
+    </Cube>
+    <Cube time="2025-11-24">
+      <Cube currency="USD" rate="1.1544" />
+      <Cube currency="CHF" rate="0.9324" />
+    </Cube>
+    <Cube time="2025-11-21">
+      <Cube currency="USD" rate="1.152" />
+      <Cube currency="CHF" rate="0.9289" />
+    </Cube>
+    <Cube time="2025-11-20">
+      <Cube currency="USD" rate="1.1514" />
+      <Cube currency="CHF" rate="0.9294" />
+    </Cube>
+    <Cube time="2025-11-19">
+      <Cube currency="USD" rate="1.1583" />
+      <Cube currency="CHF" rate="0.9284" />
+    </Cube>
+    <Cube time="2025-11-18">
+      <Cube currency="USD" rate="1.159" />
+      <Cube currency="CHF" rate="0.9233" />
+    </Cube>
+    <Cube time="2025-11-17">
+      <Cube currency="USD" rate="1.1593" />
+      <Cube currency="CHF" rate="0.9225" />
+    </Cube>
+    <Cube time="2025-11-14">
+      <Cube currency="USD" rate="1.1648" />
+      <Cube currency="CHF" rate="0.9185" />
+    </Cube>
+    <Cube time="2025-11-13">
+      <Cube currency="USD" rate="1.1619" />
+      <Cube currency="CHF" rate="0.9244" />
+    </Cube>
+    <Cube time="2025-11-12">
+      <Cube currency="USD" rate="1.1576" />
+      <Cube currency="CHF" rate="0.925" />
+    </Cube>
+    <Cube time="2025-11-11">
+      <Cube currency="USD" rate="1.1575" />
+      <Cube currency="CHF" rate="0.9278" />
+    </Cube>
+    <Cube time="2025-11-10">
+      <Cube currency="USD" rate="1.1571" />
+      <Cube currency="CHF" rate="0.9318" />
+    </Cube>
+    <Cube time="2025-11-07">
+      <Cube currency="USD" rate="1.1561" />
+      <Cube currency="CHF" rate="0.9312" />
+    </Cube>
+    <Cube time="2025-11-06">
+      <Cube currency="USD" rate="1.1533" />
+      <Cube currency="CHF" rate="0.9316" />
+    </Cube>
+    <Cube time="2025-11-05">
+      <Cube currency="USD" rate="1.1492" />
+      <Cube currency="CHF" rate="0.9307" />
+    </Cube>
+    <Cube time="2025-11-04">
+      <Cube currency="USD" rate="1.1491" />
+      <Cube currency="CHF" rate="0.9295" />
+    </Cube>
+    <Cube time="2025-11-03">
+      <Cube currency="USD" rate="1.1514" />
+      <Cube currency="CHF" rate="0.9298" />
+    </Cube>
+    <Cube time="2025-10-31">
+      <Cube currency="USD" rate="1.1554" />
+      <Cube currency="CHF" rate="0.9287" />
+    </Cube>
+    <Cube time="2025-10-30">
+      <Cube currency="USD" rate="1.155" />
+      <Cube currency="CHF" rate="0.9281" />
+    </Cube>
+    <Cube time="2025-10-29">
+      <Cube currency="USD" rate="1.1636" />
+      <Cube currency="CHF" rate="0.9278" />
+    </Cube>
+    <Cube time="2025-10-28">
+      <Cube currency="USD" rate="1.163" />
+      <Cube currency="CHF" rate="0.9262" />
+    </Cube>
+    <Cube time="2025-10-27">
+      <Cube currency="USD" rate="1.164" />
+      <Cube currency="CHF" rate="0.9264" />
+    </Cube>
+    <Cube time="2025-10-24">
+      <Cube currency="USD" rate="1.1612" />
+      <Cube currency="CHF" rate="0.9248" />
+    </Cube>
+    <Cube time="2025-10-23">
+      <Cube currency="USD" rate="1.1593" />
+      <Cube currency="CHF" rate="0.9249" />
+    </Cube>
+    <Cube time="2025-10-22">
+      <Cube currency="USD" rate="1.1587" />
+      <Cube currency="CHF" rate="0.9228" />
+    </Cube>
+    <Cube time="2025-10-21">
+      <Cube currency="USD" rate="1.1607" />
+      <Cube currency="CHF" rate="0.923" />
+    </Cube>
+    <Cube time="2025-10-20">
+      <Cube currency="USD" rate="1.1655" />
+      <Cube currency="CHF" rate="0.9239" />
+    </Cube>
+    <Cube time="2025-10-17">
+      <Cube currency="USD" rate="1.1681" />
+      <Cube currency="CHF" rate="0.9257" />
+    </Cube>
+    <Cube time="2025-10-16">
+      <Cube currency="USD" rate="1.1649" />
+      <Cube currency="CHF" rate="0.9302" />
+    </Cube>
+    <Cube time="2025-10-15">
+      <Cube currency="USD" rate="1.1622" />
+      <Cube currency="CHF" rate="0.9305" />
+    </Cube>
+    <Cube time="2025-10-14">
+      <Cube currency="USD" rate="1.1553" />
+      <Cube currency="CHF" rate="0.9296" />
+    </Cube>
+    <Cube time="2025-10-13">
+      <Cube currency="USD" rate="1.1569" />
+      <Cube currency="CHF" rate="0.9304" />
+    </Cube>
+    <Cube time="2025-10-10">
+      <Cube currency="USD" rate="1.1568" />
+      <Cube currency="CHF" rate="0.9324" />
+    </Cube>
+    <Cube time="2025-10-09">
+      <Cube currency="USD" rate="1.1611" />
+      <Cube currency="CHF" rate="0.9309" />
+    </Cube>
+    <Cube time="2025-10-08">
+      <Cube currency="USD" rate="1.1627" />
+      <Cube currency="CHF" rate="0.9305" />
+    </Cube>
+    <Cube time="2025-10-07">
+      <Cube currency="USD" rate="1.1666" />
+      <Cube currency="CHF" rate="0.9314" />
+    </Cube>
+    <Cube time="2025-10-06">
+      <Cube currency="USD" rate="1.1678" />
+      <Cube currency="CHF" rate="0.9314" />
+    </Cube>
+    <Cube time="2025-10-03">
+      <Cube currency="USD" rate="1.1734" />
+      <Cube currency="CHF" rate="0.9343" />
+    </Cube>
+    <Cube time="2025-10-02">
+      <Cube currency="USD" rate="1.1754" />
+      <Cube currency="CHF" rate="0.935" />
+    </Cube>
+    <Cube time="2025-10-01">
+      <Cube currency="USD" rate="1.1724" />
+      <Cube currency="CHF" rate="0.9365" />
+    </Cube>
+    <Cube time="2025-09-30">
+      <Cube currency="USD" rate="1.1741" />
+      <Cube currency="CHF" rate="0.9364" />
+    </Cube>
+    <Cube time="2025-09-29">
+      <Cube currency="USD" rate="1.1723" />
+      <Cube currency="CHF" rate="0.9357" />
+    </Cube>
+    <Cube time="2025-09-26">
+      <Cube currency="USD" rate="1.1672" />
+      <Cube currency="CHF" rate="0.9332" />
+    </Cube>
+    <Cube time="2025-09-25">
+      <Cube currency="USD" rate="1.1739" />
+      <Cube currency="CHF" rate="0.9344" />
+    </Cube>
+    <Cube time="2025-09-24">
+      <Cube currency="USD" rate="1.1756" />
+      <Cube currency="CHF" rate="0.9335" />
+    </Cube>
+    <Cube time="2025-09-23">
+      <Cube currency="USD" rate="1.1793" />
+      <Cube currency="CHF" rate="0.9344" />
+    </Cube>
+    <Cube time="2025-09-22">
+      <Cube currency="USD" rate="1.1781" />
+      <Cube currency="CHF" rate="0.9348" />
+    </Cube>
+    <Cube time="2025-09-19">
+      <Cube currency="USD" rate="1.1736" />
+      <Cube currency="CHF" rate="0.9344" />
+    </Cube>
+    <Cube time="2025-09-18">
+      <Cube currency="USD" rate="1.1818" />
+      <Cube currency="CHF" rate="0.9331" />
+    </Cube>
+    <Cube time="2025-09-17">
+      <Cube currency="USD" rate="1.1837" />
+      <Cube currency="CHF" rate="0.9317" />
+    </Cube>
+    <Cube time="2025-09-16">
+      <Cube currency="USD" rate="1.1807" />
+      <Cube currency="CHF" rate="0.9336" />
+    </Cube>
+    <Cube time="2025-09-15">
+      <Cube currency="USD" rate="1.1766" />
+      <Cube currency="CHF" rate="0.9353" />
+    </Cube>
+    <Cube time="2025-09-12">
+      <Cube currency="USD" rate="1.1718" />
+      <Cube currency="CHF" rate="0.9347" />
+    </Cube>
+    <Cube time="2025-09-11">
+      <Cube currency="USD" rate="1.1685" />
+      <Cube currency="CHF" rate="0.9346" />
+    </Cube>
+    <Cube time="2025-09-10">
+      <Cube currency="USD" rate="1.1707" />
+      <Cube currency="CHF" rate="0.9338" />
+    </Cube>
+    <Cube time="2025-09-09">
+      <Cube currency="USD" rate="1.1744" />
+      <Cube currency="CHF" rate="0.9331" />
+    </Cube>
+    <Cube time="2025-09-08">
+      <Cube currency="USD" rate="1.1728" />
+      <Cube currency="CHF" rate="0.9328" />
+    </Cube>
+    <Cube time="2025-09-05">
+      <Cube currency="USD" rate="1.1697" />
+      <Cube currency="CHF" rate="0.939" />
+    </Cube>
+    <Cube time="2025-09-04">
+      <Cube currency="USD" rate="1.1647" />
+      <Cube currency="CHF" rate="0.9383" />
+    </Cube>
+    <Cube time="2025-09-03">
+      <Cube currency="USD" rate="1.1653" />
+      <Cube currency="CHF" rate="0.9374" />
+    </Cube>
+    <Cube time="2025-09-02">
+      <Cube currency="USD" rate="1.1646" />
+      <Cube currency="CHF" rate="0.9366" />
+    </Cube>
+    <Cube time="2025-09-01">
+      <Cube currency="USD" rate="1.1715" />
+      <Cube currency="CHF" rate="0.9383" />
+    </Cube>
+    <Cube time="2025-08-29">
+      <Cube currency="USD" rate="1.1658" />
+      <Cube currency="CHF" rate="0.9364" />
+    </Cube>
+    <Cube time="2025-08-28">
+      <Cube currency="USD" rate="1.1676" />
+      <Cube currency="CHF" rate="0.9353" />
+    </Cube>
+    <Cube time="2025-08-27">
+      <Cube currency="USD" rate="1.1593" />
+      <Cube currency="CHF" rate="0.935" />
+    </Cube>
+    <Cube time="2025-08-26">
+      <Cube currency="USD" rate="1.1656" />
+      <Cube currency="CHF" rate="0.9376" />
+    </Cube>
+    <Cube time="2025-08-25">
+      <Cube currency="USD" rate="1.1697" />
+      <Cube currency="CHF" rate="0.9385" />
+    </Cube>
+    <Cube time="2025-08-22">
+      <Cube currency="USD" rate="1.1608" />
+      <Cube currency="CHF" rate="0.9383" />
+    </Cube>
+    <Cube time="2025-08-21">
+      <Cube currency="USD" rate="1.1639" />
+      <Cube currency="CHF" rate="0.9389" />
+    </Cube>
+    <Cube time="2025-08-20">
+      <Cube currency="USD" rate="1.1651" />
+      <Cube currency="CHF" rate="0.9403" />
+    </Cube>
+    <Cube time="2025-08-19">
+      <Cube currency="USD" rate="1.1682" />
+      <Cube currency="CHF" rate="0.9409" />
+    </Cube>
+    <Cube time="2025-08-18">
+      <Cube currency="USD" rate="1.1673" />
+      <Cube currency="CHF" rate="0.9423" />
+    </Cube>
+    <Cube time="2022-04-19">
+      <Cube currency="USD" rate="1.0803" />
+      <Cube currency="CHF" rate="1.0208" />
+    </Cube>
+    <Cube time="2019-07-08">
+      <Cube currency="USD" rate="1.1215" />
+      <Cube currency="CHF" rate="1.1127" />
+    </Cube>
+    <Cube time="2019-07-05">
+      <Cube currency="USD" rate="1.126" />
+      <Cube currency="CHF" rate="1.1126" />
+    </Cube>
+    <Cube time="2019-07-04">
+      <Cube currency="USD" rate="1.1288" />
+      <Cube currency="CHF" rate="1.112" />
+    </Cube>
+    <Cube time="2019-07-03">
+      <Cube currency="USD" rate="1.1293" />
+      <Cube currency="CHF" rate="1.1116" />
+    </Cube>
+    <Cube time="2019-07-02">
+      <Cube currency="USD" rate="1.1301" />
+      <Cube currency="CHF" rate="1.1169" />
+    </Cube>
+    <Cube time="2019-07-01">
+      <Cube currency="USD" rate="1.1349" />
+      <Cube currency="CHF" rate="1.1141" />
+    </Cube>
+    <Cube time="2019-06-28">
+      <Cube currency="USD" rate="1.138" />
+      <Cube currency="CHF" rate="1.1105" />
+    </Cube>
+    <Cube time="2019-04-05">
+      <Cube currency="USD" rate="1.1233" />
+      <Cube currency="CHF" rate="1.1235" />
+    </Cube>
+    <Cube time="2019-04-04">
+      <Cube currency="USD" rate="1.1219" />
+      <Cube currency="CHF" rate="1.1207" />
+    </Cube>
+    <Cube time="2019-04-03">
+      <Cube currency="USD" rate="1.1243" />
+      <Cube currency="CHF" rate="1.1206" />
+    </Cube>
+    <Cube time="2019-04-02">
+      <Cube currency="USD" rate="1.12" />
+      <Cube currency="CHF" rate="1.1195" />
+    </Cube>
+    <Cube time="2019-04-01">
+      <Cube currency="USD" rate="1.1236" />
+      <Cube currency="CHF" rate="1.118" />
+    </Cube>
+    <Cube time="2019-03-29">
+      <Cube currency="USD" rate="1.1235" />
+      <Cube currency="CHF" rate="1.1181" />
+    </Cube>
+  </Cube>
+</Envelope>
