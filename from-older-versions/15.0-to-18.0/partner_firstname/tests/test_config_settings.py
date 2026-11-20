@@ -1,0 +1,74 @@
+# Copyright 2015 Antiun Ingenieria S.L. - Antonio Espinosa
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from odoo.tests import TransactionCase
+
+
+class TestConfigSettings(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.config = cls.env["res.config.settings"].create({})
+
+    def _change_partner_names_order(self):
+        orders = [o[0] for o in self.config._partner_names_order_selection()]
+        current = new = self.config.partner_names_order
+        for o in orders:
+            if o != current:
+                new = o
+                break
+        self.config.partner_names_order = new
+
+    def test_partner_names_order_changed(self):
+        # The partner_names_order_changed is set to true at save time when
+        # the value of partner_names_order is updated
+        self.assertFalse(self.config.partner_names_order_changed)
+        self._change_partner_names_order()
+        self.assertTrue(self.config.partner_names_order_changed)
+
+    def test_partner_names_order_changed_reset(self):
+        # The partner_names_order_changed is reset to false when
+        # the action action_recalculate_partners_name is executed
+        self._change_partner_names_order()
+        self.assertTrue(self.config.partner_names_order_changed)
+        self.config.action_recalculate_partners_name()
+        self.assertFalse(self.config.partner_names_order_changed)
+
+    def test_recalculation_keeps_the_split_fields(self):
+        """Recalculating names must not re-split them into firstname/lastname.
+
+        A contact whose last name has several words keeps both parts as the
+        user typed them; only the full name follows the new order.
+        """
+        partner = self.env["res.partner"].create(
+            {"firstname": "Federico", "lastname": "García Lorca"}
+        )
+        self._change_partner_names_order()
+        self.config.action_recalculate_partners_name()
+        self.env.flush_all()
+        partner.invalidate_recordset()
+        self.assertEqual(partner.firstname, "Federico")
+        self.assertEqual(partner.lastname, "García Lorca")
+        self.assertEqual(
+            partner.name,
+            self.env["res.partner"]._get_computed_name(
+                "García Lorca", "Federico"
+            ),
+        )
+
+    def test_recalculation_reaches_the_complete_name(self):
+        """After "Recalculate names" the contact list shows the new order too.
+
+        The list, its search and its sorting use the stored complete_name.
+        """
+        partner = self.env["res.partner"].create(
+            {"firstname": "Ada", "lastname": "Lovelace"}
+        )
+        before = partner.name
+        self.assertEqual(partner.complete_name, before)
+        self._change_partner_names_order()
+        self.config.action_recalculate_partners_name()
+        self.env.flush_all()
+        partner.invalidate_recordset()
+        self.assertNotEqual(partner.name, before)
+        self.assertEqual(partner.complete_name, partner.name)

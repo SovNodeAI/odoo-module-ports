@@ -4,6 +4,19 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
+### 20 November 2026, 10:50 am: `partner_firstname` 15.0 to 18.0 is listed
+
+Two full reads. The first found seven points, among them one that damaged data: "Recalculate names" in the
+settings split every name again, so a first or last name of two words came out wrong. Five were fixed with
+tests, the second read confirmed them and found one more of the same kind (duplicating a user), which we
+fixed by hand with a test that failed first. 74 test runs pass.
+
+Two points are left as the 15.0 original has them. The module's own error class for an empty name is a
+kind of validation error the web client does not know by name, so outside a form save it appears as a
+general error dialog instead of a validation message. And a contact created from a "Create and edit"
+dialog that was opened with a name refills a name part the user cleared. The maintainers' own 18.0 behaves
+the same in both.
+
 ### 20 November 2026, 10:35 am: a row of our own checklist that we had not applied to the Odoo 20 list
 
 The checklist says: since 18.0, Duplicate in a list view copies every selected record in one call, so a
@@ -300,7 +313,7 @@ The rule now: a module is listed only while every community module it depends on
 
 Also this evening: `mail_gateway` and `barcode_stock` came back from their web-code correction with all tests passing, including new ones. `mail_gateway` is listed again, with two visible changes written up under "Behaviour changes". `barcode_stock` waits for `barcode_scanner`, which it depends on.
 
-<!-- state --> State at 10:36 am on 20 November: 406 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_crm`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_mgmt_sla`, `helpdesk_ticket_partner_response`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_es_mis_report`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `mis_builder`, `mis_template_financial_report`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 45 of the modules listed on the morning of 18 November are still off.
+<!-- state --> State at 10:45 am on 20 November: 406 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_crm`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_mgmt_sla`, `helpdesk_ticket_partner_response`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_es_mis_report`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `mis_builder`, `mis_template_financial_report`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 45 of the modules listed on the morning of 18 November are still off.
 
 ### 18 November 2026, late afternoon: values that no longer reach a called template
 
@@ -347,6 +360,7 @@ These ports were in `from-older-versions/` and were withdrawn for a second revie
 
 | Module | Route | What changed | Why |
 |---|---|---|---|
+| `partner_firstname` | 15.0 to 18.0 | Duplicating a contact or a user keeps the first name and the last name as they are and adds "(copy)" to the part that comes last. In 15.0 the duplicated full name was split again, so "Jean Luc" / "Picard" became "Jean" / "Luc Picard (copy)". "Recalculate names" in the settings no longer splits names again either. | Both were faults of the 15.0 original that the second review pointed out; the later versions of the module had corrected the second one. |
 | `helpdesk_mgmt` | 17.0 to 19.0 | A ticket created from an incoming email gets its number from the sequence, like any other ticket. In 17.0 it got the email's subject as its number. | `number` is the model's name field, and the mail gateway fills the name field with the subject unless the module says otherwise (`addons/mail/models/mail_thread.py`, `message_new`). The module now does. |
 | `contract` | 17.0 to 19.0 | Not changed, and worth knowing: the special form and list for supplier contract lines are not used when the lines are opened from the screen. | The module chooses them in `get_view` by the context key `default_contract_type`. The web client sends only `lang` and keys ending in `_view_ref` when it loads a view (`addons/web/static/src/views/view_service.js`), so the key never arrives. The 17.0 original works the same way. |
 | `contract` | 17.0 to 19.0 | Choosing another product on a contract line always sets the line's unit to that product's unit. In 17.0 the unit was kept when both units were of the same category. | Odoo 19 has no unit categories; its own invoice lines take the product's unit (`addons/account/models/account_move_line.py`). Keeping the old unit could leave one the line does not allow. |
