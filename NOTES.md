@@ -4,7 +4,7 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
-### 20 November 2026, 10:50 am: `partner_firstname` 15.0 to 18.0 is listed
+### 20 November 2026, 10:45 am: `partner_firstname` 15.0 to 18.0 is listed
 
 Two full reads. The first found seven points, among them one that damaged data: "Recalculate names" in the
 settings split every name again, so a first or last name of two words came out wrong. Five were fixed with
