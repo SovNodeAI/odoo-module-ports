@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-432 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5576 test runs in all.
+439 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5666 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -169,6 +169,13 @@
 | [fieldservice_sale](20.0/fieldservice_sale) | OCA/field-service | 19.0 | `650561d` | AGPL-3 | 27 | 27 | reviewed | not yet |
 | [fieldservice_stage_validation](20.0/fieldservice_stage_validation) | OCA/field-service | 19.0 | `650561d` | AGPL-3 | 2 | 2 | none | not yet |
 | [fieldservice_stock](20.0/fieldservice_stock) | OCA/field-service | 19.0 | `650561d` | AGPL-3 | 5 | 5 | none | not yet |
+| [helpdesk_mgmt](20.0/helpdesk_mgmt) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 38 | 38 | reviewed, accepted | passed |
+| [helpdesk_mgmt_activity](20.0/helpdesk_mgmt_activity) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 6 | 6 | reviewed | not yet |
+| [helpdesk_mgmt_crm](20.0/helpdesk_mgmt_crm) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 3 | 3 | reviewed | not yet |
+| [helpdesk_mgmt_merge](20.0/helpdesk_mgmt_merge) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 2 | 2 | reviewed | not yet |
+| [helpdesk_mgmt_portal_follower](20.0/helpdesk_mgmt_portal_follower) | OCA/helpdesk | 18.0 | `9fbf485` | AGPL-3 | 2 | 2 | reviewed | not yet |
+| [helpdesk_mgmt_sla](20.0/helpdesk_mgmt_sla) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 19 | 19 | reviewed | not yet |
+| [helpdesk_ticket_partner_response](20.0/helpdesk_ticket_partner_response) | OCA/helpdesk | 19.0 | `9bfcdef` | AGPL-3 | 20 | 20 | reviewed | not yet |
 | [hotel](20.0/hotel) | OCA/vertical-hotel | 19.0 | `5094008` | LGPL-3 | 8 | 8 | none | not yet |
 | [hotel_housekeeping](20.0/hotel_housekeeping) | OCA/vertical-hotel | 19.0 | `5094008` | AGPL-3 | 8 | 8 | none | not yet |
 | [hotel_restaurant](20.0/hotel_restaurant) | OCA/vertical-hotel | 19.0 | `5094008` | AGPL-3 | 11 | 11 | none | not yet |
