@@ -30,7 +30,7 @@
                 <field name="available_currency_ids" column_invisible="True" />
                 <field name="currency_ids" widget="many2many_tags" />
                 <field name="daily" column_invisible="True" />
-                <field name="next_run" invisible="True" />
+                <field name="next_run" column_invisible="True" />
             </list>
         </field>
     </record>

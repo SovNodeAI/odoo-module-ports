@@ -68,7 +68,7 @@
                 <field name="consolidated_forecast" optional="show" />
                 <field name="type" optional="show" />
                 <field name="forecast_role_id" />
-                <field name="currency_id" invisible="1" />
+                <field name="currency_id" column_invisible="1" />
             </list>
         </field>
     </record>

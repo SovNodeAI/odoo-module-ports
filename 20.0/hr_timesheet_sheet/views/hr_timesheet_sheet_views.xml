@@ -146,7 +146,7 @@
                                             readonly="1"
                                         />
                                         <field name="employee_id" />
-                                        <field name="new_line_id" invisible="1" />
+                                        <field name="new_line_id" column_invisible="1" />
                                         <!--  Don't remove last fields, they are technically needed for the widget to work properly.-->
                                     </list>
                                 </field>

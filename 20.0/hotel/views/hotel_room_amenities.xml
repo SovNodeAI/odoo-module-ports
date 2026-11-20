@@ -121,7 +121,7 @@
             <list>
                 <field name="name" />
                 <field name="amenities_categ_id" string="Amenities Category" />
-                <field name="list_price" string="Amenity Rate" invisible="1" />
+                <field name="list_price" string="Amenity Rate" column_invisible="1" />
             </list>
         </field>
     </record>

@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <list
                 decoration-info="state in ('draft','to_approve')"
-                decoration-muted="state in ('expired')"
+                decoration-muted="state in ('expired',)"
             >
                 <field name="date_start" />
                 <field name="partner_ref" optional="hide" />
@@ -43,14 +43,14 @@
                     />
                     <button
                         name="action_cancel"
-                        invisible="state not in ('open')"
+                        invisible="state not in ('open',)"
                         string="Cancel"
                         class="btn-secondary"
                         type="object"
                     />
                     <button
                         name="action_confirm"
-                        invisible="state not in ('draft')"
+                        invisible="state not in ('draft',)"
                         string="Confirm"
                         class="btn-primary o_purchase_confirm"
                         type="object"

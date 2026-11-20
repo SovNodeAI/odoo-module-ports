@@ -15,7 +15,7 @@
                 <field name="policy_level_id" />
                 <field name="level" />
                 <field name="open_balance" widget="monetary" />
-                <field name="currency_id" invisible="1" />
+                <field name="currency_id" column_invisible="1" />
             </list>
         </field>
     </record>

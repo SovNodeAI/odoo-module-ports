@@ -13,9 +13,9 @@
                             <field name="name" readonly="state != 'todo'" />
                             <field name="required" readonly="state != 'todo'" />
                             <field name="ref" readonly="state != 'todo'" />
-                            <field name="completed" invisible="1" />
-                            <field name="completed_on" invisible="1" />
-                            <field name="completed_by" invisible="1" />
+                            <field name="completed" column_invisible="1" />
+                            <field name="completed_on" column_invisible="1" />
+                            <field name="completed_by" column_invisible="1" />
                             <button
                                 name="action_done"
                                 string="Complete"

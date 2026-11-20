@@ -156,6 +156,46 @@ class TestSaleBlanketOrders(SaleCommon):
 
         self.assertIn(payment_term_note, html.decode())
 
+    def test_blanket_order_report_section_subtotal(self):
+        """The subtotal of a section is rendered in the report.
+
+        The subtotal is printed with a ``t-out`` directive carrying a monetary
+        widget; with the Odoo 19 ``t-esc`` directive it is silently dropped.
+        """
+        blanket_order = self.blanket_order_obj.create(
+            {
+                "partner_id": self.partner.id,
+                "validity_start_date": self.yesterday,
+                "validity_date": self.tomorrow,
+                "payment_term_id": self.payment_term.id,
+                "pricelist_id": self.sale_pricelist.id,
+                "line_ids": [
+                    fields.Command.create(
+                        {
+                            "name": "My section",
+                            "display_type": "line_section",
+                        }
+                    ),
+                    fields.Command.create(
+                        {
+                            "product_id": self.product1.id,
+                            "product_uom": self.product1.uom_id.id,
+                            "original_uom_qty": 2.0,
+                            "price_unit": 10.0,
+                        }
+                    ),
+                ],
+            }
+        )
+        html = self.env["ir.actions.report"]._render_qweb_html(
+            "sale_blanket_order.report_blanketorder", blanket_order.ids
+        )[0].decode()
+
+        self.assertIn("td_section_subtotal", html)
+        # 2 units at 10.0, taxes excluded: the subtotal cell must not be empty
+        subtotal_cell = html.split('name="td_section_subtotal"', 1)[1].split("</td>", 1)[0]
+        self.assertIn("20.00", subtotal_cell)
+
     def test_00_confirm_without_validity_start_date(self):
         """Test blanket order confirmation requires a validity start date."""
         blanket_order = self.blanket_order_obj.create(

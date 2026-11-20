@@ -15,6 +15,9 @@
             "sale_stock_available_info_popup/static/src/js/qty_at_date_widget.esm.js",
             "sale_stock_available_info_popup/static/src/xml/qty_at_date.xml",
         ],
+        "web.assets_unit_tests": [
+            "sale_stock_available_info_popup/static/tests/**/*.test.js",
+        ],
     },
     "installable": True,
 }

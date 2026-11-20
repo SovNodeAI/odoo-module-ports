@@ -145,13 +145,13 @@
                                     create="false"
                                     delete="false"
                                 >
-                                    <field name="is_group" invisible="1" />
-                                    <field name="is_total" invisible="1" />
-                                    <field name="is_readonly" invisible="1" />
+                                    <field name="is_group" column_invisible="1" />
+                                    <field name="is_total" column_invisible="1" />
+                                    <field name="is_readonly" column_invisible="1" />
                                     <field name="code" readonly="1" />
                                     <field name="name" readonly="1" />
-                                    <field name="format_omzet" invisible="1" />
-                                    <field name="format_btw" invisible="1" />
+                                    <field name="format_omzet" column_invisible="1" />
+                                    <field name="format_btw" column_invisible="1" />
                                     <field
                                         name="omzet"
                                         invisible="not format_omzet"
@@ -232,7 +232,7 @@
                                     <field name="amount_tax" readonly="1" />
                                     <field
                                         name="l10n_nl_vat_statement_include"
-                                        invisible="1"
+                                        column_invisible="1"
                                     />
                                     <button
                                         name="l10n_nl_add_move_in_statement"
@@ -262,7 +262,7 @@
         <field name="arch" type="xml">
             <list
                 decoration-info="state=='draft'"
-                decoration-muted="state in ('final')"
+                decoration-muted="state in ('final',)"
             >
                 <field name="name" />
                 <field name="from_date" />

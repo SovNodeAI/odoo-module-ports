@@ -156,7 +156,7 @@
                             <field
                                 name="purchase_lines"
                                 mode="list"
-                                readonly="purchase_state in ('cancel')"
+                                readonly="purchase_state in ('cancel',)"
                                 domain="[('product_id', '=', product_id)]"
                                 context="{'form_view_ref' : 'purchase_request.purchase_order_line_form2_sub',
                                              'list_view_ref' : 'purchase_request.purchase_order_line_tree_sub',

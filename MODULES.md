@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-429 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5472 test runs in all.
+432 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 5576 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -207,6 +207,7 @@
 | [l10n_es_aeat_mod349](20.0/l10n_es_aeat_mod349) | OCA/l10n-spain | 19.0 | `3349525` | AGPL-3 | 5 | 5 | reviewed | not yet |
 | [l10n_es_aeat_mod390](20.0/l10n_es_aeat_mod390) | OCA/l10n-spain | 19.0 | `3349525` | AGPL-3 | 4 | 4 | reviewed | not yet |
 | [l10n_es_aeat_sii_oca](20.0/l10n_es_aeat_sii_oca) | OCA/l10n-spain | 19.0 | `3349525` | AGPL-3 | 33 | 33 | none | not yet |
+| [l10n_es_mis_report](20.0/l10n_es_mis_report) | OCA/l10n-spain | 19.0 | `3349525` | AGPL-3 | 4 | 4 | none | not yet |
 | [l10n_es_verifactu_oca](20.0/l10n_es_verifactu_oca) | OCA/l10n-spain | 18.0 | `d2fb55a` | AGPL-3 | 29 | 29 | reviewed | not yet |
 | [l10n_eu_nace](20.0/l10n_eu_nace) | OCA/community-data-files | 18.0 | `7961dea` | AGPL-3 | 7 | 7 | none | not yet |
 | [l10n_eu_product_adr](20.0/l10n_eu_product_adr) | OCA/community-data-files | 19.0 | `be3b367` | AGPL-3 | 6 | 6 | reviewed | not yet |
@@ -248,6 +249,8 @@
 | [mgmtsystem_action](20.0/mgmtsystem_action) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 7 | 7 | none | not yet |
 | [mgmtsystem_nonconformity](20.0/mgmtsystem_nonconformity) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 11 | 12 | reviewed, accepted | not yet |
 | [mgmtsystem_review](20.0/mgmtsystem_review) | OCA/management-system | 19.0 | `d7d4fcf` | AGPL-3 | 1 | 1 | reviewed | not yet |
+| [mis_builder](20.0/mis_builder) | OCA/mis-builder | 19.0 | `adbe5c3` | AGPL-3 | 99 | 100 | reviewed, accepted | passed |
+| [mis_template_financial_report](20.0/mis_template_financial_report) | OCA/account-financial-reporting | 18.0 | `ae0fff3` | AGPL-3 | 1 | 1 | none | not yet |
 | [module_auto_update](20.0/module_auto_update) | OCA/server-tools | 19.0 | `71de4de` | LGPL-3 | 13 | 13 | reviewed | not yet |
 | [module_change_auto_install](20.0/module_change_auto_install) | OCA/server-tools | 19.0 | `71de4de` | AGPL-3 | 7 | 7 | none | not yet |
 | [mrp_bom_component_mass_change](20.0/mrp_bom_component_mass_change) | OCA/manufacture | 19.0 | `c01ef60` | AGPL-3 | 14 | 14 | reviewed | not yet |
@@ -331,7 +334,7 @@
 | [purchase_order_line_sequence](20.0/purchase_order_line_sequence) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 3 | 3 | reviewed | not yet |
 | [purchase_order_type](20.0/purchase_order_type) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 24 | 24 | reviewed | not yet |
 | [purchase_reception_status](20.0/purchase_reception_status) | OCA/purchase-workflow | 19.0 | `f9031f1` | AGPL-3 | 3 | 3 | reviewed | not yet |
-| [purchase_request](20.0/purchase_request) | OCA/purchase-workflow | 19.0 | `f9031f1` | LGPL-3 | 28 | 30 | reviewed | not yet |
+| [purchase_request](20.0/purchase_request) | OCA/purchase-workflow | 19.0 | `f9031f1` | LGPL-3 | 28 | 28 | reviewed | not yet |
 | [purchase_requisition_line_description](20.0/purchase_requisition_line_description) | OCA/purchase-workflow | 18.0 | `792b144` | AGPL-3 | 1 | 1 | none | not yet |
 | [purchase_sale_inter_company](20.0/purchase_sale_inter_company) | OCA/multi-company | 19.0 | `2992d5a` | AGPL-3 | 15 | 15 | none | not yet |
 | [purchase_stock_analytic](20.0/purchase_stock_analytic) | OCA/account-analytic | 18.0 | `309045a` | AGPL-3 | 1 | 1 | reviewed | not yet |
@@ -349,7 +352,7 @@
 | [rma_sale](20.0/rma_sale) | OCA/rma | 19.0 | `4774c03` | AGPL-3 | 38 | 38 | reviewed, accepted | not yet |
 | [sale_advance_payment](20.0/sale_advance_payment) | OCA/sale-workflow | 19.0 | `e62b0e15` | AGPL-3 | 5 | 5 | reviewed | not yet |
 | [sale_automatic_workflow](20.0/sale_automatic_workflow) | OCA/sale-workflow | 19.0 | `e62b0e1` | AGPL-3 | 18 | 18 | reviewed | not yet |
-| [sale_blanket_order](20.0/sale_blanket_order) | OCA/sale-blanket | 19.0 | `c7243cd` | AGPL-3 | 25 | 25 | reviewed | not yet |
+| [sale_blanket_order](20.0/sale_blanket_order) | OCA/sale-blanket | 19.0 | `c7243cd` | AGPL-3 | 26 | 26 | reviewed, accepted | not yet |
 | [sale_cancel_reason](20.0/sale_cancel_reason) | OCA/sale-workflow | 19.0 | `e62b0e1` | AGPL-3 | 3 | 3 | none | not yet |
 | [sale_commission_oca](20.0/sale_commission_oca) | OCA/commission | 19.0 | `3649f32` | AGPL-3 | 4 | 4 | none | not yet |
 | [sale_delivery_state](20.0/sale_delivery_state) | OCA/sale-workflow | 19.0 | `e62b0e15` | AGPL-3 | 10 | 10 | none | not yet |
@@ -461,7 +464,7 @@ Some listed modules depend on a community module that is not listed here. The te
 | `base_user_role` | not all of its tests run yet | `base_user_role_company`, `base_user_role_history` |
 | `base_view_inheritance_extension` | community 20.0 | `account_invoice_transmit_method`, `account_operating_unit`, `purchase_allowed_product`, `purchase_blanket_order`, `stock_inventory_preparation_filter`, `web_m2x_options_manager` |
 | `component_event` | not all of its tests run yet | `connector` |
-| `date_range` | community 20.0 | `account_tax_balance`, `l10n_it_account`, `stock_demand_estimate_matrix` |
+| `date_range` | community 20.0 | `account_tax_balance`, `l10n_it_account`, `mis_builder`, `stock_demand_estimate_matrix` |
 | `dms` | community 20.0 | `dms_auto_classification`, `dms_field` |
 | `document_knowledge` | community 20.0 | `document_page_access_group` |
 | `document_page` | community 20.0 | `document_page_access_group`, `document_page_reference` |
@@ -475,7 +478,7 @@ Some listed modules depend on a community module that is not listed here. The te
 | `partner_contact_personal_information_page` | community 20.0 | `partner_contact_birthdate`, `partner_contact_gender` |
 | `product_set` | community 20.0 | `sale_product_set` |
 | `queue_job` | community 20.0 | `connector`, `connector_importer`, `ddmrp_cron_actions_as_job`, `edi_queue_oca`, `l10n_br_fiscal_dfe` |
-| `report_xlsx` | community 20.0 | `l10n_nl_tax_statement`, `mrp_bom_structure_xlsx`, `partner_statement`, `report_xlsx_helper` |
+| `report_xlsx` | community 20.0 | `l10n_nl_tax_statement`, `mis_builder`, `mrp_bom_structure_xlsx`, `partner_statement`, `report_xlsx_helper` |
 | `sale_triple_discount` | not all of its tests run yet | `sale_order_general_discount_triple` |
 | `shopify_connector` | not all of its tests run yet | `shopify_connector_account` |
 | `sql_request_abstract` | no tests of its own | `bi_sql_editor` |

@@ -57,8 +57,8 @@
                 <field name="amount_residual" readonly="1" sum="Total Amount" />
                 <field name="date_maturity" />
                 <field name="riba" />
-                <field name="slip_line_ids" invisible="1" />
-                <field name="reconciled" invisible="1" />
+                <field name="slip_line_ids" column_invisible="1" />
+                <field name="reconciled" column_invisible="1" />
                 <field name="past_due_invoice_ids" />
             </list>
         </field>

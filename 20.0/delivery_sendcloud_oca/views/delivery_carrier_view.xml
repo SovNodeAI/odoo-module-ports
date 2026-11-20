@@ -68,7 +68,7 @@
                                 string="Price"
                                 decoration-warning="price_check == 'custom'"
                             />
-                            <field name="price_check" invisible="1" />
+                            <field name="price_check" column_invisible="1" />
                             <button
                                 name="sendcloud_custom_price_details"
                                 type="object"

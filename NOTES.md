@@ -4,6 +4,28 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
+### 20 November 2026, 4:30 am: `mis_builder` is the first module on the Odoo 20 list with a passed second review
+
+The first read of `mis_builder` had rejected it with four faults (see "a second review of the Odoo 20 list has begun" below). All four are fixed and each has a test:
+
+- A query that sums stored fields asks Odoo 20 for the sums the way Odoo 20 wants to be asked. We kept the rest of that code exactly as 19.0 had it: only sums are done in SQL, each field with its own aggregator, and a field that cannot be summed is reported and left empty. The first fix had moved minimum, maximum and average into SQL as well, which 19.0 never did; we took that back.
+- An expression that mixes accounting modes (an initial balance plus a period balance) drills down to the move lines of both again.
+- The wide-display button has an icon, and the browser test checks it before and after a click.
+- The access file Odoo 20 no longer loads is gone, after each of its 23 rights and the company rule was found in the new file.
+
+The second read confirmed the four and found nothing else. 100 test runs pass. `mis_builder` and two of the three modules that depend on it are listed again, and [MODULES.md](MODULES.md) shows `passed` in its second-review column for `mis_builder`, the only module there so far.
+
+### 20 November 2026, 4:15 am: `helpdesk_mgmt` 17.0 to 19.0 is back
+
+This is the port whose first review made us withdraw all the others (see "ports from older versions withdrawn" below): its kanban views would not open on Odoo 19, grouping tickets by stage raised an error, and loading a ticket's suggested recipients raised another. It has now been read three times.
+
+- All six faults of the first read are fixed, and the second read confirmed each one: the three kanban views use the `card` template, the stage method takes the two arguments Odoo 19 passes, the old recipients override is gone (Odoo 19 handles the customer and a bare email address itself), the forms use `<chatter/>`, several tickets can be duplicated at once and each copy gets its own number, and three deprecated calls are replaced.
+- The second read also found a fault that is in the 17.0 module itself: a ticket created from an incoming email got the email's subject as its number, because the number is the record's name field and Odoo's mail gateway fills that with the subject. The port now leaves the number to the sequence. It is listed below as a behaviour change.
+- The third read found that one of the new tests read a view through the wrong model. Corrected.
+- Two points we did not act on. Mass mailings sent from the composer do not use the team's alias as reply-to; Odoo 19's own project, CRM and recruitment apps override the same method in the same way (`_notify_get_reply_to`, while the composer calls `_notify_get_reply_to_batch`), so this is how Odoo 19 behaves, not something the port lost. And the team form shows the alias domain read-only, as the 17.0 module does.
+
+38 test runs pass.
+
 ### 20 November 2026, 4 am: two more older-version ports back, and a mistake of ours the review caught
 
 **`purchase_request`, 16.0 to 19.0, read three times.** The first read listed nine faults, among them the old chatter block on both forms, a crash in procurement when a move has no destination moves, icon names of Odoo 20 that Odoo 19 shows as broken images, and a date comparison that duplicated purchase lines for users outside UTC. Two rounds of fixes dealt with those and each fix has a test. The third read left two points, and both are worth telling.
@@ -89,7 +111,7 @@ The rule now: a module is listed only while every community module it depends on
 
 Also this evening: `mail_gateway` and `barcode_stock` came back from their web-code correction with all tests passing, including new ones. `mail_gateway` is listed again, with two visible changes written up under "Behaviour changes". `barcode_stock` waits for `barcode_scanner`, which it depends on.
 
-<!-- state --> State at 3:55 am on 20 November: 429 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `automation_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `ddmrp`, `ddmrp_cron_actions_as_job`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_it_delivery_note`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `rma_sale`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 22 of the modules listed on the morning of 18 November are still off.
+<!-- state --> State at 4:39 am on 20 November: 432 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `automation_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `ddmrp`, `ddmrp_cron_actions_as_job`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_es_mis_report`, `l10n_it_delivery_note`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `mis_builder`, `mis_template_financial_report`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `rma_sale`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 19 of the modules listed on the morning of 18 November are still off.
 
 ### 18 November 2026, late afternoon: values that no longer reach a called template
 
@@ -136,6 +158,7 @@ These ports were in `from-older-versions/` and were withdrawn for a second revie
 
 | Module | Route | What changed | Why |
 |---|---|---|---|
+| `helpdesk_mgmt` | 17.0 to 19.0 | A ticket created from an incoming email gets its number from the sequence, like any other ticket. In 17.0 it got the email's subject as its number. | `number` is the model's name field, and the mail gateway fills the name field with the subject unless the module says otherwise (`addons/mail/models/mail_thread.py`, `message_new`). The module now does. |
 | `purchase_request` | 16.0 to 19.0 | Request lines can no longer be grouped by analytic distribution; the option is gone from the search view. Filtering and showing the distribution are unchanged. | Odoo 19's analytic mixin offers that grouping for four of its own models and with the record count only (`addons/analytic/models/analytic_mixin.py`). A list of request lines also asks for sums, which the mixin refuses. |
 | `purchase_request` | 16.0 to 19.0 | A vendor's minimum quantity is converted from the vendor price's unit to the unit of the purchase line before the two are compared. | In 16.0 both were always in the product's purchase unit. In 19.0 a vendor price has a unit of its own (`product_uom_id` on `product.supplierinfo`) and there is no purchase unit on the product. |
 | `auditlog` | 15.0 to 19.0 | A subscribed rule is read-only through the form view (`readonly="state == 'subscribed'"` on each field). In 15.0 the same rule sat on the fields in Python. Code that writes to a subscribed rule directly is no longer stopped by the field definition; in 15.0 it was not stopped either, `states` only ever acted in the form. | `states=` on a field no longer exists (checked in 18.0 and 19.0). |
@@ -161,6 +184,7 @@ Some ports in [`20.0/`](20.0) have a visible change as well:
 | `delivery_sendcloud_oca` | 19.0 to 20.0 | Choosing or clearing a service point goes through the form's record (`record.update`), so the change is saved with the record, and the Clear button shows whenever a service point is set. | The 19.0 code assigned the value into `record.data`, which the form does not track, and showed the button on `props.value`, empty since 17.0. jQuery is no longer loaded for the widget (`@web/core/ensure_jquery` is gone in 20.0); the one call that used it is plain JavaScript. |
 | `dms_field` | 19.0 to 20.0 | The module carries its own copy of jQuery 3.6.3 (`static/lib/jquery/`, MIT licence beside it) and loads it before its tree library. | Odoo 20 ships no jQuery: `addons/web/static/lib/jquery` and the `web._assets_jquery` bundle the 19.0 module loaded are gone, and the tree library (jsTree) needs it. The file is the one Odoo 19.0 ships, byte for byte. |
 | `mgmtsystem_nonconformity` | 19.0 to 20.0 | On a record that has not been saved yet, the Non-conformities button of the chatter saves the record first and then opens the list. | That is what Odoo 20's own chatter buttons do (`saveRecord` in `addons/mail/static/src/chatter/web/chatter_patch.js`). The 19.0 code tested `isTemporary` and called `doSaveRecord`, names Odoo no longer has, so that step never ran. |
+| `sale_blanket_order` | 19.0 to 20.0 | The printed blanket order shows the subtotal of each section. On 19.0 it printed 0 there. | The 19.0 template added up the lines under two groups, `account.group_show_line_subtotals_tax_excluded` and `..._tax_included`, which Odoo no longer has, so nothing was added. The port adds the line's amount without or with tax according to the company's price setting, the rule Odoo 20's own sales order report uses (`price_field` in `addons/sale/report/ir_actions_report_templates.xml`). A new test prints the report and checks the subtotal. |
 | `account_payment_partner` | 18.0 to 20.0 | The module no longer adds the payment mode column to the invoice analysis itself. | Since 19.0 the module it depends on, `account_payment_mode`, carries the same field and adds the column; adding it twice makes the column ambiguous. |
 
 ## Things in Odoo 18, 19 and 20 that affect any port
@@ -176,6 +200,12 @@ A module ported from 16 or 17 can therefore pass on 18, 19 or 20 with a large sh
 Up to 17.0 `copy()` duplicated one record, and modules overrode it with `self.ensure_one()` at the top. Since 18.0 `BaseModel.copy` works on a whole recordset: it asks `copy_data()` for one dictionary per record and creates them together (`odoo/models.py` in 18.0, `odoo/orm/models.py` in 19.0). The list view's Duplicate action sends every selected id in one call (`addons/web/static/src/model/relational_model/dynamic_list.js`, `_duplicateRecords`).
 
 An override kept from 17.0 still works from the form, where one record is duplicated, so the module's tests pass. Select two rows in the list and choose Duplicate, and it raises "Expected singleton". The per-record defaults belong in `copy_data()`, as Odoo's own `res.partner` has them. We found this in a port of `partner_firstname` to 18.0 and then in ten more of our older-version ports; the maintainers' own versions of two of those modules still have it.
+
+### A list column hidden with `invisible="1"` is an empty column now
+
+In a list view, a column leaves the table only when its `column_invisible` is true (`addons/web/static/src/views/list/list_renderer.js`, `getActiveColumns`; the same in 18.0, 19.0 and 20.0). `invisible` is looked at per row and only empties the cell (`list_renderer.xml`, `isInvisible`). Old modules hid technical columns with `invisible="1"`, which worked while a constant there hid the whole column. Carried over as it is, the list shows the column's title above a column of blanks. Nothing fails.
+
+A second reviewer pointed at it in a module from 17.0. We then found it in older-version ports of ours (up to 50 columns in one of them) and in 24 of our Odoo 20 ports, 17 of them listed here, where it comes unchanged from the 19.0 originals. A constant `invisible` on a list column is now reported for every port, and corrected to `column_invisible`.
 
 ### `states=` on a field is gone, and the rule goes with it
 

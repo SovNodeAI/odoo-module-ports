@@ -43,6 +43,8 @@ class PurchaseRequestLine(models.Model):
         ondelete="cascade",
         readonly=True,
         index=True,
+        # auto_join=True until 18.0; Odoo 19 names it for what it does
+        bypass_search_access=True,
     )
     company_id = fields.Many2one(
         comodel_name="res.company",

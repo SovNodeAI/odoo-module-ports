@@ -167,7 +167,7 @@
                                 />
                                 <field
                                     name="content_source_model_id"
-                                    invisible="True"
+                                    column_invisible="True"
                                 />
                                 <field
                                     name="default_value"

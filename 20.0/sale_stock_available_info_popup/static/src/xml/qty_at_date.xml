@@ -13,8 +13,8 @@
                     <strong>Available to promise</strong>
                 </td>
                 <td class="text-end">
-                    <b t-out="props.record.data.immediately_usable_qty_today" />
-                    <t t-out="props.record.data.product_uom_id[1]" />
+                    <b t-out="this.props.record.data.immediately_usable_qty_today" />
+                    <t t-out="this.props.record.data.product_uom_id[1]" />
                 </td>
             </tr>
         </xpath>

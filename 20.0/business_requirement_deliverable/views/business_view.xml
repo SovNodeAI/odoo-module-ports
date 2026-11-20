@@ -144,7 +144,7 @@
                 />
                 <field
                     name="currency_id"
-                    invisible="1"
+                    column_invisible="1"
                     groups="business_requirement_deliverable.group_business_requirement_estimation"
                 />
                 <!-- currency_id is required by the monetary widget on price_total -->
