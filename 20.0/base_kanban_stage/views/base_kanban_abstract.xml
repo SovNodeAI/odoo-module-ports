@@ -27,7 +27,7 @@
                         <a
                             t-if="widget.editable"
                             role="menuitem"
-                            type="edit"
+                            type="open"
                             class="dropdown-item"
                         >Edit</a>
                         <a
