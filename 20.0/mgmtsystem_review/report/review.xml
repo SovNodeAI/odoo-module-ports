@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template id="review_report">
-        <t t-call="web.external_layout">
+        <t t-call="web.external_layout" company="(company != res_company and company) or (doc and 'company_id' in doc and doc.company_id.sudo()) or company">
             <div class="page">
                 <div class="row" style="padding-top:10px">
                     <div class="col-12">

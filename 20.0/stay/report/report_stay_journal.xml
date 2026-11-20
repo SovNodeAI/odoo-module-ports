@@ -7,7 +7,7 @@
 -->
 <odoo>
     <template id="stay.report_stayjournalmeal_document">
-        <t t-call="web.internal_layout">
+        <t t-call="web.internal_layout" company="(company != res_company and company) or (doc and 'company_id' in doc and doc.company_id.sudo()) or company">
             <t t-set="doc" t-value="doc.with_context({'lang':user.partner_id.lang})" />
 
             <div class="page">

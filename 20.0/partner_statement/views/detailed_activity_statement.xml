@@ -13,7 +13,7 @@
                 t-out="company.country_id.vat_label or 'Tax ID'"
             />: <span t-field="o.vat" /></div>
         </t>
-        <t t-call="web.external_layout" address="address">
+        <t t-call="web.external_layout" company="(company != res_company and company) or (o and 'company_id' in o and o.company_id.sudo()) or company" address="address">
             <div class="page">
                 <h2>Statement of Account</h2>
                 <div id="informations" class="row mt32 mb32">

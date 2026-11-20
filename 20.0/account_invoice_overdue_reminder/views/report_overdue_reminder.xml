@@ -11,7 +11,7 @@
                     t-esc="o.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"
                 />: <span t-field="o.partner_id.vat" /></div>
             </t>
-        <t t-call="web.external_layout" address="address">
+        <t t-call="web.external_layout" company="(company != res_company and company) or (o and 'company_id' in o and o.company_id.sudo()) or company" address="address">
             <div class="page">
                 <p>Date: <span t-field="o.date" /></p>
                 <p>Subject: Overdue invoice reminder n°<span t-field="o.counter" /></p>
@@ -66,7 +66,7 @@
                     <tr
                         t-foreach="o.total_residual()"
                         t-as="tot"
-                        t-att-class="'bg-200 font-weight-bold'"
+                        t-att-class="'bg-200 fw-bold'"
                     >
                         <td colspan="6" />
                         <td class="text-center">

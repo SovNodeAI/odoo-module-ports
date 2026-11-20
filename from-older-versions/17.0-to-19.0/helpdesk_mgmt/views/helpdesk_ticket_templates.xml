@@ -139,7 +139,7 @@
                                 <td t-if="groupby != 'stage'">
                                     <span
                                         title="Current stage of the ticket"
-                                        t-attf-class="badge badge-pill rounded-pill
+                                        t-attf-class="badge rounded-pill rounded-pill
                                         {{
                                             'text-bg-success' if (not ticket.unattended) and (not ticket.closed)
                                             else 'text-bg-info' if ticket.unattended
@@ -300,7 +300,7 @@
                                         alt="Contact"
                                     />
                                 </div>
-                                <div class="col pl-md-0">
+                                <div class="col ps-md-0">
                                     <div
                                         t-esc="ticket.user_id"
                                         t-options='{"widget": "contact", "fields": ["name"]}'
@@ -338,7 +338,7 @@
                                         alt="Contact"
                                     />
                                 </div>
-                                <div class="col pl-md-0">
+                                <div class="col ps-md-0">
                                     <div
                                         t-field="ticket.partner_id"
                                         t-options='{"widget": "contact", "fields": ["name"]}'
@@ -399,7 +399,7 @@
                                             data-no-post-process=""
                                         >
                                             <div
-                                                class='oe_attachment_embedded o_image o_image_small me-2 mr-lg-3'
+                                                class='oe_attachment_embedded o_image o_image_small me-2 me-lg-3'
                                                 t-att-title="attachment.name"
                                                 t-att-data-mimetype="attachment.mimetype"
                                                 t-attf-data-src="/web/image/#{attachment.id}/50x40?access_token=#{attachment.access_token}"

@@ -4,6 +4,46 @@ Two kinds of note: behaviour that changed in a published port because Odoo remov
 
 ## Corrections to this page
 
+### 20 November 2026, 10 am: on Odoo 20, reports printed the wrong company's letterhead
+
+This one is about Odoo 20 itself, and it concerns every report that was written for 19.0.
+
+The standard page layouts (`web.external_layout`, `web.internal_layout`) put the company's logo, address and
+VAT number around a document. They choose the company themselves when the report does not name one: the
+document's own company first, the user's company last. That choice only runs when no `company` value exists.
+Odoo 20 gives every template a `company` value from the start, the company the user is currently working in.
+So the choice never runs, and a report that simply calls the layout prints the letterhead of whoever prints it.
+In a database with one company nobody notices. In a database with several, an order of company B printed from
+a session in company A goes out under A's name.
+
+We did not take this from reading alone. One report, one contact that belongs to a second company, printed
+through the report engine on both versions: Odoo 19 put the second company in the header, Odoo 20 the first.
+With the company passed in the call, Odoo 20 prints the second again. Odoo's own invoice and sale order do
+pass it; most of its other reports do not.
+
+23 of our Odoo 20 modules call a layout this way (some of them are still held for other reasons).
+Each call now names the company: one the report chose itself, else the document's, else the user's, which is
+what 19.0 did. Each module's tests were run again and pass. 3 modules have such a call in a template where we could not tell mechanically
+which record is the document; they are held until someone has read them. The second reviewer found this in
+`account_credit_control`; the check and the experiment came from that one finding.
+
+`account_reconcile_oca` is back on the Odoo 20 list: its second read found four of the five faults of the
+first fixed, and what is left concerns its tests only (a browser test class that also runs under other
+modules' test tags, and two new browser tests that assert less than their names say).
+
+The class-name check of 8:45 am was too narrow, as a re-read showed: it missed names inside a computed
+class (`t-att-class="'font-weight-bold' if ..."`) and the responsive forms (`pl-sm-0`, `text-md-right`).
+Widened; seven more modules for Odoo 20 and the `contract` and `helpdesk_mgmt` ports to 19.0 were corrected
+and tested again. `contract`'s portal stylesheet also used a colour function Bootstrap 5 does not have
+(`gray("800")`) and a breakpoint that means something narrower in Bootstrap 5; both corrected, in the
+Odoo 20 module and in the port to 19.0.
+
+Two more ports from older versions are listed as of this note: `sale_automatic_workflow` 17.0 to 19.0, where
+the third full read found nothing left to change, and `partner_firstname` 17.0 to 19.0, with one point that is
+the 17.0 original's own behaviour: a company created from a "Create and edit" dialog keeps the name the dialog
+was opened with, even if the user changes it there. The original's own test pins that behaviour, so the port
+keeps it; the maintainers changed both in their 19.0.
+
 ### 20 November 2026, 8:45 am: a batch of new checks, and what they found in ports already on this page
 
 The second reviewer read four more older-version ports this morning (`contract` 16.0 to 19.0, `auditlog` 15.0 to
@@ -241,7 +281,7 @@ The rule now: a module is listed only while every community module it depends on
 
 Also this evening: `mail_gateway` and `barcode_stock` came back from their web-code correction with all tests passing, including new ones. `mail_gateway` is listed again, with two visible changes written up under "Behaviour changes". `barcode_stock` waits for `barcode_scanner`, which it depends on.
 
-<!-- state --> State at 9:05 am on 20 November: 404 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_crm`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_mgmt_sla`, `helpdesk_ticket_partner_response`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_es_mis_report`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `mis_builder`, `mis_template_financial_report`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 47 of the modules listed on the morning of 18 November are still off.
+<!-- state --> State at 10:00 am on 20 November: 406 modules listed. Back on the page since the evening correction of 18 November, because they were corrected or the module they depend on was: `account_analytic_distribution_manual`, `account_billing`, `account_in_payment`, `account_move_tier_validation`, `account_payment_mandate`, `account_payment_sepa_base`, `account_payment_sepa_direct_debit`, `account_reconcile_oca`, `barcode_scanner`, `barcode_stock`, `base_tier_validation`, `base_tier_validation_formula`, `base_tier_validation_forward`, `connector_importer`, `delivery_sendcloud_oca`, `dms_field`, `dms_field_auto_classification`, `document_url`, `helpdesk_mgmt`, `helpdesk_mgmt_activity`, `helpdesk_mgmt_crm`, `helpdesk_mgmt_merge`, `helpdesk_mgmt_portal_follower`, `helpdesk_mgmt_sla`, `helpdesk_ticket_partner_response`, `l10n_br_contract`, `l10n_br_fiscal_dfe`, `l10n_br_purchase`, `l10n_br_purchase_blanket_order`, `l10n_br_sale`, `l10n_br_sale_blanket_order`, `l10n_es_mis_report`, `mgmtsystem_nonconformity`, `mgmtsystem_review`, `mis_builder`, `mis_template_financial_report`, `partner_statement`, `purchase_tier_validation`, `resource_booking`, `sale_tier_validation`, `stay`, `web_widget_open_tab`. 45 of the modules listed on the morning of 18 November are still off.
 
 ### 18 November 2026, late afternoon: values that no longer reach a called template
 

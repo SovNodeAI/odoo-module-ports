@@ -129,7 +129,7 @@
                                                 alt="Contact"
                                             />
                                         </div>
-                                        <div class="col pl-sm-0">
+                                        <div class="col ps-sm-0">
                                             <address
                                                 t-field="contract.partner_id"
                                                 t-options='{"widget": "contact", "fields": ["name", "email", "phone"]}'
@@ -156,7 +156,7 @@
                                                 alt="Contact"
                                             />
                                         </div>
-                                        <div class="col pl-sm-0">
+                                        <div class="col ps-sm-0">
                                             <address
                                                 t-field="contract.user_id"
                                                 t-options='{"widget": "contact", "fields": ["name", "email", "phone"]}'
@@ -242,7 +242,7 @@
                                             t-as="line"
                                         >
                                             <tr
-                                                t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else 'text-muted' if line.is_canceled else ''"
+                                                t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else 'text-muted' if line.is_canceled else ''"
                                             >
                                                 <t t-if="not line.display_type">
                                                     <td name="td_name">

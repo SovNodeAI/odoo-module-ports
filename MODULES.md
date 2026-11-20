@@ -1,6 +1,6 @@
 # Modules ported to Odoo 20.0
 
-404 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 4898 test runs in all.
+406 modules. In every one of them each test the module defines ran and passed on a clean Odoo 20.0 database: 4948 test runs in all.
 
 - **Source**: the OCA repository, branch and commit the port started from.
 - **Test methods**: test methods the module defines. **Test runs**: how many times they ran (a method can run more than once when test classes inherit from each other). All passed.
@@ -27,6 +27,7 @@
 | [account_einvoice_generate](20.0/account_einvoice_generate) | OCA/edi | 18.0 | `f62d700` | AGPL-3 | 1 | 1 | none | not yet |
 | [account_fiscal_year](20.0/account_fiscal_year) | OCA/account-financial-tools | 19.0 | `4a1c887` | AGPL-3 | 4 | 4 | none | not yet |
 | [account_global_discount](20.0/account_global_discount) | OCA/account-invoicing | 19.0 | `5b5f7d5` | AGPL-3 | 10 | 10 | none | not yet |
+| [account_in_payment](20.0/account_in_payment) | OCA/account-reconcile | 19.0 | `fa7be05` | AGPL-3 | 2 | 2 | none | not yet |
 | [account_invoice_ar_ap_by_journal](20.0/account_invoice_ar_ap_by_journal) | OCA/account-invoicing | 18.0 | `4a901e9` | AGPL-3 | 1 | 1 | reviewed | not yet |
 | [account_invoice_export](20.0/account_invoice_export) | OCA/edi | 19.0 | `9dc91ef` | AGPL-3 | 6 | 6 | none | not yet |
 | [account_invoice_fixed_discount](20.0/account_invoice_fixed_discount) | OCA/account-invoicing | 19.0 | `5b5f7d5` | AGPL-3 | 5 | 5 | reviewed | not yet |
@@ -63,6 +64,7 @@
 | [account_payment_sepa_direct_debit](20.0/account_payment_sepa_direct_debit) | OCA/bank-payment-alternative | 19.0 | `5893a02` | AGPL-3 | 5 | 5 | reviewed | not yet |
 | [account_payment_term_extension](20.0/account_payment_term_extension) | OCA/account-payment | 19.0 | `376d018` | AGPL-3 | 22 | 22 | reviewed | not yet |
 | [account_reconcile_model_oca](20.0/account_reconcile_model_oca) | OCA/account-reconcile | 18.0 | `db252b0` | LGPL-3 | 36 | 36 | reviewed, accepted | not yet |
+| [account_reconcile_oca](20.0/account_reconcile_oca) | OCA/account-reconcile | 19.0 | `fa7be05` | AGPL-3 | 48 | 48 | reviewed | passed |
 | [account_statement_base](20.0/account_statement_base) | OCA/account-reconcile | 19.0 | `fa7be05` | LGPL-3 | 1 | 1 | none | not yet |
 | [account_statement_import_camt](20.0/account_statement_import_camt) | OCA/bank-statement-import | 19.0 | `058a9a8` | AGPL-3 | 6 | 6 | reviewed | not yet |
 | [account_statement_import_file](20.0/account_statement_import_file) | OCA/bank-statement-import | 19.0 | `058a9a8` | LGPL-3 | 3 | 3 | reviewed | not yet |

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template id="l10n_es_aeat_mod349.report_aeat_mod349_document">
-        <t t-call="web.external_layout">
+        <t t-call="web.external_layout" company="(company != res_company and company) or (o and 'company_id' in o and o.company_id.sudo()) or company">
             <div class="page">
                 <div class="oe_structure_aeat_mod349" />
                 <div class="row mb32">

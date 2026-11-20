@@ -7,7 +7,7 @@
             t-set="doc"
             t-value="doc.with_context({'lang': doc.generated_user_id and doc.generated_user_id.lang or user.lang})"
         />
-        <t t-call="web.external_layout">
+        <t t-call="web.external_layout" company="(company != res_company and company) or (doc and 'company_id' in doc and doc.company_id.sudo()) or company">
             <div class="page">
                 <div class="oe_structure" id="oe_structure_1" />
                 <div class="row">
